@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="navbar">
+        <!-- <div><img class="menu-img primary-logo" /></div> -->
+        <div>MoneyMaker</div>
+    
+        <div>
+            <button mat-button routerLink="/home">Home</button>
+            <button mat-button>Cashflow</button>
+            <button mat-button>Accounts</button>
+            <button mat-button [matMenuTriggerFor]="belowMenu">Transactions</button>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+                <button mat-menu-item routerLink="/transactions">All</button>
+                <button mat-menu-item>Spending</button>
+                <button mat-menu-item>Income</button>
+            </mat-menu>
+            <button mat-button>Budget</button>
+            <button mat-button>Goals</button>
+            <button mat-button>Categories</button>
+        </div>
+        <div>
+            <button mat-button>User Info</button>
+        </div>
+    </mat-toolbar>

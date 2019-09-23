@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="navbar">
+    <!-- <div><img class="menu-img primary-logo" /></div> -->
+    <div>MoneyMaker</div>
+
+    <div>
+        <button mat-button>Home</button>
+        <button mat-button [matMenuTriggerFor]="belowMenu">Learn More</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item>Budgeting</button>
+            <button mat-menu-item>Goals</button>
+            <button mat-menu-item>Account Management</button>
+        </mat-menu>
+        <button mat-button>Whats Next?</button>
+    </div>
+    <div>
+        <button mat-button>Sign up</button>
+        <button mat-button>Sign in</button>
+    </div>
+</mat-toolbar>
