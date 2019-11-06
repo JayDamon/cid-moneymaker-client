@@ -1,16 +1,16 @@
-import { MatSort, MatTableDataSource } from '@angular/material';
-import { FrequencyType } from 'src/app/shared/models/FrequencyType';
 import { Component, ViewChild } from '@angular/core';
-import { BudgetService } from 'src/app/core/services/budget/budget.service';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { Budget } from 'src/app/shared/models/Budget';
+import { FrequencyType } from 'src/app/shared/models/FrequencyType';
+import { BudgetService } from 'src/app/core/services/budget/budget.service';
 import { FrequencyService } from 'src/app/core/services/frequency/frequency.service';
 
 @Component({
-  selector: 'app-budget-details',
-  templateUrl: './budget-details.component.html',
-  styleUrls: ['./budget-details.component.scss']
+  selector: 'app-budget-table',
+  templateUrl: './budget-table.component.html',
+  styleUrls: ['./budget-table.component.scss']
 })
-export class BudgetDetailsComponent {
+export class BudgetTableComponent {
 
   budgets: MatTableDataSource<Budget>;
   frequencyTypes: FrequencyType[] = [];
@@ -18,7 +18,6 @@ export class BudgetDetailsComponent {
 
   constructor(private budgetService: BudgetService, private frequencyService: FrequencyService) { 
     this.budgetService.getBudgets().subscribe((budgets: Budget[]) => {
-      console.log(budgets);
       this.budgets = new MatTableDataSource(budgets);
     })
     this.frequencyService.getFrequencyTypes().subscribe((frequencyTypes: Array<FrequencyType>) => {

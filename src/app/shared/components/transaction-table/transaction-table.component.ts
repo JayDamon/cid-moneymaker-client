@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
 import { Transaction } from '../../models/Transaction';
+
 
 @Component({
   selector: 'app-transaction-table',
   templateUrl: './transaction-table.component.html',
   styleUrls: ['./transaction-table.component.css']
 })
-export class TransactionTableComponent implements OnInit {
+export class TransactionTableComponent {
 
   transactionService: TransactionService;
   transactions: MatTableDataSource<Transaction>;
-  columnsToDisplay: String[] = ['date', 'accountName', 'transactionCategory', 'description', 'amount'];
+  columnsToDisplay: String[] = 
+      ['date', 'accountName', 'transactionCategory', 'description', 'amount'];
 
   constructor(transactionService: TransactionService) {
     this.transactionService = transactionService;
@@ -20,9 +22,6 @@ export class TransactionTableComponent implements OnInit {
   }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
-  ngOnInit() {
-  }
 
   addTransactions() {
     this.transactionService.getTransactions().subscribe((transactions: Transaction[])=>{

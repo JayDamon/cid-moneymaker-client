@@ -14,5 +14,4 @@ export class FrequencyDataService {
     return this.apiService.get('/v1/frequencyTypes');
   }
 
-
 }
