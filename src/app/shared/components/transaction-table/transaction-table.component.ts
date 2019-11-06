@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TransactionService } from 'src/app/core/services/transaction.service';
-import { Transaction } from '../../models/Transaction';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
+import { Transaction } from '../../models/Transaction';
 
 @Component({
   selector: 'app-transaction-table',

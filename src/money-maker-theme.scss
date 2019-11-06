@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$money-maker-primary: mat-palette($mat-green, 500, 700, 800);
+$money-maker-accent:  mat-palette($mat-green, A200);
+$money-maker-theme:   mat-light-theme($money-maker-primary, $money-maker-accent);
+
+@include angular-material-theme($money-maker-theme);

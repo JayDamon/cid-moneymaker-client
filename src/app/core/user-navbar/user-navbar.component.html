@@ -6,13 +6,15 @@
             <button mat-button routerLink="/home">Home</button>
             <button mat-button>Cashflow</button>
             <button mat-button>Accounts</button>
-            <button mat-button [matMenuTriggerFor]="belowMenu">Transactions</button>
+            <button mat-button [matMenuTriggerFor]="belowMenu" #menuTrigger="matMenuTrigger" (mouseenter)="menuTrigger.openMenu()">Transactions</button>
             <mat-menu #belowMenu="matMenu" yPosition="below">
-                <button mat-menu-item routerLink="/transactions">All</button>
-                <button mat-menu-item>Spending</button>
-                <button mat-menu-item>Income</button>
+                <span (mouseleave)="menuTrigger.closeMenu()">
+                    <button mat-menu-item routerLink="/transactions">All</button>
+                    <button mat-menu-item>Spending</button>
+                    <button mat-menu-item>Income</button>
+                </span>
             </mat-menu>
-            <button mat-button>Budget</button>
+            <button mat-button routerLink="/budget">Budget</button>
             <button mat-button>Goals</button>
             <button mat-button>Categories</button>
         </div>

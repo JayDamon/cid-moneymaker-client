@@ -1,0 +1,19 @@
+<div *ngIf="budgetExists; then budgetSummary else createBudget"></div>
+<ng-template #budgetSummary>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+            <div class="app-budget-summary-chart" *ngIf="firstMonthBudgetSummary">
+                <app-budget-summary-chart [budgetSummary]=firstMonthBudgetSummary></app-budget-summary-chart>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="app-budget-summary-chart" *ngIf="secondMonthBudgetSummary">
+                <app-budget-summary-chart [budgetSummary]=secondMonthBudgetSummary></app-budget-summary-chart>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <app-transaction-table></app-transaction-table>
+</ng-template>
+<ng-template #createBudget>
+    Create a new Budget
+</ng-template>
