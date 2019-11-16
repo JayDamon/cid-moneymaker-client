@@ -1,25 +1,40 @@
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { BudgetDataService } from 'src/app/core/services/budget/budget-data.service';
 import { Injectable, OnInit } from '@angular/core';
 import { BudgetSummary } from 'src/app/shared/models/BudgetSummary';
 import { BudgetType } from 'src/app/shared/models/BudgetType';
 import { Budget } from 'src/app/shared/models/Budget';
 import { map } from 'rxjs/operators';
+import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BudgetService {
 
+  private _budgets = new BehaviorSubject<Budget[]>([]);
+  private budgetsStore: { budgets: Budget[] } = { budgets: [] }
+  readonly budgets = this._budgets.asObservable();
+
+
   private budgetSummary: Observable<Array<BudgetSummary[]>>;
   private budgetTypes: Observable<Array<BudgetType>>;
-  private budgets: Observable<Array<Budget>>;
+  
+  private budgetCategories: Observable<Array<BudgetCategory>>;
   private newBudgets: Array<Budget> = [];
 
   constructor(private budgetDataService : BudgetDataService) {
-    this.budgetSummary = this.budgetDataService.getBudgetSummary();
-    this.budgetTypes = this.budgetDataService.getBudgetTypes();
-    this.budgets = this.budgetDataService.getBudgets();
+    this.budgetSummary = this.budgetDataService.getBudgetSummary(); // TODO: update to be like budgets
+    this.budgetTypes = this.budgetDataService.getBudgetTypes(); // TODO: update to be like budgets
+    this.loadAllBudgets();
+    this.budgetCategories = this.budgetDataService.getBudgetCategories(); // TODO: update to be like budgets
+  }
+
+  loadAllBudgets() {
+    this.budgetDataService.getBudgets().subscribe(data => {
+      this.budgetsStore.budgets = data;
+      this._budgets.next(Object.assign({}, this.budgetsStore).budgets);
+    });
   }
 
   getBudgetSummary(): Observable<Array<BudgetSummary[]>> {
@@ -32,12 +47,23 @@ export class BudgetService {
 
   saveNewBudgets() {
 
-    let savedBudgets = this.budgetDataService.saveNewBudgets(this.newBudgets);
-
-    savedBudgets.subscribe((savedBudgets: Array<Budget>) => {
+    this.budgetDataService.saveNewBudgets(this.newBudgets).subscribe((savedBudgets: Array<Budget>) => {
       this.budgets.pipe(map(budgets => {
           budgets.concat(savedBudgets);
       }))
+    });
+
+  }
+
+  updateBudget(budget: Budget) {
+    this.budgetDataService.updateBudget(budget, budget.id)
+      .subscribe(data => {
+        this.budgetsStore.budgets.forEach((b, i) => {
+          if (b.id === data.id) {
+            this.budgetsStore.budgets[i] = data;
+          }
+        });
+        this._budgets.next(Object.assign({}, this.budgetsStore).budgets);
     });
 
   }
@@ -55,6 +81,10 @@ export class BudgetService {
     if (budgetIndex !== -1) {
       this.newBudgets.splice(budgetIndex, 1);
     }
+  }
+
+  getBudgetCategories(): Observable<Array<BudgetCategory>> {
+    return this.budgetCategories;
   }
 
 }

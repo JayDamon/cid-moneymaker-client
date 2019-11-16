@@ -25,11 +25,6 @@ export class ApiService {
     })
   };
 
-  // get(path: string): Observable<any> {
-  //   return this.http.get(`${environment.api_url}${path}`)
-  //   .pipe(catchError(this.formatErrors));
-  // }
-
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
     return this.http.get(`${environment.api_url}${path}`, 
     { params })
@@ -43,13 +38,16 @@ export class ApiService {
     ).pipe(catchError(this.formatErrors));
   }
 
-  post(path: string, body: Object = {}): Observable<any> {
-    
-    console.log(JSON.stringify(body));
-    console.log(path);
-    console.log(environment.api_url);
+  patch(path: string, body: Object = {}, resourceId: number): Observable<any> {
+    return this.http.patch(
+      `${environment.api_url}${path}${resourceId}`,
+      JSON.stringify(body),
+      this.httpOptions
+    ).pipe(catchError(this.formatErrors));
+  }
 
-    // TODO: this post is not making it to the server.
+  post(path: string, body: Object = {}): Observable<any> {
+
     let req = this.http.post(
       `${environment.api_url}${path}`,
       JSON.stringify(body),

@@ -7,7 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { BudgetRoutingModule } from './budget-routing.module';
 import { CommonModule } from '@angular/common';
 import { NewBudgetComponent } from './pages/new-budget/new-budget.component';
-import { MatInputModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatTreeModule, MatIconModule, MatTableModule, MatSelectModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatTreeModule, MatIconModule, MatTableModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BudgetTypeInputComponent } from './components/budget-type-input/budget-type-input.component';
 import { BudgetSidePanelComponent } from './components/budget-side-panel/budget-side-panel.component';
@@ -39,7 +39,9 @@ import { BudgetTableComponent } from './components/budget-table/budget-table.com
         MatTreeModule,
         MatIconModule,
         MatTableModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     providers: [
 

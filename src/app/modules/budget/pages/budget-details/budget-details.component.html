@@ -1,1 +1,6 @@
-<app-budget-table></app-budget-table>
+<app-budget-table 
+    [budgets]="budgets" 
+    [budgetCategories]="budgetCategories" 
+    [frequencyTypes]="frequencyTypes" 
+    (budgetChange)="updateBudget($event)">
+</app-budget-table>
