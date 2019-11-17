@@ -255,8 +255,6 @@ export class BudgetTypeInputComponent implements OnInit {
       if (parent.children) {
         parent.children.push( {item: name} as BudgetCategoryNode);
         this.dataChange.next(this.data);
-        console.log(parent);
-        console.log(name);
       }
     }
 

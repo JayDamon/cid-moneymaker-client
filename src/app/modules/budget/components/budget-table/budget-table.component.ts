@@ -1,9 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Budget } from 'src/app/shared/models/Budget';
 import { FrequencyType } from 'src/app/shared/models/FrequencyType';
-import { BudgetService } from 'src/app/core/services/budget/budget.service';
-import { FrequencyService } from 'src/app/core/services/frequency/frequency.service';
+import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';
 
 @Component({
   selector: 'app-budget-table',
@@ -12,19 +11,23 @@ import { FrequencyService } from 'src/app/core/services/frequency/frequency.serv
 })
 export class BudgetTableComponent {
 
-  budgets: MatTableDataSource<Budget>;
-  frequencyTypes: FrequencyType[] = [];
+  _budgets: MatTableDataSource<Budget>;
   columnsToDisplay: String[] = ['name', 'startDate', 'endDate', 'frequency', 'inUse', 'category'];
 
-  constructor(private budgetService: BudgetService, private frequencyService: FrequencyService) { 
-    this.budgetService.getBudgets().subscribe((budgets: Budget[]) => {
-      this.budgets = new MatTableDataSource(budgets);
-    })
-    this.frequencyService.getFrequencyTypes().subscribe((frequencyTypes: Array<FrequencyType>) => {
-      this.frequencyTypes = frequencyTypes;
-    })
+  @Output() budgetChange = new EventEmitter();
+
+  @Input() budgetCategories: Array<BudgetCategory> = [];
+  @Input() frequencyTypes: Array<FrequencyType> = [];
+
+  @Input()
+  set budgets(budgets: Array<Budget>) {
+      this._budgets = new MatTableDataSource(budgets);
   }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  updateBudget(budget: Budget) {
+    this.budgetChange.emit(budget);
+  }
 
 }

@@ -1,43 +1,76 @@
-<table mat-table [dataSource]="budgets" matSort class="mat-elevation-z8">
+<table mat-table [(dataSource)]="_budgets" matSort class="mat-elevation-z8">
 
-    <ng-container matColumnDef="name">\
+    <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let budget"> {{ budget.name }}</td>
+        <td mat-cell *matCellDef="let budget"> 
+            <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="budget.name" (change)="updateBudget(budget)">
+            </mat-form-field>
+        </td>
     </ng-container>
 
-    <ng-container matColumnDef="startDate">\
+    <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+<<<<<<< HEAD
         <td mat-cell *matCellDef="let budget"> {{ budget.startDate | date : 'mediumDate' }}</td>
+=======
+        <td mat-cell *matCellDef="let budget"> 
+            <mat-form-field>
+                <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="budget.startDate"(dateChange)="updateBudget(budget)">
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+            </mat-form-field>
+        </td>
+>>>>>>> ec2e9d3d1594ab9aad010e671bd1b345a6a0b3f4
     </ng-container>
 
-    <ng-container matColumnDef="endDate">\
+    <ng-container matColumnDef="endDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+<<<<<<< HEAD
         <td mat-cell *matCellDef="let budget"> {{ budget.endDate | date : 'mediumDate' }}</td>
+=======
+        <td mat-cell *matCellDef="let budget"> 
+            <mat-form-field>
+                <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="budget.endDate" (dateChange)="updateBudget(budget)">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+            </mat-form-field>
+        </td>
+>>>>>>> ec2e9d3d1594ab9aad010e671bd1b345a6a0b3f4
     </ng-container>
 
-    <ng-container matColumnDef="frequency">\
+    <ng-container matColumnDef="frequency">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency</th>
-        <!-- <td mat-cell *matCellDef="let budget"> {{ budget.frequencyType }}</td> -->
         <td mat-cell *matCellDef="let budget">
             <mat-form-field>
-                <mat-select panelClass="example-panel-dark-blue">
-                    <mat-option *ngFor="let type of frequencyTypes" [value]="type">{{type.name}}</mat-option>
+                <mat-select panelClass="example-panel-dark-blue" [(ngModel)]="budget.frequencyTypeId" (selectionChange)="updateBudget(budget)">
+                    <mat-option *ngFor="let type of frequencyTypes" [value]="type.id">{{type.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </td>
     </ng-container>
 
-    <ng-container matColumnDef="inUse">\
+    <ng-container matColumnDef="inUse">
+        
         <th mat-header-cell *matHeaderCellDef mat-sort-header>In Use</th>
-        <td mat-cell *matCellDef="let budget"> {{ budget.inUse }}</td>
+        <td mat-cell *matCellDef="let budget"> 
+            <mat-checkbox [(ngModel)]="budget.inUse" [checked]="budget.inUse" (change)="updateBudget(budget)"></mat-checkbox>
+        </td>
+        
     </ng-container>
 
-    <ng-container matColumnDef="category">\
+    <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-        <td mat-cell *matCellDef="let budget"> {{ budget.budgetCategory.name }}</td>
+        <td mat-cell *matCellDef="let budget"> 
+            <mat-form-field>
+                <mat-select panelClass="example-panel-dark-blue" [(ngModel)]="budget.budgetCategory.id" (selectionChange)="updateBudget(budget)">
+                    <mat-option *ngFor="let category of budgetCategories" [value]="category.id">{{category.type}} {{category.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
 
 </table>
