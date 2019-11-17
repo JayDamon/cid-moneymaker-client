@@ -11,9 +11,6 @@
 
     <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
-<<<<<<< HEAD
-        <td mat-cell *matCellDef="let budget"> {{ budget.startDate | date : 'mediumDate' }}</td>
-=======
         <td mat-cell *matCellDef="let budget"> 
             <mat-form-field>
                 <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="budget.startDate"(dateChange)="updateBudget(budget)">
@@ -21,22 +18,17 @@
                 <mat-datepicker #startDatePicker></mat-datepicker>
             </mat-form-field>
         </td>
->>>>>>> ec2e9d3d1594ab9aad010e671bd1b345a6a0b3f4
     </ng-container>
 
     <ng-container matColumnDef="endDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
-<<<<<<< HEAD
-        <td mat-cell *matCellDef="let budget"> {{ budget.endDate | date : 'mediumDate' }}</td>
-=======
         <td mat-cell *matCellDef="let budget"> 
             <mat-form-field>
-                <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="budget.endDate" (dateChange)="updateBudget(budget)">
+                <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="budget.endDate  | date : 'mediumDate'" (dateChange)="updateBudget(budget)">
                 <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #endDatePicker></mat-datepicker>
             </mat-form-field>
         </td>
->>>>>>> ec2e9d3d1594ab9aad010e671bd1b345a6a0b3f4
     </ng-container>
 
     <ng-container matColumnDef="frequency">
