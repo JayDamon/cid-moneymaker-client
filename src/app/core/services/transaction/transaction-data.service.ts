@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { TransactionDataService } from './transaction-data.service';
+import { ApiService } from '../api/api.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionService {
-  
-  constructor(private transactionDataService : TransactionDataService) { }
-  
+export class TransactionDataService {
+
+  constructor(private apiService : ApiService) { }
+
   getTransactions(): Observable<Transaction[]> {
 
     // return this.http.get<Transaction[]>('http://localhost:8080/oaka/v1/transactions');
-    return this.transactionDataService.getTransactions();
+    return this.apiService.get('/v1/transactions');
 
   }
 

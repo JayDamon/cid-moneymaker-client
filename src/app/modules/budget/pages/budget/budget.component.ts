@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class BudgetComponent implements OnInit {
 
-
   budgetService: BudgetService;
   router: Router;
 
@@ -21,7 +20,7 @@ export class BudgetComponent implements OnInit {
   constructor(budgetService: BudgetService, router: Router) {
     this.budgetService = budgetService;
     this.router = router;
-    this.budgetExists = true;
+    this.budgetExists = this.budgetService.budgetsExist;
     this.getBudgetSummaries();
   }
 

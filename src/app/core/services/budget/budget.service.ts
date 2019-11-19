@@ -16,6 +16,8 @@ export class BudgetService {
   private budgetsStore: { budgets: Budget[] } = { budgets: [] }
   readonly budgets = this._budgets.asObservable();
 
+  private _budgetsExist = false;
+
 
   private budgetSummary: Observable<Array<BudgetSummary[]>>;
   private budgetTypes: Observable<Array<BudgetType>>;
@@ -34,6 +36,7 @@ export class BudgetService {
     this.budgetDataService.getBudgets().subscribe(data => {
       this.budgetsStore.budgets = data;
       this._budgets.next(Object.assign({}, this.budgetsStore).budgets);
+      this._budgetsExist = data.length > 0;
     });
   }
 
@@ -85,6 +88,10 @@ export class BudgetService {
 
   getBudgetCategories(): Observable<Array<BudgetCategory>> {
     return this.budgetCategories;
+  }
+
+  get budgetsExist(): boolean {
+    return this._budgetsExist;
   }
 
 }
