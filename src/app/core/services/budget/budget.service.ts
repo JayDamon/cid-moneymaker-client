@@ -16,15 +16,17 @@ export class BudgetService {
   private budgetsStore: { budgets: Budget[] } = { budgets: [] }
   readonly budgets = this._budgets.asObservable();
 
+  private _budgetsCreated: Boolean;
 
-  private budgetSummary: Observable<Array<BudgetSummary[]>>;
+
+  private budgetSummary: Observable<Array<BudgetSummary>>;
   private budgetTypes: Observable<Array<BudgetType>>;
   
   private budgetCategories: Observable<Array<BudgetCategory>>;
   private newBudgets: Array<Budget> = [];
 
   constructor(private budgetDataService : BudgetDataService) {
-    this.budgetSummary = this.budgetDataService.getBudgetSummary(); // TODO: update to be like budgets
+    // this.budgetSummary = this.budgetDataService.getBudgetSummary(); // TODO: update to be like budgets
     this.budgetTypes = this.budgetDataService.getBudgetTypes(); // TODO: update to be like budgets
     this.loadAllBudgets();
     this.budgetCategories = this.budgetDataService.getBudgetCategories(); // TODO: update to be like budgets
@@ -34,10 +36,12 @@ export class BudgetService {
     this.budgetDataService.getBudgets().subscribe(data => {
       this.budgetsStore.budgets = data;
       this._budgets.next(Object.assign({}, this.budgetsStore).budgets);
+      this._budgetsCreated = data.length > 0
     });
   }
 
-  getBudgetSummary(): Observable<Array<BudgetSummary[]>> {
+  getBudgetSummary(year: Number, month: Number): Observable<Array<BudgetSummary>> {
+    this.budgetSummary = this.budgetDataService.getBudgetSummary(year, month);
     return this.budgetSummary;
   }
 
@@ -70,6 +74,10 @@ export class BudgetService {
 
   getBudgets(): Observable<Array<Budget>> {
     return this.budgets;
+  }
+
+  budgetsCreated(): Boolean {
+    return this._budgetsCreated;
   }
 
   addBudget(budget: Budget) {

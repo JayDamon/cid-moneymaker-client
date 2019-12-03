@@ -30,8 +30,6 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
 
 
   addBudgets() {
-    // this.budgetService.getBudgetSummary().subscribe((budgetSummary: Array<BudgetSummary[]>)=>{
-      // this.budgetSummary = budgetSummary;
       if (this.budgetSummary != null) {
         let planned = new Array();
         let actual = new Array();
@@ -40,9 +38,6 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
         let red = '#B71C1C';
         let green = '#2E7D32';
         
-        // for (let summaries of budgetSummary) {
-
-          // for (let bs of summaries) {
           for (let bs of this.budgetSummary) {
             planned.push(bs.planned);
             actual.push(bs.actual);
@@ -51,9 +46,10 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
             } else {
               colors.push(red);
             }
-            categories.push(bs.category);
+            const cat = bs.category.charAt(0).toUpperCase() + bs.category.slice(1);
+            const tranType = bs.transactionType.charAt(0).toUpperCase() + bs.transactionType.slice(1);
+            categories.push(cat + " " + tranType);
           }
-        // }
 
         this.chartDatasets = [
           {
@@ -79,7 +75,7 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
 
         this.chartLabels = categories;
     }
-    // })
+
   }
 
   public chartType: string = 'bar';

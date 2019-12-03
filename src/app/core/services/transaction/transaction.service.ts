@@ -12,8 +12,7 @@ export class TransactionService {
   
   getTransactions(): Observable<Transaction[]> {
 
-    // return this.http.get<Transaction[]>('http://localhost:8080/oaka/v1/transactions');
-    return this.apiService.get('/transactions');
+    return this.apiService.get('/v1/transactions');
 
   }
 

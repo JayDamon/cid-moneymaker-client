@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BudgetSummary } from 'src/app/shared/models/BudgetSummary';
@@ -14,8 +15,8 @@ export class BudgetDataService {
   constructor(private apiService : ApiService) { 
   }
 
-  getBudgetSummary(): Observable<Array<BudgetSummary[]>> {
-    return this.apiService.get('/v1/budgetSummary');
+  getBudgetSummary(year: Number, month: Number): Observable<Array<BudgetSummary>> {
+    return this.apiService.get('/v1/budgets/summary', new HttpParams().set("year", year.toString()).set("month", month.toString()));
   }
 
   getBudgetTypes(): Observable<Array<BudgetType>> {

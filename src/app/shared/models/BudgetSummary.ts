@@ -1,4 +1,5 @@
 export interface BudgetSummary {
+    transactionType: String;
     category: string;
     month: number;
     monthText: string;
