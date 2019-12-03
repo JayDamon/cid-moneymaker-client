@@ -12,7 +12,6 @@ import { Budget } from 'src/app/shared/models/Budget';
 })
 export class BudgetComponent {
 
-
   budgetService: BudgetService;
   router: Router;
 

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Transaction } from '../../../shared/models/Transaction';
-import { ApiService } from '../api/api.service';
+import { TransactionDataService } from './transaction-data.service';
+import { Transaction } from 'src/app/shared/models/Transaction';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
   
-  constructor(private apiService : ApiService) { }
+  constructor(private transactionDataService : TransactionDataService) { }
   
   getTransactions(): Observable<Transaction[]> {
-
-    return this.apiService.get('/v1/transactions');
+    return this.transactionDataService.getTransactions();
 
   }
 
