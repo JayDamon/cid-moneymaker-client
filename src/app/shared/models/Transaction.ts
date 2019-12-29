@@ -1,5 +1,5 @@
 import { Budget } from './Budget';
-import { Account } from './Account';
+import { FinancialAccount } from './FinancialAccount';
 import { Category } from './Category';
 
 export interface Transaction {
@@ -25,7 +25,7 @@ export interface Transaction {
     amount: number;
     description: string;
     date: Date;
-    account: Account;
+    account: FinancialAccount;
     budget: Budget;
     category: Category;
 }

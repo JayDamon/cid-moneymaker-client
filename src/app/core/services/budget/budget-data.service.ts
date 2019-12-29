@@ -12,11 +12,10 @@ import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';
 })
 export class BudgetDataService {
 
-  constructor(private apiService : ApiService) { 
-  }
+  constructor(private apiService: ApiService) {}
 
-  getBudgetSummary(year: Number, month: Number): Observable<Array<BudgetSummary>> {
-    return this.apiService.get('/v1/budgets/summary', new HttpParams().set("year", year.toString()).set("month", month.toString()));
+  getBudgetSummary(year: number, month: number): Observable<Array<BudgetSummary>> {
+    return this.apiService.get('/v1/budgets/summary', new HttpParams().set('year', year.toString()).set('month', month.toString()));
   }
 
   getBudgetTypes(): Observable<Array<BudgetType>> {
@@ -24,19 +23,19 @@ export class BudgetDataService {
   }
 
   saveNewBudgets(budgets: Budget[]): Observable<Array<Budget>> {
-    return this.apiService.post("/v1/budgets", budgets);
+    return this.apiService.post('/v1/budgets', budgets);
   }
 
   updateBudget(budget: Budget, id: number): Observable<Budget> {
-    return this.apiService.patch("/v1/budgets/", budget, id);
+    return this.apiService.patch('/v1/budgets/', budget, id);
   }
 
   getBudgets(): Observable<Array<Budget>> {
-    return this.apiService.get("/v1/budgets");
+    return this.apiService.get('/v1/budgets');
   }
 
   getBudgetCategories(): Observable<Array<BudgetCategory>> {
-    return this.apiService.get("/v1/budgetCategories");
+    return this.apiService.get('/v1/budgetCategories');
   }
-  
+
 }

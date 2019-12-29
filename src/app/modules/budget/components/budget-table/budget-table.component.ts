@@ -1,3 +1,4 @@
+import { TransactionBudgetCategory } from './../../../../shared/models/TransactionBudgetCategory';
 import { Component, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Budget } from 'src/app/shared/models/Budget';
@@ -12,11 +13,11 @@ import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';
 export class BudgetTableComponent {
 
   _budgets: MatTableDataSource<Budget>;
-  columnsToDisplay: String[] = ['name', 'startDate', 'endDate', 'frequency', 'inUse', 'category'];
+  columnsToDisplay: string[] = ['name', 'startDate', 'endDate', 'frequency', 'inUse', 'category'];
 
   @Output() budgetChange = new EventEmitter();
 
-  @Input() budgetCategories: Array<BudgetCategory> = [];
+  @Input() budgetCategories: Array<TransactionBudgetCategory> = [];
   @Input() frequencyTypes: Array<FrequencyType> = [];
 
   @Input()

@@ -1,0 +1,14 @@
+<div *ngIf="accountsCreated; then showAccounts else addAccounts"></div>
+<ng-template #showAccounts>
+    <h4>Accounts</h4>
+    <app-account-table 
+        [accounts]="accounts" 
+        [accountTypes]="accountTypes" 
+        [accountClassifications]="accountClassifications" 
+        (accountChange)="updateAccount($event)">
+    </app-account-table>
+</ng-template>
+<ng-template>
+    <p>You have not added any accounts yet, would you like to create some now?</p>
+    <button mat-button-raised routerLink="/newAccounts">Create</button>
+</ng-template>

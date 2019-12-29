@@ -1,6 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
 import { Transaction } from '../../models/Transaction';
 
 
@@ -11,23 +10,21 @@ import { Transaction } from '../../models/Transaction';
 })
 export class TransactionTableComponent {
 
-  transactionService: TransactionService;
-  transactions: MatTableDataSource<Transaction>;
-  columnsToDisplay: String[] = 
+  _transactions: MatTableDataSource<Transaction>;
+
+  @Input()
+  columnsToDisplay: string[] =
       ['date', 'accountName', 'transactionCategory', 'description', 'amount'];
 
-  constructor(transactionService: TransactionService) {
-    this.transactionService = transactionService;
-    this.addTransactions();
-  }
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+    @Input()
+    set transactions(transactions: Array<Transaction>) {
+      this._transactions = new MatTableDataSource(transactions);
+      this._transactions.sort = this.sort;
+    }
 
-  addTransactions() {
-    this.transactionService.getTransactions().subscribe((transactions: Transaction[])=>{
-      this.transactions = new MatTableDataSource(transactions);
-      this.transactions.sort = this.sort;
-    });
-  }
+    constructor() {
+    }
 
 }

@@ -7,18 +7,19 @@ import { BudgetDetailsComponent } from './pages/budget-details/budget-details.co
 
 const budgetRoutes: Routes = [
     {
-        path: 'budget',
-        component: BudgetComponent
+        path: 'budgets',
+        component: BudgetDetailsComponent
     },
     {
-        path: 'newBudget',
+        path: 'newBudgets',
         component: NewBudgetComponent
     },
     {
-        path: 'budgetDetails',
-        component: BudgetDetailsComponent
+        path: 'budget-overview',
+        component: BudgetComponent
     }
 ];
+
 
 @NgModule({
     imports: [

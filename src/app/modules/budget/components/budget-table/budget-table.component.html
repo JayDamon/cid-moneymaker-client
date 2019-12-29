@@ -2,7 +2,7 @@
 
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let budget"> 
+        <td mat-cell *matCellDef="let budget">
             <mat-form-field class="example-full-width">
                 <input matInput [(ngModel)]="budget.name" (change)="updateBudget(budget)">
             </mat-form-field>
@@ -11,7 +11,7 @@
 
     <ng-container matColumnDef="startDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
-        <td mat-cell *matCellDef="let budget"> 
+        <td mat-cell *matCellDef="let budget">
             <mat-form-field>
                 <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="budget.startDate" (dateChange)="updateBudget(budget)">
                 <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
@@ -22,7 +22,7 @@
 
     <ng-container matColumnDef="endDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
-        <td mat-cell *matCellDef="let budget"> 
+        <td mat-cell *matCellDef="let budget">
             <mat-form-field>
                 <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="budget.endDate" (dateChange)="updateBudget(budget)">
                 <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
@@ -43,17 +43,17 @@
     </ng-container>
 
     <ng-container matColumnDef="inUse">
-        
+
         <th mat-header-cell *matHeaderCellDef mat-sort-header>In Use</th>
-        <td mat-cell *matCellDef="let budget"> 
+        <td mat-cell *matCellDef="let budget">
             <mat-checkbox [(ngModel)]="budget.inUse" [checked]="budget.inUse" (change)="updateBudget(budget)"></mat-checkbox>
         </td>
-        
+
     </ng-container>
 
     <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
-        <td mat-cell *matCellDef="let budget"> 
+        <td mat-cell *matCellDef="let budget">
             <mat-form-field>
                 <mat-select panelClass="example-panel-dark-blue" [(ngModel)]="budget.budgetCategory.id" (selectionChange)="updateBudget(budget)">
                     <mat-option *ngFor="let category of budgetCategories" [value]="category.id">{{category.type}} {{category.name}}</mat-option>

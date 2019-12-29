@@ -1,49 +1,74 @@
-import { Observable } from 'rxjs';
+import { TransactionService } from './../../../../core/services/transaction/transaction.service';
+import { Subscription } from 'rxjs';
 import { BudgetSummary } from 'src/app/shared/models/BudgetSummary';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BudgetService } from 'src/app/core/services/budget/budget.service';
-import { Router } from '@angular/router';
 import { Budget } from 'src/app/shared/models/Budget';
+import { Transaction } from 'src/app/shared/models/Transaction';
 
 @Component({
   selector: 'app-budget',
   templateUrl: './budget.component.html',
   styleUrls: ['./budget.component.css']
 })
-export class BudgetComponent {
+export class BudgetComponent implements OnInit, OnDestroy {
 
-  budgetService: BudgetService;
-  router: Router;
+  private subscriptions: Subscription = new Subscription();
+
+  showSpinner = true;
+  showTransactionSpiner = true;
+  showBudgetSummarySpinner = true;
 
   firstMonthBudgetSummary: BudgetSummary[];
   secondMonthBudgetSummary: BudgetSummary[];
   budgets: Array<Budget>;
-  budgetExists: Boolean;
-  
-  constructor(budgetService: BudgetService, router: Router) {
-    this.budgetService = budgetService;
-    this.router = router;
+  budgetsExist: boolean;
+  transactions: Array<Transaction>;
+
+  constructor(private budgetService: BudgetService, private transactionService: TransactionService) {}
+
+  ngOnInit(): void {
     this.getBudgets();
     this.getBudgetSummaries();
+    this.getTransactions();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   private getBudgets() {
-    this.budgetService.getBudgets().subscribe(budgets => {
+
+    this.subscriptions.add(this.budgetService.getBudgets().subscribe(budgets => {
       this.budgets = budgets;
-      this.budgetExists = budgets.length > 0;
-      // this.budgetExists = false;
-    });
+      this.budgetsExist = budgets.length > 0;
+      this.showSpinner = false;
+    }));
+
+  }
+
+  private getTransactions(): void {
+    this.subscriptions.add(this.transactionService.getTransactions().subscribe(transactions => {
+      this.transactions = transactions;
+      this.showTransactionSpiner = false;
+    }));
   }
 
   private getBudgetSummaries() {
 
-    this.budgetService.getBudgetSummary(2017, 1).subscribe((budgetSummaries: Array<BudgetSummary>)=>{
-      this.firstMonthBudgetSummary = budgetSummaries;
-    })
+    this.subscriptions.add(
+      this.budgetService.getBudgetSummary(2017, 1).subscribe(
+        (budgetSummaries: Array<BudgetSummary>) => {
+          this.firstMonthBudgetSummary = budgetSummaries;
+          this.showBudgetSummarySpinner = false;
+        })
+    );
 
-    this.budgetService.getBudgetSummary(2017, 2).subscribe((budgetSummaries: Array<BudgetSummary>)=>{
-      this.secondMonthBudgetSummary = budgetSummaries;
-    })
+    this.subscriptions.add(
+      this.budgetService.getBudgetSummary(2017, 2).subscribe((budgetSummaries: Array<BudgetSummary>) => {
+        this.secondMonthBudgetSummary = budgetSummaries;
+      })
+    );
 
   }
 

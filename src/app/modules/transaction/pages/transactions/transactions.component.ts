@@ -1,16 +1,68 @@
-import {Component, OnInit} from '@angular/core';
+import { BudgetService } from './../../../../core/services/budget/budget.service';
+import { Subscription } from 'rxjs';
+import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { ImportTransactionDialogComponent } from '../../components/import-transaction-dialog/import-transaction-dialog.component';
+import { Transaction } from 'src/app/shared/models/Transaction';
+import { Budget } from 'src/app/shared/models/Budget';
+import { Category } from 'src/app/shared/models/Category';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css']
 })
-export class TransactionsComponent implements OnInit {
+export class TransactionsComponent implements OnInit, OnDestroy {
 
-  constructor() {
+  subscriptions: Subscription = new Subscription();
+
+  opened: boolean;
+  showTransactionSpinner = true;
+
+  transactions: Array<Transaction>;
+  budgets: Array<Budget>;
+  transactionCategories: Array<Category>;
+
+  constructor(
+    private transactionService: TransactionService,
+    private budgetService: BudgetService,
+    private dialog: MatDialog) {
   }
 
   ngOnInit() {
+    this.subscriptions.add(
+      this.transactionService.getTransactions().subscribe((transactions: Array<Transaction>) => {
+        this.transactions = transactions;
+        this.showTransactionSpinner = false;
+      })
+    );
+
+    this.subscriptions.add(
+      this.budgetService.getBudgets().subscribe((budgets: Array<Budget>) => {
+        this.budgets = budgets;
+      })
+    );
+
+    this.subscriptions.add(
+      this.transactionService.getTransactionCategories().subscribe((categories: Array<Category>) => {
+        this.transactionCategories = categories;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
+  openDialog(): void {
+    console.log(this.budgets);
+    this.dialog.open(ImportTransactionDialogComponent, {
+      data: {
+        budgets: this.budgets,
+        categories: this.transactionCategories
+      }
+    });
   }
 
 }

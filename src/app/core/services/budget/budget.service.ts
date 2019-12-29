@@ -12,35 +12,19 @@ import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';
 })
 export class BudgetService {
 
-  private _budgets = new BehaviorSubject<Budget[]>([]);
-  private budgetsStore: { budgets: Budget[] } = { budgets: [] }
-  readonly budgets = this._budgets.asObservable();
-
-  private _budgetsCreated: Boolean;
-
-
+  private budgets: Observable<Array<Budget>>;
   private budgetSummary: Observable<Array<BudgetSummary>>;
   private budgetTypes: Observable<Array<BudgetType>>;
-  
+
   private budgetCategories: Observable<Array<BudgetCategory>>;
   private newBudgets: Array<Budget> = [];
 
-  constructor(private budgetDataService : BudgetDataService) {
-    // this.budgetSummary = this.budgetDataService.getBudgetSummary(); // TODO: update to be like budgets
-    this.budgetTypes = this.budgetDataService.getBudgetTypes(); // TODO: update to be like budgets
-    this.loadAllBudgets();
-    this.budgetCategories = this.budgetDataService.getBudgetCategories(); // TODO: update to be like budgets
+  constructor(private budgetDataService: BudgetDataService) {
+    this.budgetTypes = this.budgetDataService.getBudgetTypes();
+    this.budgetCategories = this.budgetDataService.getBudgetCategories();
   }
 
-  loadAllBudgets() {
-    this.budgetDataService.getBudgets().subscribe(data => {
-      this.budgetsStore.budgets = data;
-      this._budgets.next(Object.assign({}, this.budgetsStore).budgets);
-      this._budgetsCreated = data.length > 0
-    });
-  }
-
-  getBudgetSummary(year: Number, month: Number): Observable<Array<BudgetSummary>> {
+  getBudgetSummary(year: number, month: number): Observable<Array<BudgetSummary>> {
     this.budgetSummary = this.budgetDataService.getBudgetSummary(year, month);
     return this.budgetSummary;
   }
@@ -54,7 +38,7 @@ export class BudgetService {
     this.budgetDataService.saveNewBudgets(this.newBudgets).subscribe((savedBudgets: Array<Budget>) => {
       this.budgets.pipe(map(budgets => {
           budgets.concat(savedBudgets);
-      }))
+      }));
     });
 
   }
@@ -62,22 +46,17 @@ export class BudgetService {
   updateBudget(budget: Budget) {
     this.budgetDataService.updateBudget(budget, budget.id)
       .subscribe(data => {
-        this.budgetsStore.budgets.forEach((b, i) => {
-          if (b.id === data.id) {
-            this.budgetsStore.budgets[i] = data;
-          }
-        });
-        this._budgets.next(Object.assign({}, this.budgetsStore).budgets);
+        this.budgets.pipe(map(budgets => {
+          budgets.push(data);
+          return data;
+        }));
     });
 
   }
 
   getBudgets(): Observable<Array<Budget>> {
+    this.budgets = this.budgetDataService.getBudgets();
     return this.budgets;
-  }
-
-  budgetsCreated(): Boolean {
-    return this._budgetsCreated;
   }
 
   addBudget(budget: Budget) {
@@ -85,7 +64,7 @@ export class BudgetService {
   }
 
   removeBudget(budget: Budget) {
-    let budgetIndex = this.newBudgets.indexOf(budget);
+    const budgetIndex = this.newBudgets.indexOf(budget);
     if (budgetIndex !== -1) {
       this.newBudgets.splice(budgetIndex, 1);
     }

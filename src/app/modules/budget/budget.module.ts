@@ -5,7 +5,6 @@ import { BudgetSummaryChartComponent } from './components/budget-summary-chart/b
 import { SharedModule } from 'src/app/shared/SharedModule';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BudgetRoutingModule } from './budget-routing.module';
-import { CommonModule } from '@angular/common';
 import { NewBudgetComponent } from './pages/new-budget/new-budget.component';
 import { MatInputModule, MatButtonModule, MatCheckboxModule, MatSidenavModule, MatTreeModule, MatIconModule, MatTableModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,22 +24,14 @@ import { BudgetTableComponent } from './components/budget-table/budget-table.com
         BudgetTableComponent
     ],
     imports: [
-        CommonModule,
+        SharedModule,
         BudgetRoutingModule,
         MatGridListModule,
-        SharedModule,
         ChartsModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        FormsModule,
-        ReactiveFormsModule,
         MatSidenavModule,
         MatTreeModule,
         MatIconModule,
         MatTableModule,
-        MatSelectModule,
-        MatDatepickerModule,
         MatNativeDateModule
     ],
     providers: [
