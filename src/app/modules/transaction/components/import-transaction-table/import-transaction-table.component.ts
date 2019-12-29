@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Budget } from 'src/app/shared/models/Budget';
@@ -20,14 +20,14 @@ export class ImportTransactionTableComponent {
   columnsToDisplay: string[] =
       ['date', 'transactionCategory', 'budgetName', 'description', 'amount'];
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-
   @Input()
   set transactions(transactions: Array<Transaction>) {
     this._transactions = new MatTableDataSource(transactions);
     this._transactions.sort = this.sort;
   }
 
-  constructor() { }
+  @Output() addToBudget = new EventEmitter();
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
 }

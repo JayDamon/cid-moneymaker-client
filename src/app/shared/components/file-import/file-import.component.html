@@ -1,0 +1,16 @@
+<ngx-dropzone class="app-dropzone" fxLayoutAlign="space-around center" (change)="onSelect($event)">
+  <div *ngIf="file; else showIcon">
+    <ngx-dropzone-preview [removable]="true" (removed)="onRemove()">
+      <ngx-dropzone-label>
+        <fa-icon [icon]="['fas', 'file-csv']"></fa-icon>
+        {{ file.name }}
+      </ngx-dropzone-label>
+    </ngx-dropzone-preview>
+  </div>
+  <ng-template #showIcon>
+    <ngx-dropzone-label>
+      <fa-icon [icon]="['fas', 'file-upload']"></fa-icon>
+      <p>Click here or Drag and drop file</p>
+    </ngx-dropzone-label>
+  </ng-template>
+</ngx-dropzone>

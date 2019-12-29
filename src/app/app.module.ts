@@ -24,6 +24,8 @@ import { faFileUpload, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ImportTransactionDialogComponent } from './modules/transaction/components/import-transaction-dialog/import-transaction-dialog.component';
 import { ImportTransactionTableComponent } from './modules/transaction/components/import-transaction-table/import-transaction-table.component';
+import { FileImportComponent } from './shared/components/file-import/file-import.component';
+import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/csv-header-match.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ImportTransactionTableComponent } from './modules/transaction/component
     FooterComponent,
     ImportTransactionsComponent,
     ImportTransactionDialogComponent,
-    ImportTransactionTableComponent
+    ImportTransactionTableComponent,
+    FileImportComponent,
+    CsvHeaderMatchComponent
   ],
   imports: [
     AppRoutingModule,

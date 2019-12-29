@@ -5,11 +5,6 @@ import { CsvHeader } from 'src/app/shared/models/CsvHeader';
 import { Category } from 'src/app/shared/models/Category';
 import { Budget } from 'src/app/shared/models/Budget';
 
-interface CategoryCount {
-  category: Category;
-  count: number;
-}
-
 interface BudgetCount {
   budget: Budget;
   count: number;
@@ -25,6 +20,8 @@ export class ImportTransactionsComponent implements OnInit {
   file: File;
   isCsv = false;
   headers: Array<string> = [];
+  expectedHeaders: Array<string> =
+    ['Transaction Date', 'Account Number', 'Description', 'Debit', 'Credit'];
   requiredHeaders: Array<CsvHeader> = [];
   transactions: Array<Transaction> = [];
 
@@ -38,11 +35,6 @@ export class ImportTransactionsComponent implements OnInit {
   constructor(private parseService: TransactionCsvParseService) {}
 
   ngOnInit() {
-    this.requiredHeaders.push({requiredValue: 'Transaction Date'} as CsvHeader);
-    this.requiredHeaders.push({requiredValue: 'Account Number'} as CsvHeader);
-    this.requiredHeaders.push({requiredValue: 'Description'} as CsvHeader);
-    this.requiredHeaders.push({requiredValue: 'Debit'} as CsvHeader);
-    this.requiredHeaders.push({requiredValue: 'Credit'} as CsvHeader);
 
     if (this.budgets) {
       for (const budget of this.budgets) {
@@ -55,23 +47,8 @@ export class ImportTransactionsComponent implements OnInit {
 
   }
 
-  updateRequiredHeaders(head: CsvHeader, value) {
-    head.csvHeaderValue = value;
-    for (const i in this.requiredHeaders) {
-      if (this.requiredHeaders[i].requiredValue === head.requiredValue) {
-        this.requiredHeaders[i] = head;
-        break;
-      }
-    }
-  }
-
-  onSelect(event) {
-    const files: Array<File> = event.addedFiles;
-
-    if (files.length > 1) {
-      console.log('Must not add more than one file');
-    } else {
-      const file = files[0];
+  parseFile(file: File) {
+    if (file) {
       if (file.name.includes('.csv')) {
         this.parseService.csvHeaders.subscribe(value => {
           this.headers = value;
@@ -82,21 +59,22 @@ export class ImportTransactionsComponent implements OnInit {
       } else {
         console.log(file.type + ' Is not a supported file type');
       }
+    } else {
+      this.file = null;
+      this.isCsv = false;
     }
 
   }
 
-  importCsv() {
+  importCsv(headers: Array<CsvHeader>) {
     this.parseService.csvBody.subscribe(value => {
       this.transactions = value;
     });
-    console.log(this.requiredHeaders);
-    this.parseService.parseCsv(this.file, this.requiredHeaders);
+    this.parseService.parseCsv(this.file, headers);
   }
 
-  onRemove() {
-    this.isCsv = false;
-    this.file = null;
+  addTransactionsToBudget(value) {
+    console.log("Do some stuff");
   }
 
 }

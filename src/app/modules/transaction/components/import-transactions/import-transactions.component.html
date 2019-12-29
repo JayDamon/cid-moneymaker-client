@@ -3,47 +3,31 @@
         <mat-card-title>Import Transactions</mat-card-title>
     </mat-card-header>
 
-    <ngx-dropzone (change)="onSelect($event)">
-      <div *ngIf="file; else showIcon">
-        <ngx-dropzone-preview [removable]="true" (removed)="onRemove()">
-          <ngx-dropzone-label>
-            <fa-icon [icon]="['fas', 'file-csv']"></fa-icon>
-            {{ file.name }}
-          </ngx-dropzone-label>
-        </ngx-dropzone-preview>
-      </div>
-      <ng-template #showIcon>
-        <ngx-dropzone-label>
-          <fa-icon [icon]="['fas', 'file-upload']"></fa-icon>
-          <p>Click here or Drag and drop file</p>
-        </ngx-dropzone-label>
-      </ng-template>
-    </ngx-dropzone>
+    <app-file-import (fileChange)="parseFile($event)"></app-file-import>
 
     <div *ngIf="isCsv">
       <div>
-        <p>Match the csv header fields with the required transaction fields.</p>
-        <form #f="ngForm" (ngSubmit)="importCsv()">
-          <mat-form-field [hideRequiredMarker]="true" *ngFor="let head of requiredHeaders">
-            <mat-label>{{ head.requiredValue }}</mat-label>
-            <mat-select matNativeControl required ngModel [name]="head.requiredValue" (selectionChange)="updateRequiredHeaders(head, $event.value)">
-              <mat-option *ngFor="let csvHeader of headers" [value]="csvHeader">
-                {{csvHeader}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button class="btn btn-primary" [disabled]="!f.valid">Import</button>
-        </form>
+        <app-csv-header-match
+          [expectedHeaders]="expectedHeaders"
+          [headers]="headers"
+          (headersAssigned)="importCsv($event)">
+        </app-csv-header-match>
         <div class="app-table-container">
-          <app-import-transaction-table [transactions]="transactions"></app-import-transaction-table>
+          <app-import-transaction-table
+            [transactions]="transactions"
+            (addToBudget)="addTransactionsToBudget($event)">
+          </app-import-transaction-table>
         </div>
       </div>
       <div>
         <p>Budgets</p>
         <mat-list>
-          <mat-list-item *ngFor="let budgetCount of budgetCounts"> {{ budgetCount.budget.name }} {{ budgetCount.count }} </mat-list-item>
+          <mat-list-item *ngFor="let budgetCount of budgetCounts">
+            {{ budgetCount.budget.name }} {{ budgetCount.count }}
+          </mat-list-item>
         </mat-list>
       </div>
     </div>
 
 </mat-card>
+
