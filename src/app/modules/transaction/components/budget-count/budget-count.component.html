@@ -1,0 +1,12 @@
+<p>Budgets</p>
+<mat-list>
+  <mat-list-item
+    *ngFor="let budgetCount of budgetCounts"
+    (drop)="drop($event, budgetCount)"
+    (dragover)="dragOver($event)"
+    (dragenter)="drag($event)"
+    (dragleave)="dragExit($event)" >
+
+    {{ budgetCount.budget.name }} {{ budgetCount.count }}
+  </mat-list-item>
+</mat-list>

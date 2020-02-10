@@ -1,1 +1,23 @@
-<app-import-transactions [budgets]="budgets"></app-import-transactions>
+<div class="app-import-container">
+  <h3>Import Transactions</h3>
+  <app-file-import (fileChange)="parseFile($event)"></app-file-import>
+</div>
+
+<div class="app-container" *ngIf="isCsv">
+  <div class="app-header-container">
+    <app-csv-header-match
+      [expectedHeaders]="expectedHeaders"
+      [headers]="headers"
+      (headersAssigned)="importCsv($event)">
+    </app-csv-header-match>
+  </div>
+  <div class="app-table-container">
+    <app-import-transaction-table
+      [transactions]="transactions"
+      (addToBudget)="addTransactionsToBudget($event)">
+    </app-import-transaction-table>
+  </div>
+  <div class="app-budget-container">
+    <app-budget-count [budgetCounts]="budgetCounts" [transactionsToAdd]="transactionsToAdd"></app-budget-count>
+  </div>
+</div>

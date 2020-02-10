@@ -22,7 +22,6 @@ export class CsvHeaderMatchComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.expectedHeaders);
     for (const header of this.expectedHeaders) {
       this.requiredHeaders.push({requiredValue: header} as CsvHeader);
     }

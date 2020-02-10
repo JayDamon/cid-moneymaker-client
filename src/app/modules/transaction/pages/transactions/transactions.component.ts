@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ImportTransactionDialogComponent } from '../../components/import-transaction-dialog/import-transaction-dialog.component';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Category } from 'src/app/shared/models/Category';
@@ -53,16 +52,6 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-  }
-
-  openDialog(): void {
-    console.log(this.budgets);
-    this.dialog.open(ImportTransactionDialogComponent, {
-      data: {
-        budgets: this.budgets,
-        categories: this.transactionCategories
-      }
-    });
   }
 
 }

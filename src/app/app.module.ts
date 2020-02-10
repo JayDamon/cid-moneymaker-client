@@ -17,15 +17,16 @@ import { TransactionService } from './core/services/transaction/transaction.serv
 import { AppRoutingModule } from './modules/app-routing.module';
 import { SharedModule } from './shared/SharedModule';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ImportTransactionsComponent } from './modules/transaction/components/import-transactions/import-transactions.component';
+import { ImportTransactionsComponent } from './modules/transaction/pages/import-transactions/import-transactions.component';
 import { MatSidenavModule, MatCardModule, MatDialogModule, MatListModule } from '@angular/material';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faFileUpload, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { ImportTransactionDialogComponent } from './modules/transaction/components/import-transaction-dialog/import-transaction-dialog.component';
 import { ImportTransactionTableComponent } from './modules/transaction/components/import-transaction-table/import-transaction-table.component';
 import { FileImportComponent } from './shared/components/file-import/file-import.component';
 import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/csv-header-match.component';
+import { BudgetCountComponent } from './modules/transaction/components/budget-count/budget-count.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -36,10 +37,10 @@ import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/cs
     UserHomeComponent,
     FooterComponent,
     ImportTransactionsComponent,
-    ImportTransactionDialogComponent,
     ImportTransactionTableComponent,
     FileImportComponent,
-    CsvHeaderMatchComponent
+    CsvHeaderMatchComponent,
+    BudgetCountComponent
   ],
   imports: [
     AppRoutingModule,
@@ -58,9 +59,9 @@ import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/cs
     FontAwesomeModule,
     NgxDropzoneModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    DragDropModule
   ],
-  entryComponents: [ImportTransactionDialogComponent],
   providers: [
     TransactionService
   ],
