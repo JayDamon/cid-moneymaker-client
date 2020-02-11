@@ -1,6 +1,7 @@
 import { AccountType } from './../../../../shared/models/AccountType';
 import { AccountClassification } from './../../../../shared/models/AccountClassification';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
 import {animate, state, style, transition, trigger} from '@angular/animations';

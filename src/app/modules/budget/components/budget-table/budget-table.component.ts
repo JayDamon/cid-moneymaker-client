@@ -1,6 +1,7 @@
 import { TransactionBudgetCategory } from './../../../../shared/models/TransactionBudgetCategory';
 import { Component, ViewChild, Output, EventEmitter, Input } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Budget } from 'src/app/shared/models/Budget';
 import { FrequencyType } from 'src/app/shared/models/FrequencyType';
 import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';

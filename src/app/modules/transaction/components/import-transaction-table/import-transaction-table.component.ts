@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, SimpleChanges, ElementRef, Renderer2 } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Category } from 'src/app/shared/models/Category';
