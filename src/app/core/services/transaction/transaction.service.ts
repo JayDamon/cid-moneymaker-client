@@ -22,4 +22,8 @@ export class TransactionService {
     return this.transactionCategories;
   }
 
+  saveNewTrasnactions(transactions: Array<Transaction>) {
+    this.transactionDataService.saveNewTransactions(transactions);
+  }
+
 }

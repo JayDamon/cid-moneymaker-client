@@ -15,7 +15,7 @@ export class TransactionTableComponent {
 
   @Input()
   columnsToDisplay: string[] =
-      ['date', 'accountName', 'transactionCategory', 'description', 'amount'];
+      ['date', 'accountName', 'budgetName', "budgetCategoryName", 'description', 'amount'];
 
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 

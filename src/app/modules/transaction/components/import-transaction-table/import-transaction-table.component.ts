@@ -1,17 +1,19 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter, SimpleChanges, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, SimpleChanges, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Category } from 'src/app/shared/models/Category';
 import { SelectionModel } from '@angular/cdk/collections';
+import { TransactionDragDropService } from '../../services/transaction-drag-drop.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-import-transaction-table',
   templateUrl: './import-transaction-table.component.html',
   styleUrls: ['./import-transaction-table.component.scss']
 })
-export class ImportTransactionTableComponent {
+export class ImportTransactionTableComponent implements OnInit, OnDestroy {
 
   @Input() budgets: Array<Budget> = [];
   @Input() transactionCategories: Array<Category> = [];
@@ -29,6 +31,10 @@ export class ImportTransactionTableComponent {
 
   @Output() addToBudget = new EventEmitter();
 
+  private transactionsDroppedSubscription: Subscription;
+
+  private transactionsDropped: Array<Transaction> = [];
+
   dataSource: MatTableDataSource<Transaction>;
   renderedData: Array<Transaction>;
   selection = new SelectionModel<Transaction>(true, []);
@@ -38,7 +44,7 @@ export class ImportTransactionTableComponent {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('transactionTable', {read: ElementRef, static: true} ) transactionTable: ElementRef;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private dragDropService: TransactionDragDropService) {
     this.renderer.listen('window', 'click', (e: Event) => {
       const element: HTMLElement = e.target as HTMLElement;
       const tableElement: HTMLElement = this.transactionTable.nativeElement as HTMLElement;
@@ -46,6 +52,17 @@ export class ImportTransactionTableComponent {
         this.selection.clear();
       }
     });
+  }
+
+  ngOnInit() {
+    this.transactionsDroppedSubscription = this.dragDropService.getTransactionsAddedEmitter()
+    .subscribe(transactions => {
+      this.transactionsDropped = transactions;
+    })
+  }
+
+  ngOnDestroy() {
+    this.transactionsDroppedSubscription.unsubscribe();
   }
 
   clickHandler(event, row: Transaction, index: number) {
@@ -62,9 +79,12 @@ export class ImportTransactionTableComponent {
   }
 
   selectElment(row: Transaction) {
-    // TODO: this prevents deselction, need new strategy
-    this.selection.clear();
-    this.selection.toggle(row);
+    if (!this.selection.isSelected(row)) {
+      this.selection.clear();
+      this.selection.toggle(row);
+    } else {
+      this.selection.clear();
+    }
   }
 
   selectRowsFill(index: number) {
@@ -91,25 +111,32 @@ export class ImportTransactionTableComponent {
     });
   }
 
-  drag(event, row, index) {
+  drag(row, index) {
     const transactionsToSave: Array<Transaction> = [];
-    // this.lastSelected = index;
-    // if (!this.selection.isSelected(row)) {
-      //   this.selection.toggle(row);
-      // }
+    this.lastSelected = index;
+    if (!this.selection.isSelected(row)) {
+        this.selection.toggle(row);
+      }
     this.renderedData.forEach(item => {
       if (this.selection.isSelected(item)) {
         transactionsToSave.push(item);
       }
     });
-    event.dataTransfer.setData('transactions', JSON.stringify(transactionsToSave));
-    // TODO: how do i check that the drop was completed successfully? Should i send a callback or use an event emmiter?
+    this.dragDropService.emitTransactionChanges(transactionsToSave);
   }
 
-  dragEnded(event) {
-    console.log(event);
-    console.log(event.dataTransfer.getData('ended'));
-    console.log("ended", JSON.parse(event.dataTransfer.getData('ended')));
+  dragEnded() {
+
+    const transactionsToRemove: Array<Transaction> = this.transactionsDropped;
+
+    for (let j = 0 ; j < transactionsToRemove.length; j ++) {
+      const index = this.dataSource.data.indexOf(transactionsToRemove[j]);
+      this.dataSource.data.splice(index, 1);
+      this.dataSource._updateChangeSubscription();
+    }
+    
+    this.dragDropService.emitTransactionsAddedOnChanges([]);
+    
   }
 
 }

@@ -21,4 +21,8 @@ export class TransactionDataService {
     return this.apiService.get('/v1/transactions/categories');
   }
 
+  saveNewTransactions(transactions: Array<Transaction>): void {
+    this.apiService.post('/v1/transactions', transactions);
+  }
+
 }

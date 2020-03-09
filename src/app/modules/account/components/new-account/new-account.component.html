@@ -1,0 +1,44 @@
+<div class="css-new-account-input">
+
+    <form>
+        <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select required [(value)]="account.type" name="accountType">
+                <mat-option *ngFor="let type of accountTypes" [value]="type">
+                    {{ type.fullName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Classification</mat-label>
+            <mat-select required [(value)]="account.classification" name="accountClassification">
+                <mat-option *ngFor="let classification of accountClassifications" [value]="classification">
+                    {{ classification.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input required matInput #accountName="ngModel" name="accountName" [(ngModel)]="account.name">
+            <mat-error *ngIf="accountName.invalid">You must enter a value</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+            <mat-label>Starting Balance</mat-label>
+            <input required matInput type="number" #startingBalance="ngModel" name="startingBalance" [(ngModel)]="account.startingBalance">
+            <span matPrefix>$&nbsp;</span>
+            <mat-error *ngIf="startingBalance.invalid">You must enter a value</mat-error>
+        </mat-form-field>
+        <br>
+        <section>
+            <mat-checkbox name="primaryAccount" [(ngModel)]="account.isPrimary">Primary Account</mat-checkbox>
+            <mat-checkbox name="isInCashFlow" [(ngModel)]="account.isInCashFlow">Include In Cash Flow</mat-checkbox>
+        </section>
+        <div mat-dialog-actions>
+            <button mat-button [mat-dialog-close]="data.newAccount" cdkFocusInitial>Submit</button>
+            <button mat-button (click)="cancelInput()">Cancel</button>
+        </div>
+    </form>
+</div>

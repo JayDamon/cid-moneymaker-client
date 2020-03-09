@@ -1,7 +1,7 @@
 import { TransactionBudgetCategory } from './TransactionBudgetCategory';
 
 export interface Budget {
-    id: number;
+    id?: number;
     name: string; // budgetItemName
     startDate: Date;
     endDate: Date;

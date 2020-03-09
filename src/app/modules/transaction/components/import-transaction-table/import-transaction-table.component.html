@@ -16,8 +16,9 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-  <tr mat-row draggable="true" (dragend)="dragEnded($event)" (dragstart)="drag($event, row, i)" *matRowDef="let row; let i = index; columns: columnsToDisplay;"
-    [ngClass]="{'highlight': selection.isSelected(row)}"
+  <tr mat-row draggable="true" (dragend)="dragEnded()" (dragstart)="drag(row, i)" 
+    *matRowDef="let row; let i = index; columns: columnsToDisplay;"
+    [ngClass]="{'highlight': selection.isSelected(row) }"
     (click)="clickHandler($event, row, i)"></tr>
 
 </table>

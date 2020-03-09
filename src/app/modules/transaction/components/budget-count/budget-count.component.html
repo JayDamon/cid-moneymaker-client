@@ -5,8 +5,9 @@
     (drop)="drop($event, budgetCount)"
     (dragover)="dragOver($event)"
     (dragenter)="drag($event)"
-    (dragleave)="dragExit($event)" >
+    (dragleave)="dragExit($event)" 
+    class="js-budget-drop">
 
-    {{ budgetCount.budget.name }} {{ budgetCount.count }}
+    {{ budgetCount.budget.name }} {{ budgetCount.budget.budgetCategory.name }} {{ budgetCount.count }}
   </mat-list-item>
 </mat-list>

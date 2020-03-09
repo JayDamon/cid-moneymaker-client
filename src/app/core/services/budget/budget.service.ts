@@ -4,7 +4,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { BudgetSummary } from 'src/app/shared/models/BudgetSummary';
 import { BudgetType } from 'src/app/shared/models/BudgetType';
 import { Budget } from 'src/app/shared/models/Budget';
-import { map } from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
 import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';
 
 @Injectable({
@@ -34,13 +34,13 @@ export class BudgetService {
   }
 
   saveNewBudgets() {
-
-    this.budgetDataService.saveNewBudgets(this.newBudgets).subscribe((savedBudgets: Array<Budget>) => {
-      this.budgets.pipe(map(budgets => {
+    this.budgetDataService.saveNewBudgets(this.newBudgets)
+    .subscribe((savedBudgets: Array<Budget>) => {
+      this.budgets.pipe(
+        map(budgets => {
           budgets.concat(savedBudgets);
-      }));
-    });
-
+        }))
+      });
   }
 
   updateBudget(budget: Budget) {

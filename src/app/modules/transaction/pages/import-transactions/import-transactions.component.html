@@ -4,6 +4,14 @@
 </div>
 
 <div class="app-container" *ngIf="isCsv">
+  <mat-form-field>
+    <mat-label>Account</mat-label>
+    <mat-select matNativeControl required [(ngModel)]="selectedAccount">
+      <mat-option *ngFor="let account of accounts" [value]="account">
+        {{ account.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <div class="app-header-container">
     <app-csv-header-match
       [expectedHeaders]="expectedHeaders"
@@ -18,6 +26,9 @@
     </app-import-transaction-table>
   </div>
   <div class="app-budget-container">
-    <app-budget-count [budgetCounts]="budgetCounts" [transactionsToAdd]="transactionsToAdd"></app-budget-count>
+    <app-budget-count 
+      [budgetCounts]="budgetCounts" 
+      [transactionsToAdd]="transactionsToAdd"
+      (emitBudgetedTransactions)="addBudgetedTransactions($event)"></app-budget-count>
   </div>
 </div>

@@ -1,29 +1,3 @@
-<!-- <h3>{{ budgetType.type }}</h3>
-<mat-drawer-container autosize>
-    <div *ngFor="let budgetCategory of budgetType.budgetCategories">
-        <mat-drawer>
-            <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>{{ budgetCategory.name }}</ng-template>
-                <div *ngFor="let budgetItem of budgetCategory.budgetItems">
-                    <mat-checkbox (change)="addBudget(budgetItem, $event)">{{ budgetItem.name }}</mat-checkbox>
-                </div>
-                <mat-form-field>
-                    <input #newBudgetName matInput placeHolder="Test, Test" formControlName="firstCtrl" required>
-                </mat-form-field>
-                <button (click)="addNewBudgetItem(newBudgetName.value)" mat-stroked-button>Add</button>
-                <div *ngFor="let budget of selectedBudgets">
-                    <ul>
-                        <li>{{ budget.name }} <button (click)="removeBudget(budget)">(delete item)</button></li>
-                    </ul>
-                </div>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-drawer>
-    </div>
-</mat-drawer-container> -->
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
         <button mat-icon-button disabled></button>
@@ -35,7 +9,7 @@
     <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
         <button mat-icon-button disabled></button>
         <mat-form-field>
-        <input matInput #itemValue placeholder="New item...">
+            <input matInput #itemValue placeholder="New item...">
         </mat-form-field>
         <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
     </mat-tree-node>

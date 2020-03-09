@@ -253,7 +253,14 @@ export class BudgetTypeInputComponent implements OnInit {
 
     insertItem(parent: BudgetCategoryNode, name: string) {
       if (parent.children) {
-        parent.children.push( {item: name} as BudgetCategoryNode);
+        let singleChild: BudgetCategoryNode = parent.children[0];
+        parent.children.push( 
+          {
+            item: name, 
+            budgetItem: {category: singleChild.budgetItem.category, name: name},
+            budgetCategory: singleChild.budgetCategory, 
+            budgetType: singleChild.budgetType
+          } as BudgetCategoryNode);
         this.dataChange.next(this.data);
       }
     }
@@ -278,9 +285,13 @@ export class BudgetTypeInputComponent implements OnInit {
       
         let item: BudgetItem = itemNode.budgetItem;
 
-        let budget = this.createBudget(
-          itemNode.budgetCategory.id, itemNode.budgetType.type, item.category, itemNode.budgetItem.name);
-
+        let budget: Budget;
+        if (itemNode.budgetCategory != null) {
+          budget = this.createBudget(
+            itemNode.budgetCategory.id, itemNode.budgetType.type, item.category, itemNode.budgetItem.name);
+        } else {
+          budget = this.createBudget(null, null, null, null);
+        }
         return budget;
               
     }
@@ -310,10 +321,10 @@ export class BudgetTypeInputComponent implements OnInit {
 
     updateItem(node: BudgetCategoryNode, name: string) {
       node.item = name;
+      node.budgetItem.name = name;
       this.dataChange.next(this.data);
     }
 
-    /** Save the node to database */
     saveNode(node: BudgetCategoryFlatNode, itemValue: string) {
       const nestedNode = this.flatNodeMap.get(node);
       this.updateItem(nestedNode!, itemValue);

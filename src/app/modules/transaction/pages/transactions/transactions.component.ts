@@ -2,7 +2,6 @@ import { BudgetService } from './../../../../core/services/budget/budget.service
 import { Subscription } from 'rxjs';
 import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Category } from 'src/app/shared/models/Category';
@@ -25,8 +24,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   constructor(
     private transactionService: TransactionService,
-    private budgetService: BudgetService,
-    private dialog: MatDialog) {
+    private budgetService: BudgetService) {
   }
 
   ngOnInit() {

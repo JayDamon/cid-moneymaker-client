@@ -19,7 +19,6 @@ import { SharedModule } from './shared/SharedModule';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ImportTransactionsComponent } from './modules/transaction/pages/import-transactions/import-transactions.component';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -61,7 +60,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatCardModule,
     FontAwesomeModule,
     NgxDropzoneModule,
-    MatDialogModule,
     MatListModule,
     DragDropModule
   ],

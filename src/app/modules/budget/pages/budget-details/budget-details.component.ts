@@ -13,12 +13,16 @@ import { FrequencyService } from 'src/app/core/services/frequency/frequency.serv
 export class BudgetDetailsComponent {
 
   budgets: Array<Budget>;
+  budgetsCreated: Boolean;
+  dataLoading: Boolean = true;
   budgetCategories: Array<BudgetCategory>;
   frequencyTypes: Array<FrequencyType>;
 
   constructor(private budgetService: BudgetService, private frequencyService: FrequencyService) {
     this.budgetService.getBudgets().subscribe((budgets: Array<Budget>) => {
       this.budgets = budgets;
+      this.dataLoading = false;
+      this.budgetsCreated = budgets.length > 0;
     });
 
     this.budgetService.getBudgetCategories().subscribe((budgetCategories: Array<BudgetCategory>) => {
