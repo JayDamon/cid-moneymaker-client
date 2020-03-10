@@ -18,7 +18,8 @@ export class BudgetCountComponent implements OnInit, OnDestroy {
   @Input()
   transactionsToAdd: Array<Transaction> = [];
 
-  @Output() emitBudgetedTransactions = new EventEmitter();
+  @Output() 
+  emitBudgetedTransactions = new EventEmitter();
 
   transactionsBeingDragged: Array<Transaction> = [];
 

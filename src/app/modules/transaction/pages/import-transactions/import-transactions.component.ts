@@ -10,16 +10,21 @@ import { TransactionService } from 'src/app/core/services/transaction/transactio
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
 import { AccountDataService } from 'src/app/core/services/account/account-data.service';
 
-// const DATA: Transaction[] = [
-//   {date: new Date('12/27/2019'), description: 'description 1', amount: 52.02} as Transaction,
-//   {date: new Date('12/20/2019'), description: 'description 2', amount: 82} as Transaction,
-//   {date: new Date('12/15/2019'), description: 'description 3', amount: 51} as Transaction,
-//   {date: new Date('12/05/2019'), description: 'description 4', amount: 108} as Transaction,
-//   {date: new Date('12/01/2019'), description: 'description 5', amount: 725.35} as Transaction,
-//   {date: new Date('12/29/2019'), description: 'description 6', amount: 524.21} as Transaction,
-//   {date: new Date('12/30/2019'), description: 'description 7', amount: 12.23} as Transaction,
-//   {date: new Date('12/17/2019'), description: 'description 8', amount: 6.31} as Transaction,
-// ]
+const DATA: Transaction[] = [
+  {date: new Date('12/27/2019'), description: 'description 1', amount: 52.02} as Transaction,
+  {date: new Date('12/20/2019'), description: 'description 2', amount: 82} as Transaction,
+  {date: new Date('12/15/2019'), description: 'description 3', amount: 51} as Transaction,
+  {date: new Date('12/05/2019'), description: 'description 4', amount: 108} as Transaction,
+  {date: new Date('12/01/2019'), description: 'description 5', amount: 725.35} as Transaction,
+  {date: new Date('12/29/2019'), description: 'description 6', amount: 524.21} as Transaction,
+  {date: new Date('12/30/2019'), description: 'description 7', amount: 12.23} as Transaction,
+  {date: new Date('12/17/2019'), description: 'description 8', amount: 6.31} as Transaction,
+]
+
+export interface BudgetCountMap {
+  name: string;
+  budgetCounts: Array<BudgetCount>;
+}
 
 @Component({
   selector: 'app-import-transactions',
@@ -37,14 +42,14 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
   expectedHeaders: Array<string> =
     ['Transaction Date', 'Description', 'Debit', 'Credit'];
   requiredHeaders: Array<CsvHeader> = [];
-  // transactions: Array<Transaction> = DATA;
-  transactions: Array<Transaction>;
+  transactions: Array<Transaction> = DATA;
+  // transactions: Array<Transaction>;
 
   budgets: Array<Budget> = [];
   accounts: Array<FinancialAccount> = [];
   selectedAccount: FinancialAccount;
 
-  budgetCounts: Array<BudgetCount> = [];
+  budgetCounts: Array<BudgetCountMap> = [];
 
   columnsToDisplay: string[] =
       ['date', 'description', 'amount'];
@@ -65,7 +70,23 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
           const budgetCount = {} as BudgetCount;
           budgetCount.budget = budget;
           budgetCount.count = 0;
-          this.budgetCounts.push(budgetCount);
+          let categoryName: string = budget.budgetCategory.name;
+          let budgetFound: boolean;
+          for (let b of this.budgetCounts) {
+            if (b.name == categoryName) {
+              budgetFound = true;
+              b.budgetCounts.push(budgetCount);
+            }
+          }
+          if (!budgetFound) {
+            let newBudgetCounts: Array<BudgetCount> = [];
+            newBudgetCounts.push(budgetCount);
+            let bcm: BudgetCountMap = {
+              name: categoryName,
+              budgetCounts: newBudgetCounts
+            }
+            this.budgetCounts.push(bcm);
+          }
         }
 
       })

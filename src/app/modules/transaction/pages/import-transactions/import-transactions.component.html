@@ -26,9 +26,12 @@
     </app-import-transaction-table>
   </div>
   <div class="app-budget-container">
-    <app-budget-count 
-      [budgetCounts]="budgetCounts" 
-      [transactionsToAdd]="transactionsToAdd"
-      (emitBudgetedTransactions)="addBudgetedTransactions($event)"></app-budget-count>
-  </div>
+    <div *ngFor="let budgetMap of budgetCounts">
+        <h2>{{ budgetMap.name }}</h2>
+        <app-budget-count 
+          [budgetCounts]="budgetMap.budgetCounts" 
+          [transactionsToAdd]="transactionsToAdd"
+          (emitBudgetedTransactions)="addBudgetedTransactions($event)"></app-budget-count>
+    </div>
+  </div> 
 </div>
