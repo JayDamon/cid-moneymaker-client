@@ -3,7 +3,6 @@ import { AccountType } from 'src/app/shared/models/AccountType';
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData } from '../../pages/account/account.component';
-import { AccountClassification } from 'src/app/shared/models/AccountClassification';
 
 @Component({
   selector: 'app-new-account',
@@ -13,7 +12,6 @@ import { AccountClassification } from 'src/app/shared/models/AccountClassificati
 export class NewAccountComponent {
 
   @Input() accountTypes: Array<AccountType> = [];
-  @Input() accountClassifications: Array<AccountClassification> = [];
 
   @Output() newAccount = new EventEmitter();
   account: FinancialAccount;
@@ -25,8 +23,6 @@ export class NewAccountComponent {
       this.account = data.newAccount;
 
       this.accountTypes = data.accountTypes;
-
-      this.accountClassifications = data.accountClassifications;
 
   }
 

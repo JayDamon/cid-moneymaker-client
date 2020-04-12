@@ -1,7 +1,5 @@
 import { AccountType } from './../../../../shared/models/AccountType';
-import { AccountClassification } from './../../../../shared/models/AccountClassification';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { Component, Input, ViewChild, Output, EventEmitter, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
 import {animate, state, style, transition, trigger} from '@angular/animations';
@@ -21,15 +19,14 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class AccountTableComponent {
 
   _accounts: Array<FinancialAccount> = [];
-  columnsToDisplay: String[] = ['name', 'type', 'startingBalance', 'currentBalance', 'classification', 'isPrimary'];
+  columnsToDisplay: String[] = ['name', 'type', 'startingBalance', 'currentBalance', 'isPrimary'];
   expandedElement: FinancialAccount | null;
 
   @Output() accountChange = new EventEmitter();
 
   @Input() accountTypes: Array<AccountType> = [];
-  @Input() accountClassifications: Array<AccountClassification> = [];
 
-  @Input() 
+  @Input()
   set accounts(accounts: Array<FinancialAccount>) {
     console.log(accounts);
     this._accounts = accounts;

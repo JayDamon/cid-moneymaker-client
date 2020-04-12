@@ -21,11 +21,6 @@ const DATA: Transaction[] = [
   {date: new Date('12/17/2019'), description: 'description 8', amount: 6.31} as Transaction,
 ]
 
-export interface BudgetCountMap {
-  name: string;
-  budgetCounts: Array<BudgetCount>;
-}
-
 @Component({
   selector: 'app-import-transactions',
   templateUrl: './import-transactions.component.html',
@@ -35,21 +30,21 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription();
 
+  dataLoaded: boolean = false;
   file: File;
   // isCsv = false;
   isCsv = true;
   headers: Array<string> = [];
-  expectedHeaders: Array<string> =
-    ['Transaction Date', 'Description', 'Debit', 'Credit'];
+  expectedHeaders: Array<string> = ['Transaction Date', 'Description', 'Debit', 'Credit'];
   requiredHeaders: Array<CsvHeader> = [];
-  transactions: Array<Transaction> = DATA;
-  // transactions: Array<Transaction>;
+  // transactions: Array<Transaction> = DATA;
+  transactions: Array<Transaction>;
 
   budgets: Array<Budget> = [];
   accounts: Array<FinancialAccount> = [];
   selectedAccount: FinancialAccount;
 
-  budgetCounts: Array<BudgetCountMap> = [];
+  budgetCounts: Array<BudgetCount>;
 
   columnsToDisplay: string[] =
       ['date', 'description', 'amount'];
@@ -66,28 +61,15 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
       this.budgetService.getBudgets().subscribe((budgets: Array<Budget>) => {
         this.budgets = budgets;
 
+        let counts: Array<BudgetCount> = [];
         for (const budget of this.budgets) {
           const budgetCount = {} as BudgetCount;
           budgetCount.budget = budget;
           budgetCount.count = 0;
-          let categoryName: string = budget.budgetCategory.name;
-          let budgetFound: boolean;
-          for (let b of this.budgetCounts) {
-            if (b.name == categoryName) {
-              budgetFound = true;
-              b.budgetCounts.push(budgetCount);
-            }
-          }
-          if (!budgetFound) {
-            let newBudgetCounts: Array<BudgetCount> = [];
-            newBudgetCounts.push(budgetCount);
-            let bcm: BudgetCountMap = {
-              name: categoryName,
-              budgetCounts: newBudgetCounts
-            }
-            this.budgetCounts.push(bcm);
-          }
+          counts.push(budgetCount);
         }
+        this.budgetCounts = counts;
+        this.dataLoaded = true;
 
       })
     );

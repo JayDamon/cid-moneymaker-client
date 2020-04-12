@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { ApiService } from './../api/api.service';
 import { Injectable } from '@angular/core';
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
-import { AccountClassification } from 'src/app/shared/models/AccountClassification';
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +25,6 @@ export class AccountDataService {
 
   getAccountTypes(): Observable<Array<AccountType>> {
     return this.apiService.get("/v1/accounts/types");
-  }
-
-  getAccountClassifications(): Observable<Array<AccountClassification>> {
-    return this.apiService.get("/v1/accounts/classifications");
   }
 
 }

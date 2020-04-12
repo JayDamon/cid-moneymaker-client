@@ -49,13 +49,6 @@
                         <input matInput [(ngModel)]="account.startingBalance" (change)="updateAccount(account)">
                         <span matSuffix>$ &nbsp;</span>
                     </mat-form-field>
-                    <mat-form-field>
-                        <mat-select [(ngModel)]="account.classification.id" (selectionChange)="updateAccount(account)">
-                            <mat-option *ngFor="let classification of accountClassifications" [value]="classification.id">
-                                {{classification.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
                     <mat-checkbox [(ngModel)]="account.isPrimary" [checked]="account.isPrimary" (change)="updateAccount(account)"></mat-checkbox>
                 </div>
             </div>

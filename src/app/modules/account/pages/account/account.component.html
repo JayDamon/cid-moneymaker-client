@@ -4,10 +4,9 @@
     <ng-template #showAccounts>
         <h4>Accounts</h4>
         <button mat-button-raised (click)="createAccount()">Create</button>
-        <app-account-table 
-            [accounts]="accounts" 
-            [accountTypes]="accountTypes" 
-            [accountClassifications]="accountClassifications" 
+        <app-account-table
+            [accounts]="accounts"
+            [accountTypes]="accountTypes"
             (accountChange)="updateAccount($event)">
         </app-account-table>
     </ng-template>

@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTreeModule } from '@angular/material/tree';
 
 const shared = [
     CommonModule,
@@ -28,6 +29,7 @@ const shared = [
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatDialogModule,
+    MatTreeModule,
 ];
 
 const custom = [

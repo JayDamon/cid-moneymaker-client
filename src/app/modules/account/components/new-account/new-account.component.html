@@ -11,15 +11,6 @@
         </mat-form-field>
         <br>
         <mat-form-field appearance="outline">
-            <mat-label>Classification</mat-label>
-            <mat-select required [(value)]="account.classification" name="accountClassification">
-                <mat-option *ngFor="let classification of accountClassifications" [value]="classification">
-                    {{ classification.name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
             <input required matInput #accountName="ngModel" name="accountName" [(ngModel)]="account.name">
             <mat-error *ngIf="accountName.invalid">You must enter a value</mat-error>

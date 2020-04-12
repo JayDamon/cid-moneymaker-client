@@ -2,14 +2,12 @@ import { Component } from '@angular/core';
 // import { AccountService } from 'src/app/core/services/account/account.service';
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
 import { AccountType } from 'src/app/shared/models/AccountType';
-import { AccountClassification } from 'src/app/shared/models/AccountClassification';
 import { MatDialog } from '@angular/material/dialog';
 import { NewAccountComponent } from '../../components/new-account/new-account.component';
 import { AccountDataService } from 'src/app/core/services/account/account-data.service';
 
 export interface DialogData {
   accountTypes: Array<AccountType>;
-  accountClassifications: Array<AccountClassification>;
   newAccount: FinancialAccount;
 }
 
@@ -24,12 +22,11 @@ export class AccountComponent {
   accountsCreated: Boolean;
   dataLoading: Boolean = true;
   accountTypes: Array<AccountType> = [];
-  accountClassifications: Array<AccountClassification> = [];
 
-  constructor(private accountService: AccountDataService, public dialog: MatDialog) { 
-  
+  constructor(private accountService: AccountDataService, public dialog: MatDialog) {
+
     this.addAccountSubscriptions(this.accountService);
-        
+
   }
 
   private addAccountSubscriptions(accountService: AccountDataService) {
@@ -43,9 +40,6 @@ export class AccountComponent {
       this.accountTypes = accountTypes;
     })
 
-    accountService.getAccountClassifications().subscribe((accountClassifications: Array<AccountClassification>) => {
-      this.accountClassifications = accountClassifications;
-    })
   }
 
   updateAccount(account: FinancialAccount) {
@@ -66,16 +60,14 @@ export class AccountComponent {
       type: null,
       startingBalance: null,
       currentBalance: null,
-      classification: null,
       isPrimary: false,
       isInCashFlow: false
     };
 
     const dialogRef = this.dialog.open(NewAccountComponent, {
       data: {
-        accountTypes: this.accountTypes, 
-        newAccount: emptyAccunt,
-        accountClassifications: this.accountClassifications
+        accountTypes: this.accountTypes,
+        newAccount: emptyAccunt
       }
     });
 
