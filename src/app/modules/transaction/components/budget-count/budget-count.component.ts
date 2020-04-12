@@ -29,17 +29,15 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() budgetCounts: Array<BudgetCount> = [];
 
-  @Input()
-  transactionsToAdd: Array<Transaction> = [];
-
-  @Output() 
+  @Output()
   emitBudgetedTransactions = new EventEmitter();
 
   private _transformer = (node: BudgetCountNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
-      name: Node.name,
+      name: node.name,
       level: level,
+      budgetCount: node.budgetCount
     };
   }
 
@@ -47,8 +45,7 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
 
   transactionSubscription: Subscription;
 
-  treeControl = new FlatTreeControl<FlatBudgetNode>(
-    node => node.level, node => node.expandable);
+  treeControl = new FlatTreeControl<FlatBudgetNode>(node => node.level, node => node.expandable);
 
   treeFlattener = new MatTreeFlattener(
     this._transformer, node => node.level, node => node.expandable, node => node.children);
@@ -68,17 +65,13 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // let counts: Array<BudgetCount> = changes.budgetCounts.currentValue;
-    // if (counts) {
-    //   console.log("Counts ", counts);
-    //   this.setUpTreeNode(counts);
-    //   console.log("Final Data ", this.dataSource.data);
-    // }
+    let counts: Array<BudgetCount> = changes.budgetCounts.currentValue;
+    if (counts) {
+      this.setUpTreeNode(counts);
+    }
   }
 
   private setUpTreeNode(budgetCounts: Array<BudgetCount>) {
-    
-    console.log(budgetCounts);
 
     let budgetMap = new Map();
     for (let bc of budgetCounts) {
@@ -110,9 +103,8 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
 
     for (let value of budgetMap.values()) {
       nodes.push(value);
-    } 
+    }
 
-    console.log("nodes ", nodes);
     this.dataSource.data = nodes;
   }
 
@@ -123,11 +115,18 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   drag(event) {
+    event.preventDefault();
     const target: HTMLElement = event.target as HTMLElement;
     target.parentElement.classList.add('dragover');
   }
 
-  dragOver(event) {
+  dragOver(event, node) {
+    this.treeControl.collapseAll();
+    this.treeControl.expand(node);
+    event.preventDefault();
+  }
+
+  dragOverChild(event) {
     event.preventDefault();
   }
 
@@ -135,16 +134,20 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
     this.removeDragover(event);
   }
 
-  drop(event, budgetCount: BudgetCount) {
+  drop(event, budgetCountNode) {
+
+    let budgetCount = budgetCountNode.budgetCount;
 
     budgetCount.count = budgetCount.count + this.transactionsBeingDragged.length;
+
     if (budgetCount.transactions == undefined) {
       budgetCount.transactions = [];
     }
+
     budgetCount.transactions = budgetCount.transactions.concat(this.transactionsBeingDragged);
 
     this.addBudgetToTransactions(this.transactionsBeingDragged, budgetCount.budget);
-    
+
     this.dragDropService.emitTransactionsAddedOnChanges(this.transactionsBeingDragged);
     this.removeDragover(event);
 

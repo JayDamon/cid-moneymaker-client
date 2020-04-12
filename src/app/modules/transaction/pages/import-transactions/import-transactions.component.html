@@ -22,20 +22,19 @@
   <div class="app-table-container">
     <app-import-transaction-table
       [transactions]="transactions"
-      (addToBudget)="addTransactionsToBudget($event)">
+      (addToBudget)="addBudgetedTransactions($event)">
     </app-import-transaction-table>
   </div>
   <div class="app-budget-container">
     <div *ngIf="dataLoaded; then dataLoaded else dataLoading"></div>
     <ng-template #dataLoaded>
-      <app-budget-count 
-        [budgetCounts]="budgetCounts" 
-        [transactionsToAdd]="transactionsToAdd"
+      <app-budget-count
+        [budgetCounts]="budgetCounts"
         (emitBudgetedTransactions)="addBudgetedTransactions($event)"></app-budget-count>
     </ng-template>
     <ng-template #dataLoading>
       <mat-spinner></mat-spinner>
       <p>spinner</p>
     </ng-template>
-  </div> 
+  </div>
 </div>

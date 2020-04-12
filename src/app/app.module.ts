@@ -29,6 +29,7 @@ import { FileImportComponent } from './shared/components/file-import/file-import
 import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/csv-header-match.component';
 import { BudgetCountComponent } from './modules/transaction/components/budget-count/budget-count.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FontAwesomeModule,
     NgxDropzoneModule,
     MatListModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule
   ],
   providers: [
     TransactionService

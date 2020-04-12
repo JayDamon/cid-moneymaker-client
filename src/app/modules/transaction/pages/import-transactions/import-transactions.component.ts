@@ -37,8 +37,8 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
   headers: Array<string> = [];
   expectedHeaders: Array<string> = ['Transaction Date', 'Description', 'Debit', 'Credit'];
   requiredHeaders: Array<CsvHeader> = [];
-  // transactions: Array<Transaction> = DATA;
-  transactions: Array<Transaction>;
+  transactions: Array<Transaction> = DATA;
+  // transactions: Array<Transaction>;
 
   budgets: Array<Budget> = [];
   accounts: Array<FinancialAccount> = [];
