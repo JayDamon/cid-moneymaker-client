@@ -14,7 +14,7 @@ import { BudgetCategory } from 'src/app/shared/models/BudgetCategory';
 export class BudgetTableComponent {
 
   _budgets: MatTableDataSource<Budget>;
-  columnsToDisplay: string[] = ['name', 'startDate', 'endDate', 'frequency', 'inUse', 'category'];
+  columnsToDisplay: string[] = ['name', 'amount', 'startDate', 'endDate', 'frequency', 'inUse', 'category'];
 
   @Output() budgetChange = new EventEmitter();
 

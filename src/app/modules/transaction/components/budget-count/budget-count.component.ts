@@ -16,7 +16,7 @@ interface BudgetCountNode {
 interface FlatBudgetNode {
   expandable: boolean;
   name: string;
-  budgetCount: BudgetCountNode;
+  budgetCount: BudgetCount;
   level: number;
 }
 
@@ -55,6 +55,7 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
   constructor(private dragDropService: TransactionDragDropService) { }
 
   ngOnInit() {
+
     this.transactionSubscription = this.dragDropService.getTransactionsToAddEmitter()
       .subscribe(transactions => this.transactionsBeingDragged = transactions);
 
@@ -74,16 +75,20 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
   private setUpTreeNode(budgetCounts: Array<BudgetCount>) {
 
     let budgetMap = new Map();
+    // TODO: this needs to split out in more detail, based on line 89
     for (let bc of budgetCounts) {
-      let budgetCategoryName: string = bc.budget.budgetCategory.type;
+
+      let budgetCategoryType: string = bc.budget.budgetCategory.type;
+      let budgetCategoryName: string = bc.budget.budgetCategory.name;
+      let fullCatname: string = budgetCategoryType.charAt(0).toUpperCase() + budgetCategoryType.slice(1) + ' ' + budgetCategoryName.charAt(0).toUpperCase() + budgetCategoryName.slice(1);
 
       let node: BudgetCountNode;
 
-      if (budgetMap.has(budgetCategoryName)) {
-        node = budgetMap.get(budgetCategoryName);
+      if (budgetMap.has(fullCatname)) {
+        node = budgetMap.get(fullCatname);
       } else {
         node = {
-          name: budgetCategoryName,
+          name: fullCatname,
           children: []
         }
       }
@@ -95,7 +100,7 @@ export class BudgetCountComponent implements OnInit, OnDestroy, OnChanges {
 
       node.children.push(childNode);
 
-      budgetMap.set(budgetCategoryName, node);
+      budgetMap.set(fullCatname, node);
 
     }
 

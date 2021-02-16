@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { Budget } from 'src/app/shared/models/Budget';
 import { BudgetService } from 'src/app/core/services/budget/budget.service';
 import { BudgetItem } from 'src/app/shared/models/BudgetItem';
@@ -91,6 +90,8 @@ export class BudgetTypeInputComponent implements OnInit {
       for (let category of budgetType.budgetCategories) {
         const node = new BudgetCategoryNode();
         node.item = category.name;
+        node.budgetCategory = category;
+        node.budgetType = budgetType;
         node.children = [];
         for (let item of category.budgetItems) {
           const childNode = new BudgetCategoryNode();
@@ -107,17 +108,17 @@ export class BudgetTypeInputComponent implements OnInit {
     return nodes;
 
   }
-      
+
     getLevel = (node: BudgetCategoryFlatNode) => node.level;
-  
+
     isExpandable = (node: BudgetCategoryFlatNode) => node.expandable;
-  
+
     getChildren = (node: BudgetCategoryNode): BudgetCategoryNode[] => node.children;
-  
+
     hasChild = (_: number, _nodeData: BudgetCategoryFlatNode) => _nodeData.expandable;
-  
+
     hasNoContent = (_: number, _nodeData: BudgetCategoryFlatNode) => _nodeData.item === '';
-  
+
     /**
      * Transformer to convert nested node to flat node. Record the nodes in maps for later use.
      */
@@ -139,7 +140,7 @@ export class BudgetTypeInputComponent implements OnInit {
       this.nestedNodeMap.set(node, flatNode);
       return flatNode;
     }
-  
+
     /** Whether all the descendants of the node are selected. */
     descendantsAllSelected(node: BudgetCategoryFlatNode): boolean {
       const descendants = this.treeControl.getDescendants(node);
@@ -148,14 +149,14 @@ export class BudgetTypeInputComponent implements OnInit {
       );
       return descAllSelected;
     }
-  
+
     /** Whether part of the descendants are selected */
     descendantsPartiallySelected(node: BudgetCategoryFlatNode): boolean {
       const descendants = this.treeControl.getDescendants(node);
       const result = descendants.some(child => this.checklistSelection.isSelected(child));
       return result && !this.descendantsAllSelected(node);
     }
-  
+
     /** Toggle the to-do item selection. Select/deselect all the descendants node */
     budgetItemSelectionToggle(node: BudgetCategoryFlatNode): void {
       this.checklistSelection.toggle(node);
@@ -178,13 +179,13 @@ export class BudgetTypeInputComponent implements OnInit {
       }
 
       // Force update for the parent
-      descendants.every(child => 
-          this.checklistSelection.isSelected(child)        
+      descendants.every(child =>
+          this.checklistSelection.isSelected(child)
       );
       this.checkAllParentsSelection(node);
 
     }
-  
+
     /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
     budgetLeafItemSelectionToggle(node: BudgetCategoryFlatNode): void {
       this.checklistSelection.toggle(node);
@@ -195,7 +196,7 @@ export class BudgetTypeInputComponent implements OnInit {
         this.budgetService.removeBudget(node.budget);
       }
     }
-  
+
     /* Checks all the parents when a leaf node is selected/unselected */
     checkAllParentsSelection(node: BudgetCategoryFlatNode): void {
       let parent: BudgetCategoryFlatNode | null = this.getParentNode(node);
@@ -204,7 +205,7 @@ export class BudgetTypeInputComponent implements OnInit {
         parent = this.getParentNode(parent);
       }
     }
-  
+
     /** Check root node checked state and change it accordingly */
     checkRootNodeSelection(node: BudgetCategoryFlatNode): void {
       const nodeSelected = this.checklistSelection.isSelected(node);
@@ -218,20 +219,20 @@ export class BudgetTypeInputComponent implements OnInit {
         this.checklistSelection.select(node);
       }
     }
-  
+
     /* Get the parent node of a node */
     getParentNode(node: BudgetCategoryFlatNode): BudgetCategoryFlatNode | null {
       const currentLevel = this.getLevel(node);
-  
+
       if (currentLevel < 1) {
         return null;
       }
-  
+
       const startIndex = this.treeControl.dataNodes.indexOf(node) - 1;
-  
+
       for (let i = startIndex; i >= 0; i--) {
         const currentNode = this.treeControl.dataNodes[i];
-  
+
         if (this.getLevel(currentNode) < currentLevel) {
           return currentNode;
         }
@@ -253,26 +254,20 @@ export class BudgetTypeInputComponent implements OnInit {
 
     insertItem(parent: BudgetCategoryNode, name: string) {
       if (parent.children) {
-        let singleChild: BudgetCategoryNode = parent.children[0];
-        parent.children.push( 
+        parent.children.push(
           {
-            item: name, 
-            budgetItem: {category: singleChild.budgetItem.category, name: name},
-            budgetCategory: singleChild.budgetCategory, 
-            budgetType: singleChild.budgetType
+            item: name,
+            budgetItem: {category: parent.item, name: name},
+            budgetCategory: parent.budgetCategory,
+            budgetType: parent.budgetType
           } as BudgetCategoryNode);
         this.dataChange.next(this.data);
       }
     }
 
-    // finalizeBudgets() {
-    //   this.createBudgets();
-    //   this.budgetService.saveNewBudgets(this.budgets);
-    // }
-
     createBudgets() {
       let nodes: BudgetCategoryNode[] = this.data;
-      
+
       for (let categoryNode of nodes) {
         for (let itemNode of categoryNode.children) {
           let budget = this.categoryNodeToBudget(itemNode);
@@ -282,7 +277,7 @@ export class BudgetTypeInputComponent implements OnInit {
     }
 
     categoryNodeToBudget(itemNode: BudgetCategoryNode): Budget {
-      
+
         let item: BudgetItem = itemNode.budgetItem;
 
         let budget: Budget;
@@ -293,7 +288,7 @@ export class BudgetTypeInputComponent implements OnInit {
           budget = this.createBudget(null, null, null, null);
         }
         return budget;
-              
+
     }
 
     createBudget(cateogoryId: number, budgetType: string, categoryName: string, itemName: string): Budget {
