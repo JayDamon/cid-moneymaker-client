@@ -24,7 +24,7 @@ export class AccountDataService {
   }
 
   getAccountTypes(): Observable<Array<AccountType>> {
-    return this.apiService.get("/v1/accounts/types");
+    return this.apiService.get("/v1/account-types");
   }
 
 }
