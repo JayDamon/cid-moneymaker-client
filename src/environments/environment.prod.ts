@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_url: 'some-url/oaka'
+  api_url: 'mm-gateway.factotumsoftware.com'
 };
