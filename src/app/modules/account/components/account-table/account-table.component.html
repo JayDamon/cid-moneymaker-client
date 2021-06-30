@@ -1,0 +1,66 @@
+<table mat-table [dataSource]="_accounts" multiTemplateDataRows matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let account"> {{ account.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let account"> {{ account.type.fullName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="startingBalance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Starting Balance</th>
+        <td mat-cell *matCellDef="let account"> {{ account.startingBalance | currency }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="currentBalance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Balance</th>
+        <td mat-cell *matCellDef="let account"> {{ account.currentBalance | currency }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="classification">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Classification</th>
+        <td mat-cell *matCellDef="let account"> {{ account.classification.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isPrimary">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Primary</th>
+        <td mat-cell *matCellDef="let account"> {{ account.isPrimary }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let account" [attr.colspan]="columnsToDisplay.length">
+            <div class="example-element-detail"
+                    [@detailExpand]="account == expandedElement ? 'expanded' : 'collapsed'">
+                <div>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="account.name" (change)="updateAccount(account)">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select [(ngModel)]="account.type.id" (selectionChange)="updateAccount(account)">
+                            <mat-option *ngFor="let type of accountTypes" [value]="type.id">
+                                {{type.fullName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="account.startingBalance" (change)="updateAccount(account)">
+                        <span matSuffix>$ &nbsp;</span>
+                    </mat-form-field>
+                    <mat-checkbox [(ngModel)]="account.isPrimary" [checked]="account.isPrimary" (change)="updateAccount(account)"></mat-checkbox>
+                </div>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let account; columns: columnsToDisplay;"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === account"
+        (click)="expandedElement = expandedElement === account ? null : account">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+</table>

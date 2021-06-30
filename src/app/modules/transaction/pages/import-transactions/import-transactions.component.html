@@ -1,0 +1,40 @@
+<div class="app-import-container">
+  <h3>Import Transactions</h3>
+  <app-file-import (fileChange)="parseFile($event)"></app-file-import>
+</div>
+
+<div class="app-container" *ngIf="isCsv">
+  <mat-form-field>
+    <mat-label>Account</mat-label>
+    <mat-select matNativeControl required [(ngModel)]="selectedAccount">
+      <mat-option *ngFor="let account of accounts" [value]="account">
+        {{ account.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="app-header-container">
+    <app-csv-header-match
+      [expectedHeaders]="expectedHeaders"
+      [headers]="headers"
+      (headersAssigned)="importCsv($event)">
+    </app-csv-header-match>
+  </div>
+  <div class="app-table-container">
+    <app-import-transaction-table
+      [transactions]="transactions"
+      (addToBudget)="addBudgetedTransactions($event)">
+    </app-import-transaction-table>
+  </div>
+  <div class="app-budget-container">
+    <div *ngIf="dataLoaded; then dataLoaded else dataLoading"></div>
+    <ng-template #dataLoaded>
+      <app-budget-count
+        [budgetCounts]="budgetCounts"
+        (emitBudgetedTransactions)="addBudgetedTransactions($event)"></app-budget-count>
+    </ng-template>
+    <ng-template #dataLoading>
+      <mat-spinner></mat-spinner>
+      <p>spinner</p>
+    </ng-template>
+  </div>
+</div>

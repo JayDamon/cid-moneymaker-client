@@ -1,0 +1,25 @@
+<table #transactionTable mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.amount | currency}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.description}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.date | date : 'mediumDate'}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+  <tr mat-row draggable="true" (dragend)="dragEnded()" (dragstart)="drag(row, i)" 
+    *matRowDef="let row; let i = index; columns: columnsToDisplay;"
+    [ngClass]="{'highlight': selection.isSelected(row) }"
+    (click)="clickHandler($event, row, i)"></tr>
+
+</table>
+

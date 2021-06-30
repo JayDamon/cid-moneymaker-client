@@ -1,34 +1,31 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { TransactionService } from 'src/app/core/services/transaction.service';
+import { Component, ViewChild, Input } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Transaction } from '../../models/Transaction';
-import { MatTableDataSource, MatSort } from '@angular/material';
+
 
 @Component({
   selector: 'app-transaction-table',
   templateUrl: './transaction-table.component.html',
   styleUrls: ['./transaction-table.component.css']
 })
-export class TransactionTableComponent implements OnInit {
+export class TransactionTableComponent {
 
-  transactionService: TransactionService;
-  transactions: MatTableDataSource<Transaction>;
-  columnsToDisplay: String[] = ['date', 'accountName', 'transactionCategory', 'description', 'amount'];
+  _transactions: MatTableDataSource<Transaction>;
 
-  constructor(transactionService: TransactionService) {
-    this.transactionService = transactionService;
-    this.addTransactions();
-  }
+  @Input()
+  columnsToDisplay: string[] =
+      ['date', 'accountName', 'budgetName', "budgetCategoryName", 'description', 'amount'];
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  ngOnInit() {
-  }
+    @Input()
+    set transactions(transactions: Array<Transaction>) {
+      this._transactions = new MatTableDataSource(transactions);
+      this._transactions.sort = this.sort;
+    }
 
-  addTransactions() {
-    this.transactionService.getTransactions().subscribe((transactions: Transaction[])=>{
-      this.transactions = new MatTableDataSource(transactions);
-      this.transactions.sort = this.sort;
-    });
-  }
+    constructor() {
+    }
 
 }

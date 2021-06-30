@@ -1,0 +1,5 @@
+<div *ngFor="let budgetType of budgetTypes">
+        <h2>{{ budgetType.type }}</h2>
+        <app-budget-type-input [budgetType]="budgetType"></app-budget-type-input>
+</div>
+<button mat-button routerLink="/budgets" (click)="saveBudgets()">Save Budgets</button>

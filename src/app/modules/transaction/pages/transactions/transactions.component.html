@@ -1,0 +1,9 @@
+<div id="app-header">
+  <span><h4>Transactions</h4></span>
+  <span><button mat-raised-button color="primary" routerLink="/transactions-import">import</button></span>
+</div>
+
+<div *ngIf="showTransactionSpinner; else showTransactions"><mat-spinner></mat-spinner></div>
+<ng-template #showTransactions>
+  <app-transaction-table [transactions]="transactions"></app-transaction-table>
+</ng-template>

@@ -1,0 +1,22 @@
+.app-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+}
+
+.app-header-container {
+  grid-column-start: auto;
+  grid-column-end: auto;
+  grid-row-start: 1;
+}
+
+.app-table-container {
+  grid-column-start: auto;
+  grid-row-start: 2;
+  overflow: auto;
+}
+
+.app-budget-container {
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
