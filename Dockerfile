@@ -1,6 +1,7 @@
 FROM node:alpine as build-step
 
 RUN mkdir -p /app
+RUN mkdir -p /app/dist/cid
 
 WORKDIR /app
 
@@ -9,8 +10,6 @@ RUN npm install
 RUN npm install -g @angular/cli@12
 
 COPY . /app
-
-RUN mkdir ./dist/cid
 
 ARG configuration=dev
 RUN ng build --configuration $configuration
