@@ -10,7 +10,7 @@ RUN npm install -g @angular/cli@12
 
 COPY . /app
 
-RUN mkdir /dist/cid
+RUN mkdir ./dist/cid
 
 ARG configuration=dev
 RUN ng build --configuration $configuration
