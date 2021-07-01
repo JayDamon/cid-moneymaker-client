@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CsvHeaderMatchComponent } from './csv-header-match.component';
 
@@ -6,7 +6,7 @@ describe('CsvHeaderMatchComponent', () => {
   let component: CsvHeaderMatchComponent;
   let fixture: ComponentFixture<CsvHeaderMatchComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CsvHeaderMatchComponent ]
     })
