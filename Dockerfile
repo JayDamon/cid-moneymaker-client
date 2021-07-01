@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json /app/
 RUN npm install
-RUN npm install -g @angular/cli@9.0.6
+RUN npm install -g @angular/cli@12.1.1
 
 COPY . /app
 
