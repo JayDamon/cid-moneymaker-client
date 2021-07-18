@@ -21,8 +21,6 @@ jobs:
           name: Install
           command: |
             npm install
-            chown -R $USER:$USER /usr/local/lib/node_modules/
-            npm install -g @angular/cli@12
       - save_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
           paths:
