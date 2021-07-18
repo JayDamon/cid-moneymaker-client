@@ -11,8 +11,7 @@ RUN npm install -g @angular/cli@12
 
 COPY . /app
 
-ARG configuration=dev
-RUN ng build --configuration $configuration
+RUN ng build --prod --configuration=production
 
 FROM nginx:1.17.1-alpine
 
