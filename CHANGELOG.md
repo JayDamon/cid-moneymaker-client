@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/JayDamon/cid/compare/v1.2.0...v1.2.1) (2021-07-18)
+
+
+### Bug Fixes
+
+* **CI:** install jq ([0495b5f](https://github.com/JayDamon/cid/commit/0495b5f6455ed0f2ad07ba1acaa29c4ca7c41811))
+
 # [1.2.0](https://github.com/JayDamon/cid/compare/v1.1.0...v1.2.0) (2021-07-18)
 
 
