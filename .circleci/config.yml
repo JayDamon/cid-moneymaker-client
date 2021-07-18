@@ -34,14 +34,14 @@ jobs:
             mkdir dist
             mkdir dist/cid
             npm run build-prod
-      - run:
-          name: Release Version
-          command: npm run semantic-release || true
-      - jq/install
+      # - run:
+      #     name: Release Version
+      #     command: npm run semantic-release || true
+      # - jq/install
       - run:
           name: Setup VirtualEnv
           command: |
-            echo 'export TAG=$(cat package.json | jq -r '.version')' >> $BASH_ENV
+            # echo 'export TAG=$(cat package.json | jq -r '.version')' >> $BASH_ENV
             echo 'export IMAGE_NAME=moneymaker/cid-client' >> $BASH_ENV 
             echo 'export DOCKER_REPOSITORY=repo.treescale.com/jaydamon' >> $BASH_ENV          
       - setup_remote_docker:
@@ -49,6 +49,8 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG .
-            echo $DOCKER_PWD | docker login repo.treescale.com -u $DOCKER_LOGIN --password-stdin 
-            docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG
+            # docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG .
+            docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME .
+            npm run semantic-release || true
+            # echo $DOCKER_PWD | docker login repo.treescale.com -u $DOCKER_LOGIN --password-stdin 
+            # docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG
