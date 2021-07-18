@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/JayDamon/cid/compare/v1.1.0...v1.2.0) (2021-07-18)
+
+
+### Features
+
+* **CI:** Add package.json version to tag ([5711dc7](https://github.com/JayDamon/cid/commit/5711dc7daf7de755aaa0833487cca2979d6f97ff))
+
 # [1.1.0](https://github.com/JayDamon/cid/compare/v1.0.0...v1.1.0) (2021-07-18)
 
 
