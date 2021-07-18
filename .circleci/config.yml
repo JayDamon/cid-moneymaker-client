@@ -32,7 +32,7 @@ jobs:
             mkdir dist/cid
             npm run build-prod
       - run:
-          name: Release stuff
+          name: Release Version
           command: npm run semantic-release || true
       - run:
           name: Setup VirtualEnv
