@@ -23,6 +23,7 @@ jobs:
       - run:
           name: Install
           command: |
+            echo 'export TAG=$(cat package.json | jq -r '.version')' >> $BASH_ENV
             npm install
       - save_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
@@ -41,7 +42,7 @@ jobs:
       - run:
           name: Setup VirtualEnv
           command: |
-            echo 'export TAG=$(cat package.json | jq -r '.version') >> $BASH_ENV
+            echo 'export TAG=$(cat package.json | jq -r '.version')' >> $BASH_ENV
             echo 'export IMAGE_NAME=moneymaker/cid-client' >> $BASH_ENV 
             echo 'export DOCKER_REPOSITORY=repo.treescale.com/jaydamon' >> $BASH_ENV          
       - setup_remote_docker:
