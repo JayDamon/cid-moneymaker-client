@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  jq: circleci/jq@2.2.0
+
 workflows:
   my-workflow:
     jobs:
@@ -37,7 +40,7 @@ jobs:
       - run:
           name: Setup VirtualEnv
           command: |
-            echo 'export TAG=0.1.${CIRCLE_BUILD_NUM}' >> $BASH_ENV
+            echo 'export TAG=cat package.json | jq -r '.version' >> $BASH_ENV
             echo 'export IMAGE_NAME=moneymaker/cid-client' >> $BASH_ENV 
             echo 'export DOCKER_REPOSITORY=repo.treescale.com/jaydamon' >> $BASH_ENV          
       - setup_remote_docker:
