@@ -15,10 +15,12 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
-      - node/install-packages
       - run:
-        name: release
-        command: npm run semantic-release || true
+          name: Install
+          command: npm install
+      - run:
+          name: Release stuff
+          command: npm run semantic-release || true
       - run:
           name: Setup VirtualEnv
           command: |
