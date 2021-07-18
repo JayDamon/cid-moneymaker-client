@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.2.2...v1.3.0) (2021-07-18)
+
+
+### Bug Fixes
+
+* **ci:** add docker release plugin ([5c4b5b1](https://github.com/JayDamon/cid-moneymaker-client/commit/5c4b5b113529a7c15fb9c6485c35d2ad31c3e2c1))
+
+
+### Features
+
+* **ci:** add docker tagging ([4ebe041](https://github.com/JayDamon/cid-moneymaker-client/commit/4ebe041e47513410af2a73ed316765b1b936a771))
+
 ## [1.2.2](https://github.com/JayDamon/cid/compare/v1.2.1...v1.2.2) (2021-07-18)
 
 
