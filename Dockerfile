@@ -4,7 +4,7 @@ FROM nginx:1.17.1-alpine
 
 COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 
-RUN ls ./
+RUN ls -a
 
 # RUN rm -rf /usr/share/nginx/html/*
 
