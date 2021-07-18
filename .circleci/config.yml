@@ -16,11 +16,12 @@ jobs:
       - restore_cache:
           keys:
             - v1-deps-{{ checksum "package-lock.json" }}
+            - v1-deps-
       - run:
           name: Install
           command: |
             npm install
-            npm install -g @angular/cli@9.0.6
+            npm install -g @angular/cli@12
       - run:
           name: Angular Build
           command: ng build --prod --configuration=production
