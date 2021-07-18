@@ -28,8 +28,10 @@ import { ImportTransactionTableComponent } from './modules/transaction/component
 import { FileImportComponent } from './shared/components/file-import/file-import.component';
 import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/csv-header-match.component';
 import { BudgetCountComponent } from './modules/transaction/components/budget-count/budget-count.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {MatIconModule} from '@angular/material/icon';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfigurationService } from './core/services/api/configuration.service';
+import { APP_INITIALIZER } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,12 @@ import {MatIconModule} from '@angular/material/icon';
     MatIconModule
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (configService: ConfigurationService) => () => configService.loadConfiguration().toPromise(),
+      deps: [ConfigurationService],
+      multi: true
+    },
     TransactionService
   ],
   bootstrap: [AppComponent]

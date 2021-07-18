@@ -5,15 +5,24 @@ import { throwError, Observable } from 'rxjs';
 
 // import { JwtService } from '../jwt/jwt.service';
 import { catchError, share } from 'rxjs/operators';
+import { ConfigurationService } from './configuration.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+
+  private configUrl: string;
+
   constructor(
     private http: HttpClient,
-    // private jwtService: JwtService
-  ) {}
+    private config: ConfigurationService
+  ) {
+    this.config.loadConfiguration().subscribe((c: any) => {
+      console.log(c);
+      this.configUrl = c.resourceServer;
+    })
+  }
 
   private formatErrors(error: any) {
     return  throwError(error.error);
@@ -26,21 +35,21 @@ export class ApiService {
   };
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${environment.api_url}${path}`, 
+    return this.http.get(`${this.configUrl}${path}`, 
     { params })
       .pipe(catchError(this.formatErrors), share());
   }
 
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
-      `${environment.api_url}${path}`,
+      `${this.configUrl}${path}`,
       JSON.stringify(body)
     ).pipe(catchError(this.formatErrors), share());
   }
 
   patch(path: string, body: Object = {}, resourceId: number): Observable<any> {
     return this.http.patch(
-      `${environment.api_url}${path}${resourceId}`,
+      `${this.configUrl}${path}${resourceId}`,
       JSON.stringify(body),
       this.httpOptions
     ).pipe(catchError(this.formatErrors), share());
@@ -49,7 +58,7 @@ export class ApiService {
   post(path: string, body: Object = {}): Observable<any> {
 
     let req = this.http.post(
-      `${environment.api_url}${path}`,
+      `${this.configUrl}${path}`,
       JSON.stringify(body),
       this.httpOptions
     ).pipe(catchError(this.formatErrors), share());
@@ -59,7 +68,7 @@ export class ApiService {
 
   delete(path): Observable<any> {
     return this.http.delete(
-      `${environment.api_url}${path}`
+      `${this.configUrl}${path}`
     ).pipe(catchError(this.formatErrors), share());
   }
 }
