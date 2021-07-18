@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/JayDamon/cid/compare/v1.2.1...v1.2.2) (2021-07-18)
+
+
+### Bug Fixes
+
+* **ci:** update syntax for jq call ([18ede99](https://github.com/JayDamon/cid/commit/18ede9977883abcf234c1c7c60e657aa335126a7))
+
 ## [1.2.1](https://github.com/JayDamon/cid/compare/v1.2.0...v1.2.1) (2021-07-18)
 
 
