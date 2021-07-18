@@ -37,6 +37,7 @@ jobs:
       - run:
           name: Release Version
           command: npm run semantic-release || true
+      - jq/install
       - run:
           name: Setup VirtualEnv
           command: |
