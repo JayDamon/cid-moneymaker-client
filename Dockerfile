@@ -9,10 +9,11 @@ COPY package.json package-lock.json /app/
 RUN npm install
 RUN npm install -g @angular/cli@12
 
+RUN npm run semantic-release || true
+
 COPY . /app
 
-ARG configuration=dev
-RUN ng build --configuration $configuration
+RUN ng build --prod --configuration=production
 
 FROM nginx:1.17.1-alpine
 
