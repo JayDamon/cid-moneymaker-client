@@ -6,6 +6,10 @@ COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 
 RUN rm -rf /usr/share/nginx/html/*
 
+RUN ls
+
+RUN ls ./dist/
+
 COPY ./dist/cid/ /usr/share/nginx/html
 
 # forward request and error logs to docker log collector

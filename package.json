@@ -67,5 +67,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/JayDamon/cid.git"
+  },
+  "release": {
+    "branches": ["addSemanticRelease"]
   }
 }
