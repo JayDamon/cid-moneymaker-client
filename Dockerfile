@@ -2,11 +2,7 @@ FROM nginx:1.17.1-alpine
 
 #!/bin/sh
 
-RUN ls -a
-
 COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
-
-RUN ls -a
 
 RUN rm -rf /usr/share/nginx/html/*
 
