@@ -1,0 +1,50 @@
+version: 2.1
+
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context:
+            - docker-login
+
+jobs:
+  build:
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout     
+      - restore_cache:
+          keys:
+            - v1-deps-{{ checksum "package-lock.json" }}
+            - v1-deps-
+      - run:
+          name: Install
+          command: |
+            npm install
+      - save_cache:
+          key: v1-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Angular Build
+          command: |
+            mkdir dist
+            mkdir dist/cid
+            npm run build-prod
+      - run:
+          name: Release stuff
+          command: npm run semantic-release || true
+      - run:
+          name: Setup VirtualEnv
+          command: |
+            echo 'export TAG=0.1.${CIRCLE_BUILD_NUM}' >> $BASH_ENV
+            echo 'export IMAGE_NAME=moneymaker/cid-client' >> $BASH_ENV 
+            echo 'export DOCKER_REPOSITORY=repo.treescale.com/jaydamon' >> $BASH_ENV          
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Build and push Docker image
+          command: |
+            docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG .
+            echo $DOCKER_PWD | docker login repo.treescale.com -u $DOCKER_LOGIN --password-stdin 
+            docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG
