@@ -30,6 +30,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@schematics/angular": "^9.1.0",
+    "@semantic-release-plus/docker": "^2.3.3",
     "angular-bootstrap-md": "^11.1.0",
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.4.1",
@@ -75,14 +76,6 @@
     "branches": [
       "main"
     ],
-    "verifyConditions": {
-      "path": "semantic-release-docker",
-      "registryUrl": "docker.io"
-    },
-    "publish": {
-      "path": "semantic-release-docker",
-      "name": "moneymaker/cid-client"
-    },
     "plugins": [
       [
         "@semantic-release/release-notes-generator",
@@ -119,6 +112,15 @@
             "CHANGELOG.md"
           ],
           "message": "release: ${nextRelease.version} \n\n${nextRelease.notes}"
+        }
+      ],
+      [
+        "@semantic-release-plus/docker",
+        {
+          "name": "cid-client",
+          "publishLatestTag": true,
+          "publishMajorTag": true,
+          "publishMinorTag": true
         }
       ]
     ]
