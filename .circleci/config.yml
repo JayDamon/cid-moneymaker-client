@@ -27,7 +27,10 @@ jobs:
             - node_modules
       - run:
           name: Angular Build
-          command: npm run build-prod
+          command: |
+            mkdir dist
+            mkdir dist/cid
+            npm run build-prod
       - run:
           name: Release stuff
           command: npm run semantic-release || true
