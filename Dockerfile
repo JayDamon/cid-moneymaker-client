@@ -4,11 +4,9 @@ FROM nginx:1.17.1-alpine
 
 COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 
-RUN rm -rf /usr/share/nginx/html/*
+RUN ls ./
 
-RUN ls
-
-RUN ls ./dist/
+# RUN rm -rf /usr/share/nginx/html/*
 
 COPY ./dist/cid/ /usr/share/nginx/html
 
