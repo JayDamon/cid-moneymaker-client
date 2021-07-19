@@ -34,10 +34,6 @@ jobs:
             mkdir dist
             mkdir dist/cid
             npm run build-prod
-      # - run:
-      #     name: Release Version
-      #     command: npm run semantic-release || true
-      # - jq/install
       - run:
           name: Setup VirtualEnv
           command: |
@@ -49,8 +45,5 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            # docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG .
             docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME .
             npm run semantic-release || true
-            # echo $DOCKER_PWD | docker login repo.treescale.com -u $DOCKER_LOGIN --password-stdin 
-            # docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$TAG
