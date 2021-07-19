@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Setup VirtualEnv
           command: |
-            echo 'export IMAGE_NAME=moneymaker/cid-client' >> $BASH_ENV 
+            echo 'export IMAGE_NAME=mm-cid-client' >> $BASH_ENV 
             echo 'export DOCKER_REPOSITORY=repo.treescale.com/jaydamon' >> $BASH_ENV          
       - setup_remote_docker:
           version: 19.03.13

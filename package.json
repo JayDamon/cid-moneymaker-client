@@ -117,7 +117,7 @@
       [
         "@semantic-release-plus/docker",
         {
-          "name": "repo.treescale.com/jaydamon/moneymaker/cid-client",
+          "name": "repo.treescale.com/jaydamon/mm-cid-client",
           "registryUrl": "repo.treescale.com",
           "publishLatestTag": true,
           "publishMajorTag": true,
