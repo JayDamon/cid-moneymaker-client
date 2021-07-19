@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.4.0...v1.5.0) (2021-07-19)
+
+
+### Features
+
+* **CI:** remove jq ([2dc5ca3](https://github.com/JayDamon/cid-moneymaker-client/commit/2dc5ca3cc573256e3e8bfa89fcd83d8ae66c317b))
+
 # [1.4.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.3.1...v1.4.0) (2021-07-19)
 
 
