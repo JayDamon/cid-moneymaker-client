@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.3.1...v1.4.0) (2021-07-19)
+
+
+### Features
+
+* **CI:** Remove unused lines ([d4722c2](https://github.com/JayDamon/cid-moneymaker-client/commit/d4722c2429659ef18881bcf0cb2543ac7f7584b7))
+
 ## [1.3.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.3.0...v1.3.1) (2021-07-19)
 
 
