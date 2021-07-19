@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.3.0...v1.3.1) (2021-07-19)
+
+
+### Bug Fixes
+
+* **CI:** Add username to project name ([200cf42](https://github.com/JayDamon/cid-moneymaker-client/commit/200cf420fb385e6db4228b60fe238dff9360f61d))
+
 # [1.3.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.2.2...v1.3.0) (2021-07-18)
 
 
