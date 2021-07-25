@@ -11,7 +11,7 @@ export class FrequencyDataService {
   constructor(private apiService : ApiService) { }
 
   getFrequencyTypes(): Observable<Array<FrequencyType>> {
-    return this.apiService.get('/v1/frequency-types');
+    return this.apiService.get('/v1/budgets/frequency-types');
   }
 
 }

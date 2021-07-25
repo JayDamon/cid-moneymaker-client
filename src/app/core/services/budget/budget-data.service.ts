@@ -19,7 +19,7 @@ export class BudgetDataService {
   }
 
   getBudgetTypes(): Observable<Array<BudgetType>> {
-    return this.apiService.get('/v1/budget-types');
+    return this.apiService.get('/v1/budgets/types');
   }
 
   saveNewBudgets(budgets: Budget[]): Observable<Array<Budget>> {
@@ -35,7 +35,7 @@ export class BudgetDataService {
   }
 
   getBudgetCategories(): Observable<Array<BudgetCategory>> {
-    return this.apiService.get('/v1/budget-categories');
+    return this.apiService.get('/v1/budgets/categories');
   }
 
 }
