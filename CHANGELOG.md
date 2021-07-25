@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.0...v1.5.1) (2021-07-19)
+
+
+### Bug Fixes
+
+* **CI:** rename step ([8fab7d3](https://github.com/JayDamon/cid-moneymaker-client/commit/8fab7d33515f0107e8e6df61b53859d01dfe6114))
+
 # [1.5.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.4.0...v1.5.0) (2021-07-19)
 
 
