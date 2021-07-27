@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.2...v1.5.3) (2021-07-27)
+
+
+### Bug Fixes
+
+* **transaction:** Turn off static csv ([ca828e1](https://github.com/JayDamon/cid-moneymaker-client/commit/ca828e1e0b70faeb0e5cc51da4251183db5ae0a4))
+
 ## [1.5.2](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.1...v1.5.2) (2021-07-25)
 
 
