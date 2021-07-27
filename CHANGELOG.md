@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.1...v1.5.2) (2021-07-25)
+
+
+### Bug Fixes
+
+* **CI:** skip ci on release notes update commit ([4cdf688](https://github.com/JayDamon/cid-moneymaker-client/commit/4cdf688118c4279b59026e36b64d95c24d268fac))
+
 ## [1.5.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.0...v1.5.1) (2021-07-19)
 
 
