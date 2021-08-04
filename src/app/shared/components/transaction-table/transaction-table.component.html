@@ -17,7 +17,7 @@
 
     <ng-container matColumnDef="budgetCategoryName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Category Name </th>
-        <td mat-cell *matCellDef="let transaction"> {{transaction.budget?.budgetCategory.name}}</td>
+        <td mat-cell *matCellDef="let transaction"> {{transaction.budget?.budgetCategory?.name}}</td>
     </ng-container>
 
     <ng-container matColumnDef="transactionCategory">

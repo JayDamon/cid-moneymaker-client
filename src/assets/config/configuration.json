@@ -1,3 +1,8 @@
 {
-    "resourceServer":"http://localhost:8080"
+    "resourceServer":"http://localhost:8080",
+    "keycloak": {
+        "url": "http://localhost:8081/auth",
+        "realm": "moneymaker",
+        "clientId": "cid-client"
+    }
 }

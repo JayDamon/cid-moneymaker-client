@@ -28,7 +28,6 @@ export class AccountTableComponent {
 
   @Input()
   set accounts(accounts: Array<FinancialAccount>) {
-    console.log(accounts);
     this._accounts = accounts;
   }
 
