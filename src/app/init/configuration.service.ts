@@ -2,10 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-
-interface Configuration {
-  resourceServer: string;
-}
+import { AppConfig } from 'src/app/init/AppConfig';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +10,13 @@ interface Configuration {
 export class ConfigurationService {
 
   private readonly CONFIG_URL = 'assets/config/configuration.json';
-  private configuration$: Observable<Configuration>;
+  private configuration$: Observable<AppConfig>;
 
   constructor(private http: HttpClient) { }
 
-  public loadConfiguration(): Observable<Configuration> {
+  public loadConfiguration(): Observable<AppConfig> {
     if (!this.configuration$) {
-      this.configuration$ = this.http.get<Configuration>(this.CONFIG_URL).pipe(
+      this.configuration$ = this.http.get<AppConfig>(this.CONFIG_URL).pipe(
         shareReplay(1)
       );
     }

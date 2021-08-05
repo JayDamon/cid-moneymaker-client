@@ -30,8 +30,10 @@ import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/cs
 import { BudgetCountComponent } from './modules/transaction/components/budget-count/budget-count.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
-import { ConfigurationService } from './core/services/api/configuration.service';
 import { APP_INITIALIZER } from '@angular/core';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './init/keycloak-init.factory';
+import { ConfigurationService } from './init/configuration.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { APP_INITIALIZER } from '@angular/core';
     NgxDropzoneModule,
     MatListModule,
     DragDropModule,
-    MatIconModule
+    MatIconModule,
+    KeycloakAngularModule
   ],
   providers: [
     {
@@ -73,6 +76,12 @@ import { APP_INITIALIZER } from '@angular/core';
       useFactory: (configService: ConfigurationService) => () => configService.loadConfiguration().toPromise(),
       deps: [ConfigurationService],
       multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService, ConfigurationService],
     },
     TransactionService
   ],

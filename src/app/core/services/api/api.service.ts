@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-
-// import { JwtService } from '../jwt/jwt.service';
 import { catchError, share } from 'rxjs/operators';
-import { ConfigurationService } from './configuration.service';
+import { ConfigurationService } from 'src/app/init/configuration.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +16,6 @@ export class ApiService {
     private config: ConfigurationService
   ) {
     this.config.loadConfiguration().subscribe((c: any) => {
-      console.log(c);
       this.configUrl = c.resourceServer;
     })
   }
@@ -35,7 +31,7 @@ export class ApiService {
   };
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.http.get(`${this.configUrl}${path}`, 
+    return this.http.get(`${this.configUrl}${path}`,
     { params })
       .pipe(catchError(this.formatErrors), share());
   }
