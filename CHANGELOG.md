@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.3...v1.6.0) (2021-08-05)
+
+
+### Features
+
+* **keycloak:** add keycloak for authentication ([7d93382](https://github.com/JayDamon/cid-moneymaker-client/commit/7d93382a8c2a9b3518e7eae9840070f076e64d2d))
+
+
+### BREAKING CHANGES
+
+* **keycloak:** CHANGE
+
 ## [1.5.3](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.2...v1.5.3) (2021-07-27)
 
 
