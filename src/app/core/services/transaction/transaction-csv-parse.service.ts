@@ -28,7 +28,7 @@ export class TransactionCsvParseService {
         headers.forEach(element => {
           const value = data[element.csvHeaderValue];
           if (element.requiredValue === 'Transaction Date') {
-            transaction.date = value;
+            transaction.date = new Date(value);
           } else if (element.requiredValue === 'Account Number') {
             transaction.account = value;
           } else if (element.requiredValue === 'Description') {
@@ -57,8 +57,6 @@ export class TransactionCsvParseService {
   private createEmptyTransaction(): Transaction {
     const transaction: Transaction = {} as Transaction;
     transaction.account = {} as FinancialAccount;
-    transaction.category = {} as Category;
-    transaction.category.name = null;
     transaction.budget = {} as Budget;
     transaction.budget.name = null;
 
