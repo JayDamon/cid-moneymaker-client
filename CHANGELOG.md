@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.6.0...v1.6.1) (2021-08-09)
+
+
+### Bug Fixes
+
+* **transaction:** Wrap new transaction date in Date object ([d6a23d0](https://github.com/JayDamon/cid-moneymaker-client/commit/d6a23d0c1fb798a16e32eed11a7f4c9dc7fe4eba))
+
 # [1.6.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.5.3...v1.6.0) (2021-08-05)
 
 
