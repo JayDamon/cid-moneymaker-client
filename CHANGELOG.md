@@ -1,3 +1,17 @@
+# [1.8.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.7.1...v1.8.0) (2021-08-11)
+
+
+### Features
+
+* **nav:** Add logout button ([e418346](https://github.com/JayDamon/cid-moneymaker-client/commit/e4183462a189f2f1b2e5e33418465aa62b5073ca))
+
+## [1.7.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.7.0...v1.7.1) (2021-08-11)
+
+
+### Bug Fixes
+
+* **import:** Ensure transaction amount is correct ([012dbb8](https://github.com/JayDamon/cid-moneymaker-client/commit/012dbb8edd1d95b562778841099ce6db3e0202e3)), closes [#8](https://github.com/JayDamon/cid-moneymaker-client/issues/8)
+
 # [1.7.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.6.1...v1.7.0) (2021-08-11)
 
 
