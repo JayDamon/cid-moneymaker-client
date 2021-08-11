@@ -6,13 +6,16 @@ workflows:
       - build:
           context:
             - docker-login
-
+          filters:
+            branches:
+              only:
+                - main
 jobs:
   build:
     docker:
       - image: 'circleci/node:latest'
     steps:
-      - checkout     
+      - checkout
       - restore_cache:
           keys:
             - v1-deps-{{ checksum "package-lock.json" }}
@@ -34,8 +37,8 @@ jobs:
       - run:
           name: Setup VirtualEnv
           command: |
-            echo 'export IMAGE_NAME=mm-cid-client' >> $BASH_ENV 
-            echo 'export DOCKER_REPOSITORY=repo.treescale.com/jaydamon' >> $BASH_ENV          
+            echo 'export IMAGE_NAME=mm-cid-client' >> $BASH_ENV
+            echo 'export DOCKER_REPOSITORY=repo.treescale.com/jaydamon' >> $BASH_ENV
       - setup_remote_docker:
           version: 19.03.13
       - run:
