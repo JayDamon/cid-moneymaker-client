@@ -1,17 +1,20 @@
-<div class="app-import-container">
+<div class="app-container">
   <h3>Import Transactions</h3>
-  <app-file-import (fileChange)="parseFile($event)"></app-file-import>
-</div>
-
-<div class="app-container" *ngIf="isCsv">
   <mat-form-field>
     <mat-label>Account</mat-label>
-    <mat-select matNativeControl required [(ngModel)]="selectedAccount">
+    <mat-select matNativeControl required [(ngModel)]="selectedAccount" (selectionChange)="setAccountSelected()">
       <mat-option *ngFor="let account of accounts" [value]="account">
         {{ account.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>
+</div>
+
+<div class="app-import-container" *ngIf="accountSelected">
+  <app-file-import (fileChange)="parseFile($event)"></app-file-import>
+</div>
+
+<div class="app-container" *ngIf="isCsv">
   <div class="app-header-container">
     <app-csv-header-match
       [expectedHeaders]="expectedHeaders"
