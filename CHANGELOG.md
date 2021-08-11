@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.8.0...v1.8.1) (2021-08-11)
+
+
+### Bug Fixes
+
+* **budget:** Move from transaction type to budget type ([a9bbe67](https://github.com/JayDamon/cid-moneymaker-client/commit/a9bbe67d88ae28da6e2c092207d37cf0c227e964))
+
 # [1.8.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.7.1...v1.8.0) (2021-08-11)
 
 
