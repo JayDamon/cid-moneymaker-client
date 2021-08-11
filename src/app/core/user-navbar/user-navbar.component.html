@@ -1,5 +1,4 @@
 <mat-toolbar color="primary" class="navbar">
-    <!-- <div><img class="menu-img primary-logo" /></div> -->
     <div>MoneyMaker</div>
 
     <div>
@@ -22,6 +21,9 @@
         <button mat-button>Categories</button>
     </div>
     <div>
-        <button mat-button>User Info</button>
+        <button mat-button [matMenuTriggerFor]="userInfoMenu">User Info</button>
+        <mat-menu #userInfoMenu="matMenu" yPosition="below">
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
     </div>
 </mat-toolbar>
