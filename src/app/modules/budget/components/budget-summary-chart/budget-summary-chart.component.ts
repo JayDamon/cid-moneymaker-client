@@ -37,7 +37,7 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
         let colors = new Array();
         let red = '#B71C1C';
         let green = '#2E7D32';
-        
+
           for (let bs of this.budgetSummary) {
             planned.push(bs.planned);
             actual.push(bs.actual);
@@ -47,13 +47,13 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
               colors.push(red);
             }
             const cat = bs.category.charAt(0).toUpperCase() + bs.category.slice(1);
-            const tranType = bs.transactionType.charAt(0).toUpperCase() + bs.transactionType.slice(1);
+            const tranType = bs.budgetType.charAt(0).toUpperCase() + bs.budgetType.slice(1);
             categories.push(cat + " " + tranType);
           }
 
         this.chartDatasets = [
           {
-            data: planned, 
+            data: planned,
             label: 'Planned',
           },
           {
