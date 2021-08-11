@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Papa } from 'ngx-papaparse';
 import { Transaction } from 'src/app/shared/models/Transaction';
-import { Category } from 'src/app/shared/models/Category';
 import { Budget } from 'src/app/shared/models/Budget';
 import { CsvHeader } from 'src/app/shared/models/CsvHeader';
 
@@ -26,7 +25,7 @@ export class TransactionCsvParseService {
         const data = results.data;
         const transaction: Transaction = this.createEmptyTransaction();
         headers.forEach(element => {
-          const value = data[element.csvHeaderValue];
+          let value = data[element.csvHeaderValue];
           if (element.requiredValue === 'Transaction Date') {
             transaction.date = new Date(value);
           } else if (element.requiredValue === 'Account Number') {
@@ -35,14 +34,18 @@ export class TransactionCsvParseService {
             transaction.description = value;
           } else if (element.requiredValue === 'Debit') {
             if (value) {
-              transaction.amount = value * -1;
+              if (value > 0) {
+                value = value * -1;
+              }
+              transaction.amount = value;
             }
           } else if (element.requiredValue === 'Credit') {
             if (value) {
-              transaction.amount = value;
+              transaction.amount = Math.abs(value);
             }
           }
         });
+        console.log(transaction);
         this.transactions.push(transaction);
       },
       complete: () => {
