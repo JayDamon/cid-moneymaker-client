@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.6.1...v1.7.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **import:** enforce account on import ([fa15953](https://github.com/JayDamon/cid-moneymaker-client/commit/fa159534cd22a13579cd1ff9fab9a929ca30f094)), closes [#9](https://github.com/JayDamon/cid-moneymaker-client/issues/9)
+
+
+### Features
+
+* **ci:** add skip for non main branch ([d612091](https://github.com/JayDamon/cid-moneymaker-client/commit/d61209120eba775170aa736508fae477f3785e34))
+
 ## [1.6.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.6.0...v1.6.1) (2021-08-09)
 
 
