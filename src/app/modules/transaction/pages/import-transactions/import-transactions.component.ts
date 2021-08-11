@@ -32,12 +32,11 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
 
   dataLoaded: boolean = false;
   file: File;
-  // isCsv = false;
-  isCsv = true;
+  accountSelected = false;
+  isCsv = false;
   headers: Array<string> = [];
   expectedHeaders: Array<string> = ['Transaction Date', 'Description', 'Debit', 'Credit'];
   requiredHeaders: Array<CsvHeader> = [];
-  // transactions: Array<Transaction> = DATA;
   transactions: Array<Transaction>;
 
   budgets: Array<Budget> = [];
@@ -84,6 +83,10 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe;
+  }
+
+  setAccountSelected() {
+    this.accountSelected = true;
   }
 
   parseFile(file: File) {
