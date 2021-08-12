@@ -5,6 +5,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BudgetService } from 'src/app/core/services/budget/budget.service';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Transaction } from 'src/app/shared/models/Transaction';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'app-budget',
@@ -18,8 +19,6 @@ export class BudgetComponent implements OnInit, OnDestroy {
   showSpinner = true;
   showTransactionSpiner = true;
   showBudgetSummarySpinner = true;
-
-  firstMonthBudget = new Date();
 
   firstMonthBudgetSummary: BudgetSummary[];
   secondMonthBudgetSummary: BudgetSummary[];
@@ -54,23 +53,32 @@ export class BudgetComponent implements OnInit, OnDestroy {
     }));
   }
 
+  updateCategories(moment: Moment) {
+    this.updateBudgetSummariesForDate(moment.toDate());
+  }
+
   private updateBudgetSummaries() {
+    this.updateBudgetSummariesForDate(new Date());
+  }
+
+  private updateBudgetSummariesForDate(date: Date) {
 
     let secondMonthBudget = new Date(
-      this.firstMonthBudget.getFullYear(),
-      this.firstMonthBudget.getMonth() + 1,
+      date.getFullYear(),
+      date.getMonth() + 2,
       1
     );
 
     this.subscriptions.add(
       this.budgetService.getBudgetSummary(
-          this.firstMonthBudget.getFullYear(),
-          this.firstMonthBudget.getMonth()
-        ).subscribe(
+        date.getFullYear(),
+        date.getMonth() + 1
+      ).subscribe(
         (budgetSummaries: Array<BudgetSummary>) => {
           this.firstMonthBudgetSummary = budgetSummaries;
           this.showBudgetSummarySpinner = false;
-        })
+        }
+      )
     );
 
     this.subscriptions.add(

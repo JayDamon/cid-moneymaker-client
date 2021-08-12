@@ -9,15 +9,7 @@
     <ng-template #budgetSummary>
         <div *ngIf="showBudgetSummarySpinner; else summaries"><mat-spinner></mat-spinner></div>
         <ng-template #summaries>
-          <!-- <mat-form-field>
-            <mat-label>Select first month chart</mat-label>
-            <input matInput [matDatepicker]="chartStartdate" [(ngModel)]="firstMonthBudget" (dateChange)="updateBudgetSummaries()">
-            <mat-datepicker-toggle matSuffix [for]="chartStartdate"></mat-datepicker-toggle>
-            <mat-datepicker #chartStartdate
-              startView="year"
-              panelClass=""></mat-datepicker>
-          </mat-form-field> -->
-          <app-month-year-date-picker></app-month-year-date-picker>
+          <app-month-year-date-picker (dateChange)="updateCategories($event)"></app-month-year-date-picker>
           <mat-grid-list cols="2" rowHeight="2:1">
             <mat-grid-tile>
                 <div class="app-budget-summary-chart" *ngIf="firstMonthBudgetSummary">

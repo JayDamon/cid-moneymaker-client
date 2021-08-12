@@ -1,9 +1,10 @@
 <mat-form-field>
   <mat-label>{{label}}</mat-label>
-  <input matInput [matDatepicker]="date" [(ngModel)]="date">
-  <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-  <mat-datepicker #chartStartdate
+  <input matInput [matDatepicker]="dp" [formControl]="date" (ngModelChange)="updateDate()">
+  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+  <mat-datepicker #dp
     startView="multi-year"
-    panelClass="">
+    (yearSelected)="chosenYearHandler($event)"
+    (monthSelected)="chosenMonthHandler($event, dp)">
   </mat-datepicker>
 </mat-form-field>
