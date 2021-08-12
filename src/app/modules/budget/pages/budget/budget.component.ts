@@ -19,6 +19,8 @@ export class BudgetComponent implements OnInit, OnDestroy {
   showTransactionSpiner = true;
   showBudgetSummarySpinner = true;
 
+  firstMonthBudget = new Date();
+
   firstMonthBudgetSummary: BudgetSummary[];
   secondMonthBudgetSummary: BudgetSummary[];
   budgets: Array<Budget>;
@@ -29,7 +31,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getBudgets();
-    this.getBudgetSummaries();
+    this.updateBudgetSummaries();
     this.getTransactions();
   }
 
@@ -38,13 +40,11 @@ export class BudgetComponent implements OnInit, OnDestroy {
   }
 
   private getBudgets() {
-
     this.subscriptions.add(this.budgetService.getBudgets().subscribe(budgets => {
       this.budgets = budgets;
       this.budgetsExist = budgets.length > 0;
       this.showSpinner = false;
     }));
-
   }
 
   private getTransactions(): void {
@@ -54,10 +54,19 @@ export class BudgetComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private getBudgetSummaries() {
+  private updateBudgetSummaries() {
+
+    let secondMonthBudget = new Date(
+      this.firstMonthBudget.getFullYear(),
+      this.firstMonthBudget.getMonth() + 1,
+      1
+    );
 
     this.subscriptions.add(
-      this.budgetService.getBudgetSummary(2017, 1).subscribe(
+      this.budgetService.getBudgetSummary(
+          this.firstMonthBudget.getFullYear(),
+          this.firstMonthBudget.getMonth()
+        ).subscribe(
         (budgetSummaries: Array<BudgetSummary>) => {
           this.firstMonthBudgetSummary = budgetSummaries;
           this.showBudgetSummarySpinner = false;
@@ -65,7 +74,10 @@ export class BudgetComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(
-      this.budgetService.getBudgetSummary(2017, 2).subscribe((budgetSummaries: Array<BudgetSummary>) => {
+      this.budgetService.getBudgetSummary(
+          secondMonthBudget.getFullYear(),
+          secondMonthBudget.getMonth()
+        ).subscribe((budgetSummaries: Array<BudgetSummary>) => {
         this.secondMonthBudgetSummary = budgetSummaries;
       })
     );
