@@ -21,6 +21,7 @@ import { BudgetTypeInputComponent } from './components/budget-type-input/budget-
 import { BudgetSidePanelComponent } from './components/budget-side-panel/budget-side-panel.component';
 import { BudgetDetailsComponent } from './pages/budget-details/budget-details.component';
 import { BudgetTableComponent } from './components/budget-table/budget-table.component';
+import { MonthYearDatePickerComponent } from './components/month-year-date-picker/month-year-date-picker.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { BudgetTableComponent } from './components/budget-table/budget-table.com
         BudgetTypeInputComponent,
         BudgetSidePanelComponent,
         BudgetDetailsComponent,
-        BudgetTableComponent
+        BudgetTableComponent,
+        MonthYearDatePickerComponent
     ],
     imports: [
         SharedModule,

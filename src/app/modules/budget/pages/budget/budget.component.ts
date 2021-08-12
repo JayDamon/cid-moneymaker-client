@@ -5,6 +5,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BudgetService } from 'src/app/core/services/budget/budget.service';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Transaction } from 'src/app/shared/models/Transaction';
+import { Moment } from 'moment';
 
 @Component({
   selector: 'app-budget',
@@ -29,7 +30,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getBudgets();
-    this.getBudgetSummaries();
+    this.updateBudgetSummaries();
     this.getTransactions();
   }
 
@@ -38,13 +39,11 @@ export class BudgetComponent implements OnInit, OnDestroy {
   }
 
   private getBudgets() {
-
     this.subscriptions.add(this.budgetService.getBudgets().subscribe(budgets => {
       this.budgets = budgets;
       this.budgetsExist = budgets.length > 0;
       this.showSpinner = false;
     }));
-
   }
 
   private getTransactions(): void {
@@ -54,18 +53,39 @@ export class BudgetComponent implements OnInit, OnDestroy {
     }));
   }
 
-  private getBudgetSummaries() {
+  updateCategories(moment: Moment) {
+    this.updateBudgetSummariesForDate(moment.toDate());
+  }
 
-    this.subscriptions.add(
-      this.budgetService.getBudgetSummary(2017, 1).subscribe(
-        (budgetSummaries: Array<BudgetSummary>) => {
-          this.firstMonthBudgetSummary = budgetSummaries;
-          this.showBudgetSummarySpinner = false;
-        })
+  private updateBudgetSummaries() {
+    this.updateBudgetSummariesForDate(new Date());
+  }
+
+  private updateBudgetSummariesForDate(date: Date) {
+
+    let secondMonthBudget = new Date(
+      date.getFullYear(),
+      date.getMonth() + 2,
+      1
     );
 
     this.subscriptions.add(
-      this.budgetService.getBudgetSummary(2017, 2).subscribe((budgetSummaries: Array<BudgetSummary>) => {
+      this.budgetService.getBudgetSummary(
+        date.getFullYear(),
+        date.getMonth() + 1
+      ).subscribe(
+        (budgetSummaries: Array<BudgetSummary>) => {
+          this.firstMonthBudgetSummary = budgetSummaries;
+          this.showBudgetSummarySpinner = false;
+        }
+      )
+    );
+
+    this.subscriptions.add(
+      this.budgetService.getBudgetSummary(
+          secondMonthBudget.getFullYear(),
+          secondMonthBudget.getMonth()
+        ).subscribe((budgetSummaries: Array<BudgetSummary>) => {
         this.secondMonthBudgetSummary = budgetSummaries;
       })
     );
