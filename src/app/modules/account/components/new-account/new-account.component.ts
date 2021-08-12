@@ -13,7 +13,6 @@ export class NewAccountComponent {
 
   @Input() accountTypes: Array<AccountType> = [];
 
-  @Output() newAccount = new EventEmitter();
   account: FinancialAccount;
 
   constructor(

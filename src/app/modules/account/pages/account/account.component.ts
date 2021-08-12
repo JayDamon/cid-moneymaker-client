@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import { AccountService } from 'src/app/core/services/account/account.service';
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
 import { AccountType } from 'src/app/shared/models/AccountType';
 import { MatDialog } from '@angular/material/dialog';
@@ -24,9 +23,7 @@ export class AccountComponent {
   accountTypes: Array<AccountType> = [];
 
   constructor(private accountService: AccountDataService, public dialog: MatDialog) {
-
     this.addAccountSubscriptions(this.accountService);
-
   }
 
   private addAccountSubscriptions(accountService: AccountDataService) {
@@ -39,7 +36,6 @@ export class AccountComponent {
     accountService.getAccountTypes().subscribe((accountTypes: Array<AccountType>) => {
       this.accountTypes = accountTypes;
     })
-
   }
 
   updateAccount(account: FinancialAccount) {
@@ -53,7 +49,6 @@ export class AccountComponent {
   }
 
   createAccount() {
-
     let emptyAccunt: FinancialAccount = {
       id: null,
       name: '',
@@ -72,11 +67,12 @@ export class AccountComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.accountService.createAccount(result).subscribe((newAccount => {
-        this.accounts.push(newAccount);
-      }));
+      if (result) {
+        this.accountService.createAccount(result).subscribe((newAccount => {
+          this.accounts.push(newAccount);
+        }));
+      }
     })
-
   }
 
 }
