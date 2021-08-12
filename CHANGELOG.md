@@ -1,3 +1,15 @@
+# [1.9.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.8.1...v1.9.0) (2021-08-12)
+
+
+### Bug Fixes
+
+* **account:** Check if account is null before saving ([c94a9b8](https://github.com/JayDamon/cid-moneymaker-client/commit/c94a9b8e9d819c71f320d8bd4be5cafd70af0a58))
+
+
+### Features
+
+* **budget:** add date picker for selecting budgets ([90db14e](https://github.com/JayDamon/cid-moneymaker-client/commit/90db14e125e8377a40978acb137d5c4a5ae36933))
+
 ## [1.8.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.8.0...v1.8.1) (2021-08-11)
 
 
