@@ -70,6 +70,10 @@ export class AccountComponent {
       if (result) {
         this.accountService.createAccount(result).subscribe((newAccount => {
           this.accounts.push(newAccount);
+          let accounts = [];
+          this.accounts.forEach(account => accounts.push(account));
+          console.log(accounts);
+          this.accounts = accounts;
         }));
       }
     })
