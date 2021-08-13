@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.9.1...v1.9.2) (2021-08-13)
+
+
+### Bug Fixes
+
+* **account:** Disable create button on new account screen ([e8cf05c](https://github.com/JayDamon/cid-moneymaker-client/commit/e8cf05c144d371a6fb59c271ea7c7745084e519d))
+
 ## [1.9.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.9.0...v1.9.1) (2021-08-13)
 
 
