@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.11.0...v1.12.0) (2021-08-13)
+
+
+### Features
+
+* **navbar:** Remove unused navbar elements ([fc500e5](https://github.com/JayDamon/cid-moneymaker-client/commit/fc500e5ed6c06a3adecbd268c8ed71e5b98ee781))
+
 # [1.11.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.10.1...v1.11.0) (2021-08-13)
 
 
