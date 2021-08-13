@@ -10,14 +10,13 @@ import { BudgetTypeTreeNode } from 'src/app/shared/models/BudgetTypeTreeNode';
 })
 export class BudgetSidePanelComponent implements OnInit {
 
-  // @Input() budgetTypes: BudgetType[];
   @Input() budgetTypeTreeNode: BudgetTypeTreeNode[];
 
   treeControl = new NestedTreeControl<BudgetTypeTreeNode>(node => node.children);
 
   dataSource = new MatTreeNestedDataSource<BudgetTypeTreeNode>();
 
-  constructor() { 
+  constructor() {
     this.dataSource.data = this.budgetTypeTreeNode;
   }
 
