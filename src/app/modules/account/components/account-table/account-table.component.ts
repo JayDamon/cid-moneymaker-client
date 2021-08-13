@@ -37,4 +37,8 @@ export class AccountTableComponent {
     this.accountChange.emit(account);
   }
 
+  public accountComparison(account: FinancialAccount, value: FinancialAccount) : boolean {
+    return account.id == value.id;
+  }
+
 }

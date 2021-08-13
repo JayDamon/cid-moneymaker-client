@@ -39,8 +39,8 @@
                         <input matInput [(ngModel)]="account.name" (change)="updateAccount(account)">
                     </mat-form-field>
                     <mat-form-field>
-                        <mat-select [(ngModel)]="account.type.id" (selectionChange)="updateAccount(account)">
-                            <mat-option *ngFor="let type of accountTypes" [value]="type.id">
+                        <mat-select [(ngModel)]="account.type" (selectionChange)="updateAccount(account)" [compareWith]="accountComparison">
+                            <mat-option *ngFor="let type of accountTypes" [value]="type">
                                 {{type.fullName}}
                             </mat-option>
                         </mat-select>
