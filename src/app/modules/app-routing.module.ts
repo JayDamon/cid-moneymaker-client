@@ -3,9 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserHomeComponent } from './home/pages/user-home/user-home.component';
 import { TransactionsComponent } from './transaction/pages/transactions/transactions.component';
 import { ImportTransactionsComponent } from './transaction/pages/import-transactions/import-transactions.component';
-import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: UserHomeComponent
+  },
   {
     path: 'home',
     component: UserHomeComponent
