@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.9.2...v1.10.0) (2021-08-13)
+
+
+### Features
+
+* **user:** Change from text to icon for user info in navbar ([44b5fd1](https://github.com/JayDamon/cid-moneymaker-client/commit/44b5fd1e55fca912298cc00cf6a95ecc532e39fd))
+
 ## [1.9.2](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.9.1...v1.9.2) (2021-08-13)
 
 
