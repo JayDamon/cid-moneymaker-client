@@ -1,6 +1,6 @@
 <div class="css-new-account-input">
 
-    <form>
+    <form #f="ngForm">
         <mat-form-field appearance="outline">
             <mat-label>Type</mat-label>
             <mat-select required [(value)]="account.type" name="accountType">
@@ -28,7 +28,7 @@
             <mat-checkbox name="isInCashFlow" [(ngModel)]="account.isInCashFlow">Include In Cash Flow</mat-checkbox>
         </section>
         <div mat-dialog-actions>
-            <button mat-button [mat-dialog-close]="data.newAccount" cdkFocusInitial>Submit</button>
+            <button mat-button [mat-dialog-close]="data.newAccount" cdkFocusInitial [disabled]="!f.valid">Submit</button>
             <button mat-button (click)="cancelInput()">Cancel</button>
         </div>
     </form>
