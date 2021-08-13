@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.10.0...v1.10.1) (2021-08-13)
+
+
+### Bug Fixes
+
+* **account:** Update account table with new type on update ([f0b2c6d](https://github.com/JayDamon/cid-moneymaker-client/commit/f0b2c6d6d8f09051c6d8284d7fa345c0b666d09d))
+
 # [1.10.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.9.2...v1.10.0) (2021-08-13)
 
 
