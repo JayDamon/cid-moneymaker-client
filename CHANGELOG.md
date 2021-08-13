@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.9.0...v1.9.1) (2021-08-13)
+
+
+### Bug Fixes
+
+* **account:** Add value to account table once account created ([bdf7b3d](https://github.com/JayDamon/cid-moneymaker-client/commit/bdf7b3dfeb753cd11a9db31437e8fa8e82e2a2e1))
+
 # [1.9.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.8.1...v1.9.0) (2021-08-12)
 
 
