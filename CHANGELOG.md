@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.10.1...v1.11.0) (2021-08-13)
+
+
+### Features
+
+* **home:** Add basic welcome message to home page ([531ca05](https://github.com/JayDamon/cid-moneymaker-client/commit/531ca0569d33d3eccc48988996d16659c197f534))
+
 ## [1.10.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.10.0...v1.10.1) (2021-08-13)
 
 
