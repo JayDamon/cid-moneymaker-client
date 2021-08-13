@@ -21,7 +21,9 @@
         <button mat-button>Categories</button>
     </div>
     <div>
-        <button mat-button [matMenuTriggerFor]="userInfoMenu">User Info</button>
+        <button mat-button [matMenuTriggerFor]="userInfoMenu">
+          <span class="material-icons">perm_identity</span>
+        </button>
         <mat-menu #userInfoMenu="matMenu" yPosition="below">
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
