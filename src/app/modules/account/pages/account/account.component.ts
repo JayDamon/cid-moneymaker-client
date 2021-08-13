@@ -42,7 +42,9 @@ export class AccountComponent {
     this.accountService.updateAccount(account, account.id).subscribe((savedAccount: FinancialAccount) => {
       this.accounts.forEach((a, i) => {
         if (a.id === savedAccount.id) {
+          savedAccount.type.fullName = account.type.fullName;
           this.accounts[i] = savedAccount;
+          this.updateAccountArray();
         }
       });
     });
@@ -70,13 +72,16 @@ export class AccountComponent {
       if (result) {
         this.accountService.createAccount(result).subscribe((newAccount => {
           this.accounts.push(newAccount);
-          let accounts = [];
-          this.accounts.forEach(account => accounts.push(account));
-          console.log(accounts);
-          this.accounts = accounts;
+          this.updateAccountArray();
         }));
       }
     })
+  }
+
+  private updateAccountArray() {
+    let accounts = [];
+    this.accounts.forEach(account => accounts.push(account));
+    this.accounts = accounts;
   }
 
 }
