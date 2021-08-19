@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { AccountType } from 'src/app/shared/models/AccountType';
 import { FinancialAccount } from 'src/app/shared/models/FinancialAccount';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from '../../pages/account/account.component';
+import { NewAccountDialogData } from '../../pages/account/account.component';
 
 @Component({
   selector: 'app-new-account',
@@ -17,12 +17,11 @@ export class NewAccountComponent {
 
   constructor(
     public dialogRef: MatDialogRef<NewAccountComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: NewAccountDialogData) {
 
       this.account = data.newAccount;
 
       this.accountTypes = data.accountTypes;
-
   }
 
   cancelInput() {

@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewAccountComponent } from '../../components/new-account/new-account.component';
 import { AccountDataService } from 'src/app/core/services/account/account-data.service';
 
-export interface DialogData {
+export interface NewAccountDialogData {
   accountTypes: Array<AccountType>;
   newAccount: FinancialAccount;
 }
@@ -22,7 +22,7 @@ export class AccountComponent {
   dataLoading: Boolean = true;
   accountTypes: Array<AccountType> = [];
 
-  constructor(private accountService: AccountDataService, public dialog: MatDialog) {
+  constructor(private accountService: AccountDataService, private dialog: MatDialog) {
     this.addAccountSubscriptions(this.accountService);
   }
 

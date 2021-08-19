@@ -2,8 +2,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BudgetComponent } from './pages/budget/budget.component';
-import { NewBudgetComponent } from './pages/new-budget/new-budget.component';
+import { StartBudgetsComponent } from './pages/start-budgets/start-budgets.component';
 import { BudgetDetailsComponent } from './pages/budget-details/budget-details.component';
+import { NewBudgetComponent } from './components/new-budget/new-budget.component';
 
 const budgetRoutes: Routes = [
     {
@@ -12,11 +13,15 @@ const budgetRoutes: Routes = [
     },
     {
         path: 'newBudgets',
-        component: NewBudgetComponent
+        component: StartBudgetsComponent
     },
     {
         path: 'budget-overview',
         component: BudgetComponent
+    },
+    {
+        path: 'new-budgets',
+        component: NewBudgetComponent
     }
 ];
 
