@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.12.0...v1.13.0) (2021-08-19)
+
+
+### Features
+
+* **budget:** Add ability to create new budget ([1814204](https://github.com/JayDamon/cid-moneymaker-client/commit/181420490ae0ad42a7a3a5d4b2b52a82adf341ea))
+
 # [1.12.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.11.0...v1.12.0) (2021-08-13)
 
 
