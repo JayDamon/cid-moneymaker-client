@@ -2,10 +2,12 @@
 <ng-template #dataLoaded>
     <div *ngIf="budgetsCreated; then showBudgets else addBudgets"></div>
     <ng-template #showBudgets>
-        <app-budget-table 
-            [budgets]="budgets" 
-            [budgetCategories]="budgetCategories" 
-            [frequencyTypes]="frequencyTypes" 
+      <h4>Budgets</h4>
+      <button mat-button-raised (click)="createBudget()">Create</button>
+        <app-budget-table
+            [budgets]="budgets"
+            [budgetCategories]="budgetCategories"
+            [frequencyTypes]="frequencyTypes"
             (budgetChange)="updateBudget($event)">
         </app-budget-table>
     </ng-template>

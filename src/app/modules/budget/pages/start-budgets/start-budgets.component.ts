@@ -3,16 +3,16 @@ import { BudgetType } from 'src/app/shared/models/BudgetType';
 import { BudgetService } from 'src/app/core/services/budget/budget.service';
 
 @Component({
-  selector: 'app-new-budget',
-  templateUrl: './new-budget.component.html',
-  styleUrls: ['./new-budget.component.scss']
+  selector: 'app-start-budgets',
+  templateUrl: './start-budgets.component.html',
+  styleUrls: ['./start-budgets.component.scss']
 })
-export class NewBudgetComponent implements OnInit {
+export class StartBudgetsComponent implements OnInit {
 
   budgetTypes: BudgetType[] = [];
 
   constructor(private budgetService: BudgetService) {
-    
+
    }
 
    ngOnInit() {
