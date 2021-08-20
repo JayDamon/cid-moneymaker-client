@@ -75,7 +75,7 @@ export class AccountComponent {
           this.updateAccountArray();
         }));
       }
-    })
+    });
   }
 
   private updateAccountArray() {
