@@ -1,5 +1,14 @@
 .navbar {
     justify-content: space-between;
+    color: white;
+}
+
+.navbar--title {
+  font-size: 25px;
+}
+
+.navbar__button {
+  font-size: 18px;
 }
 
 span {
