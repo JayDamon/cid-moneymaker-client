@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.15.0...v1.16.0) (2021-08-20)
+
+
+### Features
+
+* **nav:** Remove span format to avoid odd alignment ([1cc64b9](https://github.com/JayDamon/cid-moneymaker-client/commit/1cc64b904468ab0dae00dd61ddff11da4494eb89))
+
 # [1.15.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.14.0...v1.15.0) (2021-08-20)
 
 
