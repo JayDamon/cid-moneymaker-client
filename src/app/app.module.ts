@@ -34,6 +34,7 @@ import { APP_INITIALIZER } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './init/keycloak-init.factory';
 import { ConfigurationService } from './init/configuration.service';
+import { NoResourcesDialogComponent } from './shared/components/no-resources-dialog/no-resources-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ConfigurationService } from './init/configuration.service';
     ImportTransactionTableComponent,
     FileImportComponent,
     CsvHeaderMatchComponent,
-    BudgetCountComponent
+    BudgetCountComponent,
+    NoResourcesDialogComponent
   ],
   imports: [
     AppRoutingModule,

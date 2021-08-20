@@ -4,6 +4,7 @@ import { AccountType } from 'src/app/shared/models/AccountType';
 import { MatDialog } from '@angular/material/dialog';
 import { NewAccountComponent } from '../../components/new-account/new-account.component';
 import { AccountDataService } from 'src/app/core/services/account/account-data.service';
+import { NoResourcesDialogComponent } from 'src/app/shared/components/no-resources-dialog/no-resources-dialog.component';
 
 export interface NewAccountDialogData {
   accountTypes: Array<AccountType>;
@@ -31,10 +32,25 @@ export class AccountComponent {
       this.accounts = accounts;
       this.dataLoading = false;
       this.accountsCreated = accounts.length > 0;
+      if (!this.accountsCreated) this.showAccountUpdateDialog();
     })
 
     accountService.getAccountTypes().subscribe((accountTypes: Array<AccountType>) => {
       this.accountTypes = accountTypes;
+    })
+  }
+
+  private showAccountUpdateDialog() {
+    const dialogRef = this.dialog.open(NoResourcesDialogComponent, {
+      data: {
+        displayText: "You have not added any accounts yet, would you like to create some now?"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "Yes") {
+        this.createAccount();
+      }
     })
   }
 

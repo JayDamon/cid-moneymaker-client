@@ -1,22 +1,14 @@
 <div *ngIf="dataLoaded; then dataLoaded else dataLoading"></div>
 <ng-template #dataLoaded>
-    <div *ngIf="budgetsCreated; then showBudgets else addBudgets"></div>
 
-    <ng-template #showBudgets>
-      <h4>Budgets</h4>
-      <button mat-button-raised (click)="createBudget()">Create</button>
-        <app-budget-table
-            [budgets]="budgets"
-            [budgetCategories]="budgetCategories"
-            [frequencyTypes]="frequencyTypes"
-            (budgetChange)="updateBudget($event)">
-        </app-budget-table>
-    </ng-template>
-
-    <ng-template #addBudgets>
-        <p>You have not added any budgets yet, would you like to create some now?</p>
-        <button mat-button routerLink="/newBudgets">Create</button>
-    </ng-template>
+    <h4>Budgets</h4>
+    <button mat-button-raised (click)="createBudget()">Create</button>
+      <app-budget-table
+          [budgets]="budgets"
+          [budgetCategories]="budgetCategories"
+          [frequencyTypes]="frequencyTypes"
+          (budgetChange)="updateBudget($event)">
+      </app-budget-table>
 
 </ng-template>
 

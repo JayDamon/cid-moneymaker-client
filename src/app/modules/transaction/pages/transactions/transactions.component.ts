@@ -5,6 +5,8 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Category } from 'src/app/shared/models/Category';
+import { MatDialog } from '@angular/material/dialog';
+import { NoResourcesDialogComponent } from 'src/app/shared/components/no-resources-dialog/no-resources-dialog.component';
 
 @Component({
   selector: 'app-transactions',
@@ -24,7 +26,8 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   constructor(
     private transactionService: TransactionService,
-    private budgetService: BudgetService) {
+    private budgetService: BudgetService,
+    private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -32,6 +35,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
       this.transactionService.getTransactions().subscribe((transactions: Array<Transaction>) => {
         this.transactions = transactions;
         this.showTransactionSpinner = false;
+        if (this.transactions.length <= 0) this.showTransactionUpdateDialog();
       })
     );
 
@@ -50,6 +54,15 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  private showTransactionUpdateDialog() {
+    this.dialog.open(NoResourcesDialogComponent, {
+      data: {
+        displayText: "You have not added any transactions yet, would you like to import some now?",
+        route: "transactions-import"
+      }
+    });
   }
 
 }

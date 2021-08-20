@@ -7,6 +7,7 @@ import { FrequencyService } from 'src/app/core/services/frequency/frequency.serv
 import { MatDialog } from '@angular/material/dialog';
 import { NewBudgetComponent } from '../../components/new-budget/new-budget.component';
 import { TransactionBudgetCategory } from 'src/app/shared/models/TransactionBudgetCategory';
+import { NoResourcesDialogComponent } from 'src/app/shared/components/no-resources-dialog/no-resources-dialog.component';
 
 
 export interface NewBudgetDialogData {
@@ -34,6 +35,7 @@ export class BudgetDetailsComponent {
 
       this.dataLoading = false;
       this.budgetsCreated = budgets.length > 0;
+      if (!this.budgetsCreated) this.showBudgetUpdateDialog();
     });
 
     this.budgetService.getBudgetCategories().subscribe((budgetCategories: Array<BudgetCategory>) => {
@@ -43,6 +45,20 @@ export class BudgetDetailsComponent {
     this.frequencyService.getFrequencyTypes().subscribe((frequencyTypes: Array<FrequencyType>) => {
       this.frequencyTypes = frequencyTypes;
     });
+  }
+
+  private showBudgetUpdateDialog() {
+    const dialogRef = this.dialog.open(NoResourcesDialogComponent, {
+      data: {
+        displayText: "You have not added any budgets yet, would you like to create some now?"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "Yes") {
+        this.createBudget();
+      }
+    })
   }
 
   updateBudget(budget: Budget) {
