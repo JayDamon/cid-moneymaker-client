@@ -157,7 +157,7 @@ export class BudgetTypeInputComponent implements OnInit {
       return result && !this.descendantsAllSelected(node);
     }
 
-    /** Toggle the to-do item selection. Select/deselect all the descendants node */
+    /** Toggle the item selection. Select/deselect all the descendants node */
     budgetItemSelectionToggle(node: BudgetCategoryFlatNode): void {
       this.checklistSelection.toggle(node);
       const descendants = this.treeControl.getDescendants(node);
@@ -165,16 +165,11 @@ export class BudgetTypeInputComponent implements OnInit {
         this.checklistSelection.select(...descendants);
         descendants.forEach(descendant => {
           this.budgetService.addBudget(descendant.budget);
-          // this.budgets.push(descendant.budget);
         });
       } else {
         this.checklistSelection.deselect(...descendants);
         descendants.forEach(descendant => {
           this.budgetService.removeBudget(descendant.budget);
-          // let budgetIndex = this.budgets.indexOf(descendant.budget);
-          // if(budgetIndex !== -1) {
-          //   this.budgets.splice(budgetIndex, 1);
-          // }
         });
       }
 
@@ -186,7 +181,7 @@ export class BudgetTypeInputComponent implements OnInit {
 
     }
 
-    /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
+    /** Toggle a leaf item selection. Check all the parents to see if they changed */
     budgetLeafItemSelectionToggle(node: BudgetCategoryFlatNode): void {
       this.checklistSelection.toggle(node);
       this.checkAllParentsSelection(node);
