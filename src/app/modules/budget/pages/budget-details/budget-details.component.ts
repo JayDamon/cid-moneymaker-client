@@ -5,9 +5,7 @@ import { Budget } from 'src/app/shared/models/Budget';
 import { FrequencyType } from 'src/app/shared/models/FrequencyType';
 import { FrequencyService } from 'src/app/core/services/frequency/frequency.service';
 import { MatDialog } from '@angular/material/dialog';
-import { StartBudgetsComponent } from '../start-budgets/start-budgets.component';
 import { NewBudgetComponent } from '../../components/new-budget/new-budget.component';
-import { stringify } from '@angular/compiler/src/util';
 import { TransactionBudgetCategory } from 'src/app/shared/models/TransactionBudgetCategory';
 
 
@@ -33,6 +31,7 @@ export class BudgetDetailsComponent {
   constructor(private budgetService: BudgetService, private frequencyService: FrequencyService, private dialog: MatDialog) {
     this.budgetService.getBudgets().subscribe((budgets: Array<Budget>) => {
       this.budgets = budgets;
+
       this.dataLoading = false;
       this.budgetsCreated = budgets.length > 0;
     });

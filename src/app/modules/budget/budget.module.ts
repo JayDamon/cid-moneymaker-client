@@ -1,6 +1,6 @@
 import { ChartsModule } from 'angular-bootstrap-md';
 import { NgModule } from "@angular/core";
-import { BudgetComponent } from './pages/budget/budget.component';
+import { BudgetOverviewComponent } from './pages/budget-overview/budget-overview.component';
 import { BudgetSummaryChartComponent } from './components/budget-summary-chart/budget-summary-chart.component';
 import { SharedModule } from 'src/app/shared/SharedModule';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -17,10 +17,11 @@ import { BudgetDetailsComponent } from './pages/budget-details/budget-details.co
 import { BudgetTableComponent } from './components/budget-table/budget-table.component';
 import { MonthYearDatePickerComponent } from './components/month-year-date-picker/month-year-date-picker.component';
 import { NewBudgetComponent } from './components/new-budget/new-budget.component';
+import { BudgetsNotFoundDialogComponent } from './components/budgets-not-found-dialog/budgets-not-found-dialog.component';
 
 @NgModule({
     declarations: [
-        BudgetComponent,
+        BudgetOverviewComponent,
         BudgetSummaryChartComponent,
         StartBudgetsComponent,
         BudgetTypeInputComponent,
@@ -28,7 +29,8 @@ import { NewBudgetComponent } from './components/new-budget/new-budget.component
         BudgetDetailsComponent,
         BudgetTableComponent,
         MonthYearDatePickerComponent,
-        NewBudgetComponent
+        NewBudgetComponent,
+        BudgetsNotFoundDialogComponent
     ],
     imports: [
         SharedModule,

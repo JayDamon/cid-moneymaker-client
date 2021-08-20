@@ -1,0 +1,29 @@
+<div *ngIf="showSpinner; then spinner else budget"></div>
+
+<ng-template #spinner>
+  <mat-spinner></mat-spinner>
+</ng-template>
+<ng-template #budget>
+
+  <div *ngIf="showBudgetSummarySpinner; else summaries"><mat-spinner></mat-spinner></div>
+  <ng-template #summaries>
+    <app-month-year-date-picker (dateChange)="updateCategories($event)"></app-month-year-date-picker>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+          <div class="app-budget-summary-chart" *ngIf="firstMonthBudgetSummary">
+              <app-budget-summary-chart [budgetSummary]=firstMonthBudgetSummary></app-budget-summary-chart>
+          </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+          <div class="app-budget-summary-chart" *ngIf="secondMonthBudgetSummary">
+              <app-budget-summary-chart [budgetSummary]=secondMonthBudgetSummary></app-budget-summary-chart>
+          </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
+  <div *ngIf="showTransactionSpiner; else transactionTable"><mat-spinner></mat-spinner></div>
+  <ng-template #transactionTable>
+    <app-transaction-table [transactions]="transactions"></app-transaction-table>
+  </ng-template>
+
+</ng-template>
