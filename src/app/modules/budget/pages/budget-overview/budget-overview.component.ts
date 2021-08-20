@@ -1,18 +1,14 @@
 import { TransactionService } from '../../../../core/services/transaction/transaction.service';
 import { Subscription } from 'rxjs';
 import { BudgetSummary } from 'src/app/shared/models/BudgetSummary';
-import { Component, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BudgetService } from 'src/app/core/services/budget/budget.service';
 import { Budget } from 'src/app/shared/models/Budget';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Moment } from 'moment';
 import { MatDialog } from '@angular/material/dialog';
-import { BudgetsNotFoundDialogComponent } from '../../components/budgets-not-found-dialog/budgets-not-found-dialog.component';
-
-export interface RedirectDialogData {
-  displayText: string;
-  route: string;
-}
+import { NoResourcesDialogData } from 'src/app/shared/models/NoResourcesDialogData';
+import { NoResourcesDialogComponent } from 'src/app/shared/components/no-resources-dialog/no-resources-dialog.component';
 
 @Component({
   selector: 'app-budget',
@@ -46,7 +42,7 @@ export class BudgetOverviewComponent implements OnDestroy {
 
   private showBudgetUpdateDialog(budgetsExist: boolean, budgetsHaveAStartDate: boolean) {
 
-    let dialogData: RedirectDialogData;
+    let dialogData: NoResourcesDialogData;
 
     if (!budgetsExist) {
       dialogData = {
@@ -62,7 +58,7 @@ export class BudgetOverviewComponent implements OnDestroy {
 
     console.log(dialogData);
 
-    this.dialog.open(BudgetsNotFoundDialogComponent, {
+    this.dialog.open(NoResourcesDialogComponent, {
       data: dialogData
     });
 

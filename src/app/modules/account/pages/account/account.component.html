@@ -1,19 +1,12 @@
 <div *ngIf="dataLoaded; then dataLoaded else dataLoading"></div>
 <ng-template #dataLoaded>
-    <div *ngIf="accountsCreated; then showAccounts else addAccounts"></div>
-    <ng-template #showAccounts>
-        <h4>Accounts</h4>
-        <button mat-button-raised (click)="createAccount()">Create</button>
-        <app-account-table
-            [accounts]="accounts"
-            [accountTypes]="accountTypes"
-            (accountChange)="updateAccount($event)">
-        </app-account-table>
-    </ng-template>
-    <ng-template #addAccounts>
-        <p>You have not added any accounts yet, would you like to create some now?</p>
-        <button mat-button-raised (click)="createAccount()">Create</button>
-    </ng-template>
+    <h4>Accounts</h4>
+    <button mat-button-raised (click)="createAccount()">Create</button>
+    <app-account-table
+        [accounts]="accounts"
+        [accountTypes]="accountTypes"
+        (accountChange)="updateAccount($event)">
+    </app-account-table>
 </ng-template>
 <ng-template #dataLoading>
     <mat-spinner></mat-spinner>

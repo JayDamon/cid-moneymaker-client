@@ -17,7 +17,6 @@ import { BudgetDetailsComponent } from './pages/budget-details/budget-details.co
 import { BudgetTableComponent } from './components/budget-table/budget-table.component';
 import { MonthYearDatePickerComponent } from './components/month-year-date-picker/month-year-date-picker.component';
 import { NewBudgetComponent } from './components/new-budget/new-budget.component';
-import { BudgetsNotFoundDialogComponent } from './components/budgets-not-found-dialog/budgets-not-found-dialog.component';
 
 @NgModule({
     declarations: [
@@ -29,8 +28,7 @@ import { BudgetsNotFoundDialogComponent } from './components/budgets-not-found-d
         BudgetDetailsComponent,
         BudgetTableComponent,
         MonthYearDatePickerComponent,
-        NewBudgetComponent,
-        BudgetsNotFoundDialogComponent
+        NewBudgetComponent
     ],
     imports: [
         SharedModule,
