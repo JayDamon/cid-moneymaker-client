@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.14.0...v1.15.0) (2021-08-20)
+
+
+### Features
+
+* **route:** Use no resource dialog instead of button ([25b5b30](https://github.com/JayDamon/cid-moneymaker-client/commit/25b5b300a09dd902f2e64d2248ac63ac5b5dcd68))
+
 # [1.14.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.13.0...v1.14.0) (2021-08-20)
 
 
