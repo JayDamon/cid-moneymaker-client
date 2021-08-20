@@ -1,3 +1,11 @@
+# [1.14.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.13.0...v1.14.0) (2021-08-20)
+
+
+### Features
+
+* **navbar:** Update the navbar style and primary colors ([dcf58a4](https://github.com/JayDamon/cid-moneymaker-client/commit/dcf58a477f290254fddde96a6de15fa3af9a8c61))
+* **budget:** Warn user if no budget can be shown ([8fc08b8](https://github.com/JayDamon/cid-moneymaker-client/commit/8fc08b8a4aae4270a358e5ab9a4487a568b8d8c4))
+
 # [1.13.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.12.0...v1.13.0) (2021-08-19)
 
 
