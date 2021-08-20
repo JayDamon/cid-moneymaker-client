@@ -3,7 +3,7 @@
 
 @include mat.core();
 
-$money-maker-primary: mat.define-palette(mat.$green-palette, 500, 700, 800);
+$money-maker-primary: mat.define-palette(mat.$green-palette, 900, 500, 50);
 $money-maker-accent:  mat.define-palette(mat.$green-palette, A200);
 $money-maker-theme:   mat.define-light-theme($money-maker-primary, $money-maker-accent);
 
