@@ -1,6 +1,15 @@
 table {
     width: 100%;
 }
+
 th.mat-sort-header-sorted {
     color: black;
+}
+
+.table--amount-income {
+  color: green;
+}
+
+.table--amount-expense {
+  color: red;
 }
