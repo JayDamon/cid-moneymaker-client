@@ -26,7 +26,7 @@ import { faFileUpload, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ImportTransactionTableComponent } from './modules/transaction/components/import-transaction-table/import-transaction-table.component';
 import { FileImportComponent } from './shared/components/file-import/file-import.component';
-import { CsvHeaderMatchComponent } from './shared/components/csv-header-match/csv-header-match.component';
+import { CsvHeaderMatchComponent } from './modules/transaction/components/csv-header-match/csv-header-match.component';
 import { BudgetCountComponent } from './modules/transaction/components/budget-count/budget-count.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
