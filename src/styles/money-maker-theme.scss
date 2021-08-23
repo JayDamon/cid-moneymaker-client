@@ -1,10 +1,13 @@
 @use '~@angular/material' as mat;
-@import '~@angular/material/theming';
+@use './table-theme' as table;
 
 @include mat.core();
 
-$money-maker-primary: mat.define-palette(mat.$green-palette, 900, 500, 50);
+$money-maker-primary: mat.define-palette(mat.$green-palette, 900, 400, 100);
 $money-maker-accent:  mat.define-palette(mat.$green-palette, A200);
 $money-maker-theme:   mat.define-light-theme($money-maker-primary, $money-maker-accent);
 
 @include mat.all-component-themes($money-maker-theme);
+// @include mat.core-theme($money-maker-theme);
+// @include mat.button-theme($money-maker-theme);
+@include table.theme($money-maker-theme);
