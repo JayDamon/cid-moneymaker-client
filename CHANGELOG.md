@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.16.1...v1.17.0) (2021-08-24)
+
+
+### Features
+
+* **budget:** Update table on budget creation ([8e98fbb](https://github.com/JayDamon/cid-moneymaker-client/commit/8e98fbbd4a9c4a90ba439cb185fc373ba5333845))
+
 ## [1.16.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.16.0...v1.16.1) (2021-08-24)
 
 
