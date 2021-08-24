@@ -1,3 +1,9 @@
+<div class="page-components">
+  <app-page-header headerText="Budget Overview"></app-page-header>
+  <div class="page-date-picker">
+    <app-month-year-date-picker (dateChange)="updateCategories($event)"></app-month-year-date-picker>
+  </div>
+</div>
 <div *ngIf="showSpinner; then spinner else budget"></div>
 
 <ng-template #spinner>
@@ -7,7 +13,6 @@
 
   <div *ngIf="showBudgetSummarySpinner; else summaries"><mat-spinner></mat-spinner></div>
   <ng-template #summaries>
-    <app-month-year-date-picker (dateChange)="updateCategories($event)"></app-month-year-date-picker>
     <mat-grid-list cols="2" rowHeight="2:1">
       <mat-grid-tile>
           <div class="app-budget-summary-chart" *ngIf="firstMonthBudgetSummary">

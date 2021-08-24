@@ -1,0 +1,14 @@
+.table-components {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem 0;
+}
+
+.table-button {
+  display: flex;
+  align-items: center;
+}
+
+.table-button mat-icon {
+  font-size: 35px;
+}

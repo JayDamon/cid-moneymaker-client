@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { MatIconModule } from '@angular/material/icon';
 
 const shared = [
     CommonModule,
@@ -30,10 +32,12 @@ const shared = [
     MatFormFieldModule,
     MatDialogModule,
     MatTreeModule,
+    MatIconModule
 ];
 
 const custom = [
-  TransactionTableComponent
+  TransactionTableComponent,
+  PageHeaderComponent
 ];
 
 @NgModule({
