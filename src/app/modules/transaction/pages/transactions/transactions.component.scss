@@ -1,0 +1,29 @@
+.table-components {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem 0;
+}
+
+.table-components-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.table-components-group-element {
+  margin: 0 0 0 .5rem;
+}
+
+.table-components mat-button-toggle-group {
+  height: 2.3rem;
+  align-items: center;
+}
+
+.table-components-filter {
+  width: 15rem;
+}
+
+.table-button {
+  display: flex;
+  align-items: center;
+}

@@ -32,10 +32,43 @@ export class TransactionTableComponent {
         }
       }
 
+      this._transactions.filterPredicate = (data, filter) => {
+
+        if (filter === "TT_TYPE_expense") {
+          return data.amount < 0;
+        } else if (filter === "TT_TYPE_income") {
+          return data.amount > 0;
+        }
+
+        const accumulator = (currentTerm, key) => {
+          if (key === 'account') return currentTerm + data.account.name;
+          if (key === 'budget') return currentTerm + data.budget.name;
+          if (key === 'category') return currentTerm + data.budget?.budgetCategory?.name;
+          return currentTerm + data[key];
+        }
+
+        const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+        const transformedFilter = filter.trim().toLowerCase();
+        return dataStr.indexOf(transformedFilter) != -1;
+      }
+
       this._transactions.sort = this.sort;
     }
 
     constructor() {
+    }
+
+    public applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this._transactions.filter = filterValue.trim().toLocaleLowerCase();
+    }
+
+    public applyTypeFilter(filter: string) {
+      if (filter !== "all") {
+        this._transactions.filter = "TT_TYPE_" + filter;
+      } else {
+        this._transactions.filter = '';
+      }
     }
 
 }
