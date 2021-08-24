@@ -1,8 +1,22 @@
-<div id="app-header">
-  <span><h4>Transactions</h4></span>
-  <span><button routerLink="/transactions-import">import</button></span>
+<app-page-header headerText="Transactions"></app-page-header>
+<div class="table-components">
+  <div class="table-components-group">
+    <mat-form-field class="table-components-group-element table-components-filter">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+    <div class="table-components-group-element">
+      <mat-button-toggle-group class="table-components-toggle-group" [(ngModel)]="selectedTransactionType" (click)="filterTransactionsOnType()" name="transaction-type">
+        <mat-button-toggle value="all">All</mat-button-toggle>
+        <mat-button-toggle value="expense">Expense</mat-button-toggle>
+        <mat-button-toggle value="income">Income</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+  <div class="table-button">
+    <button color="primary" mat-raised-button routerLink="/transactions-import"><mat-icon>add</mat-icon>import</button>
+  </div>
 </div>
-
 <div *ngIf="showTransactionSpinner; else showTransactions"><mat-spinner></mat-spinner></div>
 <ng-template #showTransactions>
   <app-transaction-table [transactions]="transactions"></app-transaction-table>

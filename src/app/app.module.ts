@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TransactionsComponent } from './modules/transaction/pages/transactions/transactions.component';
 import { MaterialModule } from './material/material.module';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PublicNavbarComponent } from './core/public-navbar/public-navbar.component';
 import { UserNavbarComponent } from './core/user-navbar/user-navbar.component';
 import { UserHomeComponent } from './modules/home/pages/user-home/user-home.component';
@@ -35,6 +36,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './init/keycloak-init.factory';
 import { ConfigurationService } from './init/configuration.service';
 import { NoResourcesDialogComponent } from './shared/components/no-resources-dialog/no-resources-dialog.component';
+import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { NoResourcesDialogComponent } from './shared/components/no-resources-dia
     FileImportComponent,
     CsvHeaderMatchComponent,
     BudgetCountComponent,
-    NoResourcesDialogComponent
+    NoResourcesDialogComponent,
+    PageHeaderComponent
   ],
   imports: [
     AppRoutingModule,
@@ -70,7 +73,8 @@ import { NoResourcesDialogComponent } from './shared/components/no-resources-dia
     MatListModule,
     DragDropModule,
     MatIconModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    MatButtonToggleModule
   ],
   providers: [
     {
