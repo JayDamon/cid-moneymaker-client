@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.17.0...v1.18.0) (2021-08-24)
+
+
+### Features
+
+* **transaction:** Simplify transaction navbar button ([5c15d32](https://github.com/JayDamon/cid-moneymaker-client/commit/5c15d32d041a1709a66aab8d6ac30e64f5ad7a0e))
+
 # [1.17.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.16.1...v1.17.0) (2021-08-24)
 
 
