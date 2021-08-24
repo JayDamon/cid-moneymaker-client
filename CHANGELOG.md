@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.19.0...v1.20.0) (2021-08-24)
+
+
+### Features
+
+* **design:** Update design for all views ([66fd5ef](https://github.com/JayDamon/cid-moneymaker-client/commit/66fd5efd041ae5b4d1e091ca1bd1c6b92aefccb5))
+
 # [1.19.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.18.0...v1.19.0) (2021-08-24)
 
 
