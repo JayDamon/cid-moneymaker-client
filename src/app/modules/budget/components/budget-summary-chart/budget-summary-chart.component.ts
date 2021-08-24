@@ -1,14 +1,16 @@
 import { BudgetSummary } from './../../../../shared/models/BudgetSummary';
-import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-budget-summary-chart',
   templateUrl: './budget-summary-chart.component.html',
-  styleUrls: ['./budget-summary-chart.component.css']
+  styleUrls: ['./budget-summary-chart.component.scss']
 })
 export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
 
   @Input() budgetSummary: BudgetSummary[];
+
+  @Input() title: string;
 
   public chartDatasets: Array<any> = [
       { data: [], label: 'My First dataset' }
@@ -24,7 +26,7 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
     this.addBudgets();
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+  ngOnChanges(): void {
     this.addBudgets();
   }
 
@@ -46,8 +48,8 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
             } else {
               colors.push(red);
             }
-            const cat = bs.category.charAt(0).toUpperCase() + bs.category.slice(1);
-            const tranType = bs.budgetType.charAt(0).toUpperCase() + bs.budgetType.slice(1);
+            const cat = bs.category.charAt(0).toUpperCase() + bs.category.slice(1).toLowerCase();
+            const tranType = bs.budgetType.charAt(0).toUpperCase() + bs.budgetType.slice(1).toLowerCase();
             categories.push(cat + " " + tranType);
           }
 
@@ -74,6 +76,11 @@ export class BudgetSummaryChartComponent implements OnInit, OnChanges  {
         ]
 
         this.chartLabels = categories;
+
+        this.chartOptions.title = {
+          display: true,
+          text: this.title
+        }
     }
 
   }

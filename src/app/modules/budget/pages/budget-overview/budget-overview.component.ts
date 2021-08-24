@@ -9,6 +9,7 @@ import { Moment } from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { NoResourcesDialogData } from 'src/app/shared/models/NoResourcesDialogData';
 import { NoResourcesDialogComponent } from 'src/app/shared/components/no-resources-dialog/no-resources-dialog.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-budget',
@@ -21,10 +22,14 @@ export class BudgetOverviewComponent implements OnDestroy {
 
   showSpinner = true;
   showTransactionSpiner = true;
-  showBudgetSummarySpinner = true;
+  showBudgetSummarySpinner = false;
+  budgetSumOneFound = false;
+  budgetSumTwoFound = false;
 
   firstMonthBudgetSummary: BudgetSummary[];
+  firstMonthTitle: string;
   secondMonthBudgetSummary: BudgetSummary[];
+  secondMonthTitle: string;
   budgets: Array<Budget>;
   budgetsExist: boolean;
   _budgetsHaveAStartDate: boolean;
@@ -56,8 +61,6 @@ export class BudgetOverviewComponent implements OnDestroy {
       }
     }
 
-    console.log(dialogData);
-
     this.dialog.open(NoResourcesDialogComponent, {
       data: dialogData
     });
@@ -70,7 +73,6 @@ export class BudgetOverviewComponent implements OnDestroy {
       this.showSpinner = false;
       let budgetsHaveAStartDate = this.budgetsHaveStartDate(budgets);
       let budgetsExist = budgets.length > 0;
-      console.log("budgets exist | ", budgetsExist, "budgts have start date | ", budgetsHaveAStartDate);
       if (!budgetsHaveAStartDate || !budgetsExist) {
         this.showBudgetUpdateDialog(budgetsExist, budgetsHaveAStartDate);
       }
@@ -103,30 +105,37 @@ export class BudgetOverviewComponent implements OnDestroy {
 
   private updateBudgetSummariesForDate(date: Date) {
 
-    let secondMonthBudget = new Date(
+    let firstMonthBudget = new Date(
       date.getFullYear(),
-      date.getMonth() + 2,
+      date.getMonth() - 1,
       1
     );
 
+    console.log(date);
+    console.log(firstMonthBudget);
+
+    this.firstMonthTitle = "Previous Month - " + moment(firstMonthBudget).format("MMMM yyyy");
+    this.secondMonthTitle = "Selected Month - " + moment(date).format("MMMM yyyy");
+    console.log("First Month", this.firstMonthTitle);
+    console.log("Second Month", this.secondMonthTitle);
+
     this.subscriptions.add(
       this.budgetService.getBudgetSummary(
-        date.getFullYear(),
-        date.getMonth() + 1
+        firstMonthBudget.getFullYear(),
+        firstMonthBudget.getMonth() + 1
       ).subscribe(
         (budgetSummaries: Array<BudgetSummary>) => {
           this.firstMonthBudgetSummary = budgetSummaries;
-          this.showBudgetSummarySpinner = false;
         }
       )
     );
 
     this.subscriptions.add(
       this.budgetService.getBudgetSummary(
-          secondMonthBudget.getFullYear(),
-          secondMonthBudget.getMonth()
+        date.getFullYear(),
+        date.getMonth() + 1
         ).subscribe((budgetSummaries: Array<BudgetSummary>) => {
-        this.secondMonthBudgetSummary = budgetSummaries;
+          this.secondMonthBudgetSummary = budgetSummaries;
       })
     );
 

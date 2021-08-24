@@ -1,23 +1,13 @@
-/* .app-chart {
-    width : 50vw;
-    height : 50vh;
-} */
-
-/* mat-grid-list { */
-    /* height: 100%; */
-    /* max-height: 350px; */
-    /* max-width: 1200px;
-    height: fit-content;
-} */
-
-/* app-budget-summary-chart {
-    width: 90%;
-    height: 90%;
-} */
+.budget-charts {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
 
 .app-budget-summary-chart {
-    width: 90%;
-    height: 90%;
+  flex: 1 1 auto;
+  max-width: 900px;
+  min-width: 450px;
 }
 
 .page-components {
