@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.18.0...v1.19.0) (2021-08-24)
+
+
+### Features
+
+* **transaction:** Add filter and button row ([255b35f](https://github.com/JayDamon/cid-moneymaker-client/commit/255b35f3fc404ba991cfbe7e0e43ad92e21cdd30))
+
 # [1.18.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.17.0...v1.18.0) (2021-08-24)
 
 
