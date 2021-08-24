@@ -45,8 +45,8 @@ export class TransactionCsvParseService {
             }
           }
         });
-        console.log(transaction);
-        this.transactions.push(transaction);
+
+        if (this.transactionIsNotEmpty(transaction)) this.transactions.push(transaction);
       },
       complete: () => {
         this.csvBody.next(this.transactions);
@@ -55,6 +55,10 @@ export class TransactionCsvParseService {
     };
 
     this.parser.parse(csvFile, options);
+  }
+
+  private transactionIsNotEmpty(transaction: Transaction) {
+    return transaction.date && transaction.description && transaction.amount;
   }
 
   private createEmptyTransaction(): Transaction {

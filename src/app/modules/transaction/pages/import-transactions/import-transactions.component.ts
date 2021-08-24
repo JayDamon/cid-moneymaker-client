@@ -94,8 +94,8 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
       if (file.name.includes('.csv')) {
         this.parseService.csvHeaders.subscribe(value => {
           this.headers = value;
+          this.isCsv = true;
         });
-        this.isCsv = true;
         this.file = file;
         this.parseService.getCsvHeader(this.file);
       } else {
@@ -110,6 +110,7 @@ export class ImportTransactionsComponent implements OnInit, OnDestroy {
 
   importCsv(headers: Array<CsvHeader>) {
     this.parseService.csvBody.subscribe(value => {
+      console.log(value);
       this.transactions = value;
     });
     this.parseService.parseCsv(this.file, headers);

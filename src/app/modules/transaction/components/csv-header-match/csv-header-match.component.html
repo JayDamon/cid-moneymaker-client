@@ -1,0 +1,38 @@
+<div>
+  <p>Match the csv header fields with the required transaction fields.</p>
+  <form #f="ngForm" (ngSubmit)="returnHeaders()" [formGroup]="headerForm">
+    <mat-form-field [hideRequiredMarker]="true">
+      <mat-label>Transaction Date</mat-label>
+      <mat-select matNativeControl required [(value)]="transactionDate" formControlName="transactionSelect">
+        <mat-option *ngFor="let csvHeader of headers" [value]="csvHeader">
+          {{csvHeader}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field [hideRequiredMarker]="true">
+      <mat-label>Description</mat-label>
+      <mat-select matNativeControl required [(value)]="description" formControlName="descriptionSelect">
+        <mat-option *ngFor="let csvHeader of headers" [value]="csvHeader">
+          {{csvHeader}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field [hideRequiredMarker]="true">
+      <mat-label>Debit</mat-label>
+      <mat-select matNativeControl required [(value)]="debit" formControlName="debitSelect">
+        <mat-option *ngFor="let csvHeader of headers" [value]="csvHeader">
+          {{csvHeader}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field [hideRequiredMarker]="true">
+      <mat-label>Credit</mat-label>
+      <mat-select matNativeControl required [(value)]="credit" formControlName="creditSelect">
+        <mat-option *ngFor="let csvHeader of headers" [value]="csvHeader">
+          {{csvHeader}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="btn btn-primary" [disabled]="!f.valid">Import</button>
+  </form>
+</div>
