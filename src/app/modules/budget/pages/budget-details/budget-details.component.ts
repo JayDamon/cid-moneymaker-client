@@ -50,15 +50,10 @@ export class BudgetDetailsComponent {
   private showBudgetUpdateDialog() {
     const dialogRef = this.dialog.open(NoResourcesDialogComponent, {
       data: {
-        displayText: "You have not added any budgets yet, would you like to create some now?"
+        displayText: "You have not added any budgets yet, would you like to create some now?",
+        route: "new-budgets"
       }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == "Yes") {
-        this.createBudget();
-      }
-    })
   }
 
   updateBudget(budget: Budget) {

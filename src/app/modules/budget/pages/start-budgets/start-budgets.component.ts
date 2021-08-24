@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BudgetType } from 'src/app/shared/models/BudgetType';
 import { BudgetService } from 'src/app/core/services/budget/budget.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-start-budgets',
@@ -11,7 +12,7 @@ export class StartBudgetsComponent implements OnInit {
 
   budgetTypes: BudgetType[] = [];
 
-  constructor(private budgetService: BudgetService) {
+  constructor(private budgetService: BudgetService, private router: Router) {
 
    }
 
@@ -26,7 +27,9 @@ export class StartBudgetsComponent implements OnInit {
   }
 
   saveBudgets() {
-    this.budgetService.saveNewBudgets();
+    this.budgetService.saveNewBudgets().subscribe(() => {
+      this.router.navigate(["/budgets"]);
+    });
   }
 
 }

@@ -33,14 +33,16 @@ export class BudgetService {
     return this.budgetTypes;
   }
 
-  saveNewBudgets() {
-    this.budgetDataService.saveNewBudgets(this.newBudgets)
-    .subscribe((savedBudgets: Array<Budget>) => {
-      this.budgets.pipe(
-        map(budgets => {
-          budgets.concat(savedBudgets);
-        }))
-      });
+  saveNewBudgets(): Observable<Array<Budget>> {
+    let savedBudgets: Observable<Array<Budget>> = this.budgetDataService.saveNewBudgets(this.newBudgets);
+
+    savedBudgets.subscribe((savedBudgets: Array<Budget>) => {
+          this.budgets.pipe(
+            map(budgets => {
+              budgets.concat(savedBudgets);
+      }))
+    });
+    return savedBudgets;
   }
 
   updateBudget(budget: Budget) {
