@@ -1,3 +1,10 @@
+## [1.16.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.16.0...v1.16.1) (2021-08-24)
+
+
+### Bug Fixes
+
+* **import:** Dont add empty transaction to table ([29132c1](https://github.com/JayDamon/cid-moneymaker-client/commit/29132c1570108016934f6d04101387aaa7887668))
+
 # [1.16.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.15.0...v1.16.0) (2021-08-20)
 
 
