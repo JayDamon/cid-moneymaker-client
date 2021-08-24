@@ -4,11 +4,7 @@
     <div>
         <button class="navbar__button" mat-button routerLink="/home">Home</button>
         <button class="navbar__button" mat-button routerLink="/accounts">Accounts</button>
-        <button class="navbar__button" mat-button [matMenuTriggerFor]="transactionMenu">Transactions</button>
-        <mat-menu #transactionMenu="matMenu" yPosition="below">
-            <button mat-menu-item routerLink="/transactions">All</button>
-            <button mat-menu-item routerLink="/transactions-import">Import</button>
-        </mat-menu>
+        <button class="navbar__button" mat-button routerLink="/transactions">Transactions</button>
         <button class="navbar__button" mat-button [matMenuTriggerFor]="budgetMenu">Budget</button>
         <mat-menu #budgetMenu="matMenu" yPosition="below">
             <button mat-menu-item routerLink="/budgets">Budgets</button>
