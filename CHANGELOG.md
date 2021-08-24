@@ -1,3 +1,16 @@
+# [1.21.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.20.0...v1.21.0) (2021-08-24)
+
+
+### Bug Fixes
+
+* **version:** update moment repository ([58967ba](https://github.com/JayDamon/cid-moneymaker-client/commit/58967bacfcb4c64e62177f9f9e6a01efe6d73556))
+* **version:** Use legacy deps ([a6af9c2](https://github.com/JayDamon/cid-moneymaker-client/commit/a6af9c2770bf2071f85628e1d99070592a0b8bc5))
+
+
+### Features
+
+* **budget:** Update budget chart lib and format ([c957a6d](https://github.com/JayDamon/cid-moneymaker-client/commit/c957a6dc44d0a3cf8830ace45a683933e128196e))
+
 # [1.20.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.19.0...v1.20.0) (2021-08-24)
 
 
