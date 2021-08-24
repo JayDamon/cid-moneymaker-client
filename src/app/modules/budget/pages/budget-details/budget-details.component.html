@@ -1,8 +1,13 @@
+<div class="table-components">
+  <app-page-header headerText="Budgets"></app-page-header>
+  <div class="table-button">
+    <button color="primary" mat-icon-button (click)="createBudget()"><mat-icon>add_box</mat-icon></button>
+  </div>
+</div>
+
 <div *ngIf="dataLoaded; then dataLoaded else dataLoading"></div>
 <ng-template #dataLoaded>
 
-    <h4>Budgets</h4>
-    <button mat-button-raised (click)="createBudget()">Create</button>
       <app-budget-table
           [budgets]="budgets"
           [budgetCategories]="budgetCategories"

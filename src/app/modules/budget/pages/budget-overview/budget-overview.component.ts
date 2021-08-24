@@ -13,7 +13,7 @@ import { NoResourcesDialogComponent } from 'src/app/shared/components/no-resourc
 @Component({
   selector: 'app-budget',
   templateUrl: './budget-overview.component.html',
-  styleUrls: ['./budget-overview.component.css']
+  styleUrls: ['./budget-overview.component.scss']
 })
 export class BudgetOverviewComponent implements OnDestroy {
 

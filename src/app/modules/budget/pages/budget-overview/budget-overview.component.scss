@@ -19,3 +19,15 @@
     width: 90%;
     height: 90%;
 }
+
+.page-components {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem 0;
+}
+
+.page-date-picker {
+  display: flex;
+  align-items: center;
+  margin-top: .8rem;
+}
