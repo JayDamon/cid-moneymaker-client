@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.21.0...v1.21.1) (2021-08-31)
+
+
+### Bug Fixes
+
+* **account:** Show type on creation ([466a9ef](https://github.com/JayDamon/cid-moneymaker-client/commit/466a9ef12e50e1828c07cb6f8a01bf1fa7b0c8a8))
+
 # [1.21.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.20.0...v1.21.0) (2021-08-24)
 
 
