@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.21.1...v1.22.0) (2021-08-31)
+
+
+### Features
+
+* **style:** Update budget and transaction style ([924777c](https://github.com/JayDamon/cid-moneymaker-client/commit/924777cbdff93971e561f27dc65036e91bef608f))
+
 ## [1.21.1](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.21.0...v1.21.1) (2021-08-31)
 
 
