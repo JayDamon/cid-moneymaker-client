@@ -1,5 +1,12 @@
-<div *ngFor="let budgetType of budgetTypes">
-        <h2>{{ budgetType.type }}</h2>
-        <app-budget-type-input [budgetType]="budgetType"></app-budget-type-input>
+<div class="budget-components">
+  <app-page-header headerText="New Budgets"></app-page-header>
 </div>
-<button mat-button (click)="saveBudgets()">Save Budgets</button>
+<div class="budget-components budget-tree">
+  <div *ngFor="let budgetType of budgetTypes">
+          <h3>{{ budgetType.type  | titlecase }}</h3>
+          <app-budget-type-input [budgetType]="budgetType"></app-budget-type-input>
+  </div>
+</div>
+<div class="budget-components">
+  <button color="primary" mat-raised-button (click)="saveBudgets()">Save Budgets</button>
+</div>
