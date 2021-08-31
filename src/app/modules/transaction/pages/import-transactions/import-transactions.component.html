@@ -1,5 +1,7 @@
-<div class="app-container">
-  <h3>Import Transactions</h3>
+<div class="app-components">
+  <app-page-header headerText="Import Transactions"></app-page-header>
+</div>
+<div class="app-components">
   <mat-form-field>
     <mat-label>Account</mat-label>
     <mat-select matNativeControl required [(ngModel)]="selectedAccount" (selectionChange)="setAccountSelected()">
@@ -7,14 +9,14 @@
         {{ account.name }}
       </mat-option>
     </mat-select>
-  </mat-form-field>
+</mat-form-field>
 </div>
 
-<div class="app-import-container" *ngIf="accountSelected">
+<div class="app-import-container app-components" *ngIf="accountSelected">
   <app-file-import (fileChange)="parseFile($event)"></app-file-import>
 </div>
 
-<div class="app-container" *ngIf="isCsv">
+<div class="app-container app-components" *ngIf="isCsv">
   <div class="app-header-container">
     <app-csv-header-match
       [expectedHeaders]="expectedHeaders"
