@@ -87,6 +87,7 @@ export class AccountComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.accountService.createAccount(result).subscribe((newAccount => {
+          newAccount.type.fullName = result.type.fullName;
           this.accounts.push(newAccount);
           this.updateAccountArray();
         }));
