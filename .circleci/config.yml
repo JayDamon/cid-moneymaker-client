@@ -33,6 +33,7 @@ jobs:
           command: |
             mkdir dist
             mkdir dist/moneymaker-client
+            export NODE_OPTIONS=--openssl-legacy-provider
             npm run build-prod
       - run:
           name: Setup VirtualEnv
