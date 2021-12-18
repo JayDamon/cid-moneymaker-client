@@ -1,5 +1,5 @@
 {
-  "name": "cid",
+  "name": "moneymaker-client",
   "version": "1.22.0",
   "scripts": {
     "ng": "ng",
@@ -76,7 +76,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JayDamon/cid-moneymaker-client.git"
+    "url": "https://github.com/JayDamon/moneymaker-client.git"
   },
   "release": {
     "branches": [
@@ -123,7 +123,7 @@
       [
         "@semantic-release-plus/docker",
         {
-          "name": "repo.treescale.com/jaydamon/mm-cid-client",
+          "name": "cloud.canister.io:5000/jaymond87/moneymaker-client",
           "registryUrl": "repo.treescale.com",
           "publishLatestTag": true,
           "publishMajorTag": true,

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cid": {
+    "moneymaker-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "./dist/cid",
+            "outputPath": "./dist/moneymaker-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,24 +70,24 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cid:build"
+            "browserTarget": "moneymaker-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cid:build:production"
+              "browserTarget": "moneymaker-client:build:production"
             },
             "dev": {
-              "browserTarget": "cid:build:dev"
+              "browserTarget": "moneymaker-client:build:dev"
             },
             "local": {
-              "browserTarget": "cid:build:local"
+              "browserTarget": "moneymaker-client:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cid:build"
+            "browserTarget": "moneymaker-client:build"
           }
         },
         "test": {
@@ -124,18 +124,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cid:serve"
+            "devServerTarget": "moneymaker-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cid:serve:production"
+              "devServerTarget": "moneymaker-client:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "cid",
+  "defaultProject": "moneymaker-client",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"

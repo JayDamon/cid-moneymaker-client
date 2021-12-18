@@ -3,6 +3,6 @@
     "keycloak": {
         "url": "http://localhost:8081/auth",
         "realm": "moneymaker",
-        "clientId": "cid-client"
+        "clientId": "moneymaker-client"
     }
 }

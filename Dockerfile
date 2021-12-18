@@ -6,7 +6,7 @@ COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY ./dist/cid/ /usr/share/nginx/html
+COPY ./dist/moneymaker-client/ /usr/share/nginx/html
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
