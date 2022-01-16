@@ -119,16 +119,6 @@
           ],
           "message": "release: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
-      ],
-      [
-        "@semantic-release-plus/docker",
-        {
-          "name": "cloud.canister.io:5000/jaymond87/moneymaker-client",
-          "registryUrl": "repo.treescale.com",
-          "publishLatestTag": true,
-          "publishMajorTag": true,
-          "publishMinorTag": true
-        }
       ]
     ]
   }

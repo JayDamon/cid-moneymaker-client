@@ -43,7 +43,10 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - run:
-          name: Build and push Docker image
+          name: Update version
           command: |
-            docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME .
             npm run semantic-release || true
+      - run:
+          name: Build and Push Image
+          command: |
+            bash docker_build_push.sh $DOCKER_REPOSITORY/$IMAGE_NAME $DOCKER_USERNAME $DOCKER_PWD
