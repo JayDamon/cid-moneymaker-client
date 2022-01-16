@@ -1,3 +1,18 @@
+# [1.23.0](https://github.com/JayDamon/moneymaker-client/compare/v1.22.0...v1.23.0) (2022-01-16)
+
+
+### Bug Fixes
+
+* add legacy provider command ([bbe3717](https://github.com/JayDamon/moneymaker-client/commit/bbe3717f26cca188ee280bc01db138de9140c1b5))
+* move where we call the legacy provider ([85b29e5](https://github.com/JayDamon/moneymaker-client/commit/85b29e553a230e2bec3a6e5ad01cd9fe1db981eb))
+* **release:** Update build and release process ([19d6f96](https://github.com/JayDamon/moneymaker-client/commit/19d6f966c97e6358b283382ab72cb1d06e2b323f))
+
+
+### Features
+
+* Update account service name and registry ([59d6962](https://github.com/JayDamon/moneymaker-client/commit/59d6962756069f2f184e65b868008af631458755))
+* update name and registray ([a2004c7](https://github.com/JayDamon/moneymaker-client/commit/a2004c70db9399a094ef5a4dd3d522a251b84dcb))
+
 # [1.22.0](https://github.com/JayDamon/cid-moneymaker-client/compare/v1.21.1...v1.22.0) (2021-08-31)
 
 
