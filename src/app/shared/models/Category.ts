@@ -1,6 +1,8 @@
-import { SubCategory } from './SubCategory';
+import {SubCategory} from './SubCategory';
+import {v4 as uuid} from 'uuid'
+
 export interface Category {
-    id: number;
+    id: uuid;
     name: string;
     subCategory: SubCategory;
 }

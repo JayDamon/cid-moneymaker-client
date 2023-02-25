@@ -1,7 +1,8 @@
-import { BudgetCategory } from './BudgetCategory';
+import {BudgetCategory} from './BudgetCategory';
+import {v4 as uuid} from 'uuid'
 
 export interface BudgetType {
-    id: number;
+    id: uuid;
     type: string;
     budgetCategories: Array<BudgetCategory>;
 }

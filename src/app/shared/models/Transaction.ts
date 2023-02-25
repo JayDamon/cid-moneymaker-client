@@ -1,10 +1,11 @@
-import { Budget } from './Budget';
-import { FinancialAccount } from './FinancialAccount';
-import { Category } from './Category';
+import {Budget} from './Budget';
+import {FinancialAccount} from './FinancialAccount';
+import {Category} from './Category';
+import {v4 as uuid} from 'uuid'
 
 export interface Transaction {
-    id: number;
-    amount: number;
+    id: uuid;
+    amount: uuid;
     description: string;
     date: Date;
     account: FinancialAccount;

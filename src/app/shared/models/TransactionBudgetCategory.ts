@@ -1,7 +1,9 @@
+import {v4 as uuid} from 'uuid'
+
 export interface TransactionBudgetCategory {
-    id: number;
-    nameId: number;
+    id: uuid;
+    nameId: uuid;
     name: string;
-    typeId: number;
+    typeId: uuid;
     type: string;
 }

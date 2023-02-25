@@ -1,7 +1,8 @@
-import { AccountType } from './AccountType';
+import {AccountType} from './AccountType';
+import {v4 as uuid} from 'uuid'
 
 export interface FinancialAccount {
-    id: number;
+    id: uuid;
     name: string;
     type: AccountType;
     startingBalance: number;

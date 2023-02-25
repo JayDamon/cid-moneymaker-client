@@ -1,4 +1,6 @@
+import {v4 as uuid} from 'uuid'
+
 export interface FrequencyType {
-    id: number;
+    id: uuid;
     name: string;
 }
