@@ -31,6 +31,12 @@ speed-measure-plugin.json
 !.vscode/extensions.json
 .history/*
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
 # misc
 /.sass-cache
 /connect.lock
