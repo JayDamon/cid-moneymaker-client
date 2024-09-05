@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Install
           command: |
-            npm install
+            npm install --legacy-peer-deps
       - save_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
           paths:
