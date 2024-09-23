@@ -6,6 +6,7 @@ workflows:
       - build:
           context:
             - docker-login
+            - github-token
           filters:
             branches:
               only:
