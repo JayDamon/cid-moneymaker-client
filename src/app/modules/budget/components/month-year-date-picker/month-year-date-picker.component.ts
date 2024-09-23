@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -35,7 +35,7 @@ export const MY_FORMATS = {
 })
 export class MonthYearDatePickerComponent implements OnInit {
 
-  date = new FormControl(moment());
+  date = new UntypedFormControl(moment());
   label = "Select first month chart";
 
   @Output() dateChange = new EventEmitter();

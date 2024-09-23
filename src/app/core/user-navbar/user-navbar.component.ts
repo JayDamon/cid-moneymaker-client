@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-navbar',
@@ -8,7 +9,10 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class UserNavbarComponent implements OnInit {
 
-  constructor(private keycloakService: KeycloakService) { }
+  constructor(
+    private keycloakService: KeycloakService,
+    protected readonly router: Router
+  ) { }
 
   ngOnInit() {
   }
