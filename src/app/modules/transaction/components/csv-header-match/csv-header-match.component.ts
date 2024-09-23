@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-csv-header-match',
@@ -28,7 +28,7 @@ export class CsvHeaderMatchComponent implements OnChanges {
   @Output()
   headersAssigned = new EventEmitter();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: UntypedFormBuilder) { }
 
   ngOnChanges() {
     if (this.headers.length > 0 && !this.valuesSet) {

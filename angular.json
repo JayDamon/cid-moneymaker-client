@@ -122,7 +122,6 @@
       }
     }
   },
-  "defaultProject": "moneymaker-client",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
