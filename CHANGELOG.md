@@ -1,3 +1,11 @@
+## [1.23.1](https://github.com/JayDamon/moneymaker-client/compare/v1.23.0...v1.23.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* add github login for semantic release ([1f8885f](https://github.com/JayDamon/moneymaker-client/commit/1f8885f1d4b178da045b62046528923ff8548cb0))
+* Run ci ([#94](https://github.com/JayDamon/moneymaker-client/issues/94)) ([2c987b6](https://github.com/JayDamon/moneymaker-client/commit/2c987b6e2436d79d60336e188b5427bf81ea37a6))
+
 # [1.23.0](https://github.com/JayDamon/moneymaker-client/compare/v1.22.0...v1.23.0) (2022-01-16)
 
 
